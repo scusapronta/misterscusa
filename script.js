@@ -394,6 +394,11 @@ const themeToggleBtn = document.getElementById("themeToggleBtn");
 const themeToggleEmoji = document.getElementById("themeToggleEmoji");
 const themeToggleText = document.getElementById("themeToggleText");
 
+// Sticky bar mobile
+const mobileBtnGenerate = document.getElementById("mobileBtnGenerate");
+const mobileBtnCycle = document.getElementById("mobileBtnCycle");
+const mobileBtnCopy = document.getElementById("mobileBtnCopy");
+
 let currentCategory = "lavoro";
 let lastExcuseByCategory = {};
 let statusTimeout = null;
@@ -547,7 +552,6 @@ function maybeShowEasterEgg() {
   const total = stats.total;
   let message = null;
 
-  // Easter egg per soglia totale
   if (total === 25) {
     message = "Hai già generato 25 scuse. Stai diventando un professionista della fuga elegante.";
   } else if (total === 50) {
@@ -558,7 +562,6 @@ function maybeShowEasterEgg() {
     message = "200 scuse: a questo punto devi scrivere un manuale di sopravvivenza sociale.";
   }
 
-  // Easter egg sulla categoria top (ogni 30 scuse, per non martellare)
   if (!message && total > 0 && total % 30 === 0) {
     const best = getMostUsedCategory();
     if (best) {
@@ -595,7 +598,7 @@ function incrementStats(categoryKey) {
 }
 
 // ==========================
-//  STATUS TEMPORANEO (uso generico)
+//  STATUS TEMPORANEO
 // ==========================
 
 function showTemporaryStatus(message, isError = false) {
@@ -825,6 +828,46 @@ themeToggleBtn.addEventListener("click", () => {
     console.error("Impossibile salvare il tema:", e);
   }
 });
+
+// ==========================
+//  STICKY BAR MOBILE HANDLERS
+// ==========================
+
+if (mobileBtnGenerate) {
+  mobileBtnGenerate.addEventListener("click", () => {
+    renderNewExcuse();
+  });
+}
+
+if (mobileBtnCycle) {
+  mobileBtnCycle.addEventListener("click", () => {
+    let idx = cycleOrder.indexOf(currentCategory);
+    if (idx === -1) idx = 0;
+    idx = (idx + 1) % cycleOrder.length;
+    currentCategory = cycleOrder[idx];
+
+    categoryTabs.forEach(t => {
+      const cat = t.getAttribute("data-category");
+      if (cat === currentCategory) t.classList.add("active");
+      else t.classList.remove("active");
+    });
+
+    updateCategoryLabel();
+    renderNewExcuse();
+  });
+}
+
+if (mobileBtnCopy) {
+  mobileBtnCopy.addEventListener("click", () => {
+    const excuse = getCurrentExcuseText();
+    if (!excuse) {
+      renderNewExcuse({ countAsStat: false });
+      setTimeout(() => copyToClipboard(getCurrentExcuseText()), 160);
+    } else {
+      copyToClipboard(excuse);
+    }
+  });
+}
 
 // ==========================
 //  INIZIALIZZAZIONE
