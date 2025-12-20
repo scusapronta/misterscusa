@@ -407,7 +407,6 @@ const mobileBtnCycle = document.getElementById("mobileBtnCycle");
 const mobileBtnCopy = document.getElementById("mobileBtnCopy");
 
 // Scusa del giorno
-const dailyCard = document.getElementById("dailyExcuseCard");
 const dailyTextEl = document.getElementById("dailyExcuseText");
 const dailyMetaEl = document.getElementById("dailyExcuseMeta");
 const dailyUseBtn = document.getElementById("dailyUseBtn");
