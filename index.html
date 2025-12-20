@@ -162,7 +162,7 @@
                 <span>🏆</span>
                 <span>Categoria top: –</span>
               </div>
-              <div class="stat-pill" id="statBadge">
+              <div class="stat-pill">
                 <span>🎖️</span>
                 <span class="badge-label" id="badgeLabel">Livello scuse: Novizio educato</span>
               </div>
@@ -359,7 +359,27 @@
     </div>
   </div>
 
-  <!-- JS -->
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+  <script>
+    // Configurazione del tuo progetto Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyCyYOT6CLusuaGDUs4ML-U1isyXWditrw",
+      authDomain: "scuopronta.firebaseapp.com",
+      projectId: "scuopronta",
+      storageBucket: "scuopronta.appspot.com",
+      messagingSenderId: "617863746356",
+      appId: "1:617863746356:web:211b7a331c2c226e81e0bf"
+    };
+
+    // Inizializza Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
+
+  <!-- JS principale -->
   <script src="script.js" defer></script>
 </body>
 </html>
