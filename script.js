@@ -318,6 +318,42 @@ let statusTimeout = null;
 let lengthMode = "auto";
 
 // ==========================
+//  FIRESTORE CACHE
+// ==========================
+
+let firestoreCache = {
+  lavoro: [],
+  amici: [],
+  amore: [],
+  famiglia: [],
+  altro: []
+};
+
+let firestoreLoaded = false;
+
+// Carica frasi da Firestore
+async function loadFirestoreExcuses() {
+  if (typeof db === "undefined") {
+    console.warn("Firebase non inizializzato, uso solo database locale.");
+    return;
+  }
+
+  try {
+    const snapshot = await db.collection("frasi").get();
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      if (data && data.category && data.text && firestoreCache[data.category]) {
+        firestoreCache[data.category].push(data.text);
+      }
+    });
+    firestoreLoaded = true;
+    console.log("Firestore caricato:", firestoreCache);
+  } catch (e) {
+    console.warn("Errore Firestore, uso database locale:", e);
+  }
+}
+
+// ==========================
 //  RANDOM & GENERAZIONE
 // ==========================
 
@@ -326,6 +362,15 @@ function randomIndex(max) {
 }
 
 function generateExcuseForCategory(categoryKey, mode = "auto") {
+  // 1) Se Firestore è carico e ha frasi → usa quelle
+  if (firestoreLoaded && firestoreCache[categoryKey] && firestoreCache[categoryKey].length > 0) {
+    const list = firestoreCache[categoryKey];
+    const text = list[randomIndex(list.length)];
+    lastExcuseByCategory[categoryKey] = text;
+    return text;
+  }
+
+  // 2) Altrimenti fallback al database locale combinabile
   const cat = excuseFragments[categoryKey];
   if (!cat) return "Errore nella matrice delle scuse. Riprova più tardi.";
 
@@ -1068,4 +1113,5 @@ if (pwaHowBtn) {
   ensureDailyExcuse();
   renderNewExcuse();
   maybeShowPwaBanner();
+  loadFirestoreExcuses();
 })();
