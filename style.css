@@ -1,19 +1,24 @@
-html, body {
+/* BASE --------------------------------------------------- */
+
+html,
+body {
   margin: 0;
   padding: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
-  background: #fff;
-  color: #222;
+  background: #ffffff;
+  color: #222222;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
+/* Dark mode base */
 body.dark {
-  background: #111;
-  color: #eee;
+  background: #111111;
+  color: #eeeeee;
 }
 
-/* Layout */
+/* LAYOUT ------------------------------------------------- */
+
 .page {
   display: flex;
   justify-content: center;
@@ -25,7 +30,8 @@ body.dark {
   padding: 20px;
 }
 
-/* Header */
+/* HEADER ------------------------------------------------- */
+
 .logo-row {
   display: flex;
   justify-content: space-between;
@@ -55,14 +61,22 @@ body.dark {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: #fff;
+  background: #ffffff;
+}
+
+body.dark .logo-badge-inner {
+  background: #222222;
 }
 
 .logo-badge-letter {
   position: relative;
   font-weight: 700;
   font-size: 20px;
-  color: #222;
+  color: #222222;
+}
+
+body.dark .logo-badge-letter {
+  color: #ffd447;
 }
 
 .site-title-main {
@@ -73,8 +87,12 @@ body.dark {
 
 .site-title-tag {
   font-size: 14px;
-  color: #666;
+  color: #666666;
   margin-left: 4px;
+}
+
+body.dark .site-title-tag {
+  color: #aaaaaa;
 }
 
 .badge-beta {
@@ -87,21 +105,36 @@ body.dark {
   margin-left: 6px;
 }
 
+body.dark .badge-beta {
+  background: #333333;
+  color: #ffd447;
+}
+
 .subtitle {
   margin: 4px 0 0;
-  color: #555;
+  color: #555555;
+}
+
+body.dark .subtitle {
+  color: #bbbbbb;
 }
 
 .theme-toggle-btn {
   background: none;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
   font-size: 14px;
 }
 
-/* Hero */
+body.dark .theme-toggle-btn {
+  border-color: #444444;
+  color: #eeeeee;
+}
+
+/* HERO --------------------------------------------------- */
+
 .hero {
   display: flex;
   flex-wrap: wrap;
@@ -122,7 +155,12 @@ body.dark {
 .hero-claim,
 .hero-tagline {
   margin: 10px 0;
-  color: #444;
+  color: #444444;
+}
+
+body.dark .hero-claim,
+body.dark .hero-tagline {
+  color: #cccccc;
 }
 
 .hero-pills {
@@ -139,13 +177,19 @@ body.dark {
   font-size: 14px;
 }
 
+body.dark .pill {
+  background: #222222;
+  color: #dddddd;
+}
+
 .hero-cta-row {
   display: flex;
   gap: 10px;
   margin-top: 12px;
 }
 
-/* Buttons */
+/* BUTTONS ------------------------------------------------ */
+
 .btn-primary,
 .btn-secondary,
 .btn-ghost,
@@ -163,24 +207,45 @@ body.dark {
 }
 
 .btn-secondary {
-  background: #eee;
+  background: #eeeeee;
+}
+
+body.dark .btn-secondary {
+  background: #333333;
+  color: #eeeeee;
 }
 
 .btn-ghost {
   background: #f5f5f5;
 }
 
+body.dark .btn-ghost {
+  background: #222222;
+  color: #dddddd;
+}
+
 .btn-ghost-danger {
   background: #ffe5e5;
-  color: #a00;
+  color: #aa0000;
+}
+
+body.dark .btn-ghost-danger {
+  background: #442222;
+  color: #ff9999;
 }
 
 .btn-mini {
-  background: #eee;
+  background: #eeeeee;
   padding: 6px 10px;
 }
 
-/* Hero side card */
+body.dark .btn-mini {
+  background: #333333;
+  color: #eeeeee;
+}
+
+/* HERO SIDE CARD ---------------------------------------- */
+
 .hero-side-card {
   flex: 1;
   min-width: 260px;
@@ -189,11 +254,481 @@ body.dark {
   border-radius: 10px;
 }
 
+body.dark .hero-side-card {
+  background: #1a1a1a;
+}
+
 .hero-side-title {
   font-weight: 700;
   margin-bottom: 6px;
 }
 
+.hero-side-main {
+  margin-bottom: 10px;
+}
+
 .hero-side-bullets {
   padding-left: 20px;
-  margin: 
+  margin: 10px 0;
+}
+
+.hero-side-bullets li {
+  margin-bottom: 6px;
+}
+
+.hero-side-footnote {
+  font-size: 13px;
+  color: #666666;
+}
+
+body.dark .hero-side-footnote {
+  color: #aaaaaa;
+}
+
+/* DAILY EXCUSE ------------------------------------------ */
+
+.daily-excuse-card {
+  background: #fff8d6;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+body.dark .daily-excuse-card {
+  background: #332b00;
+  color: #ffeaa7;
+}
+
+.daily-excuse-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.daily-excuse-title {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.daily-excuse-meta {
+  font-size: 13px;
+  color: #666666;
+}
+
+body.dark .daily-excuse-meta {
+  color: #ffdd88;
+}
+
+.daily-excuse-text {
+  margin: 12px 0;
+  font-size: 16px;
+}
+
+.daily-excuse-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* MAIN SECTION ------------------------------------------ */
+
+.section-title {
+  font-size: 20px;
+  margin: 0 0 4px;
+}
+
+.section-description {
+  margin: 0 0 16px;
+  color: #555555;
+}
+
+body.dark .section-description {
+  color: #bbbbbb;
+}
+
+/* CARD MAIN --------------------------------------------- */
+
+.card-main {
+  background: #fafafa;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+body.dark .card-main {
+  background: #1a1a1a;
+}
+
+.card-main-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.card-main-title {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.chip-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  background: #e7ffe7;
+  padding: 2px 6px;
+  border-radius: 999px;
+  margin-left: 8px;
+}
+
+.chip-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00b341;
+}
+
+/* STATS ------------------------------------------------- */
+
+.card-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.stat-pill {
+  background: #ffffff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+body.dark .stat-pill {
+  background: #222222;
+  color: #dddddd;
+}
+
+.stat-pill-toggle {
+  cursor: pointer;
+}
+
+.fast-mode-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #999999;
+}
+
+/* CATEGORY TABS ----------------------------------------- */
+
+.category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.category-tab {
+  background: #eeeeee;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.category-tab.active {
+  background: #ffd447;
+  font-weight: 700;
+}
+
+body.dark .category-tab {
+  background: #333333;
+  color: #eeeeee;
+}
+
+body.dark .category-tab.active {
+  background: #ffb300;
+  color: #111111;
+}
+
+/* EXCUSE BOX -------------------------------------------- */
+
+.excuse-box {
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+body.dark .excuse-box {
+  background: #222222;
+  color: #eeeeee;
+}
+
+.excuse-category-label {
+  font-size: 13px;
+  color: #666666;
+}
+
+body.dark .excuse-category-label {
+  color: #bbbbbb;
+}
+
+.excuse-text {
+  font-size: 18px;
+  margin: 12px 0;
+}
+
+.excuse-tagline {
+  font-size: 13px;
+  color: #777777;
+}
+
+body.dark .excuse-tagline {
+  color: #bbbbbb;
+}
+
+/* EXCUSE ACTIONS ---------------------------------------- */
+
+.excuse-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* SHARE ------------------------------------------------- */
+
+.share-row {
+  margin-top: 20px;
+}
+
+.share-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.share-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.share-btn {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  background: #eeeeee;
+}
+
+body.dark .share-btn {
+  background: #333333;
+  color: #eeeeee;
+}
+
+/* STATUS ------------------------------------------------ */
+
+.status-row {
+  margin-top: 20px;
+}
+
+.status-pill {
+  background: #ffeaa7;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+body.dark .status-pill {
+  background: #333333;
+  color: #ffd447;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff9800;
+}
+
+/* ADS --------------------------------------------------- */
+
+.ad-section {
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+
+body.dark .ad-section {
+  background: #222222;
+  color: #eeeeee;
+}
+
+.ad-placeholder {
+  margin-top: 10px;
+  background: #eeeeee;
+  padding: 20px;
+  text-align: center;
+  border-radius: 6px;
+}
+
+body.dark .ad-placeholder {
+  background: #333333;
+}
+
+/* PWA BANNER -------------------------------------------- */
+
+.pwa-banner {
+  display: none;
+  background: #fff3c4;
+  padding: 16px;
+  border-radius: 10px;
+  margin-top: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+body.dark .pwa-banner {
+  background: #332b00;
+  color: #ffeaa7;
+}
+
+.pwa-banner-left {
+  font-size: 14px;
+}
+
+.pwa-banner-title {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.pwa-banner-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.pwa-banner-btn,
+.pwa-banner-close {
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.pwa-banner-btn {
+  background: #ffd447;
+}
+
+.pwa-banner-close {
+  background: #eeeeee;
+}
+
+body.dark .pwa-banner-close {
+  background: #444444;
+  color: #eeeeee;
+}
+
+/* FOOTER ------------------------------------------------ */
+
+.footer-inner {
+  margin-top: 40px;
+  font-size: 14px;
+  color: #666666;
+}
+
+body.dark .footer-inner {
+  color: #aaaaaa;
+}
+
+.footer-disclaimer {
+  margin: 0 0 6px;
+}
+
+.footer-mini {
+  font-size: 13px;
+}
+
+/* MOBILE STICKY BAR ------------------------------------- */
+
+.mobile-sticky-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-top: 1px solid #dddddd;
+  padding: 10px;
+  display: none;
+  z-index: 20;
+}
+
+body.dark .mobile-sticky-bar {
+  background: #111111;
+  border-color: #333333;
+}
+
+.mobile-sticky-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-sticky-label {
+  font-size: 13px;
+}
+
+.mobile-sticky-label span {
+  display: block;
+  font-size: 12px;
+  color: #666666;
+}
+
+body.dark .mobile-sticky-label span {
+  color: #aaaaaa;
+}
+
+.mobile-sticky-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.mobile-sticky-btn {
+  background: #eeeeee;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+body.dark .mobile-sticky-btn {
+  background: #333333;
+  color: #eeeeee;
+}
+
+.mobile-sticky-btn-primary {
+  background: #ffd447;
+  font-weight: 700;
+}
+
+/* RESPONSIVE -------------------------------------------- */
+
+@media (max-width: 768px) {
+  .mobile-sticky-bar {
+    display: block;
+  }
+}
