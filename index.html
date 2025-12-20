@@ -2,66 +2,929 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>ScusaPronta – Generatore di scuse divertenti, credibili e originali</title>
+  <title>ScusaPronta – Generatore di scuse epiche</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Generatore di scuse divertenti per lavoro, amici, amore, famiglia e altro. Un clic, una scusa epica." />
 
-  <!-- SEO -->
-  <meta name="description" content="ScusaPronta è il generatore di scuse divertenti, credibili e originali per lavoro, amici, amore e famiglia. Premi un pulsante e ottieni una scusa pronta da copiare e inviare su WhatsApp, Telegram, email o ovunque ti serva." />
-  <meta name="keywords" content="generatore di scuse, scuse divertenti, scuse credibili, scuse originali, scuse per WhatsApp, scuse per lavoro, scuse per amici, scuse per amore, scuse per famiglia, scuse pronte, scusa perfetta, scuse ironiche, scuse creative" />
-  <meta name="robots" content="index, follow" />
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://scusapronta.github.io/misterscusa/" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="ScusaPronta – Generatore di scuse divertenti e originali" />
-  <meta property="og:description" content="Genera scuse epiche per lavoro, amici, amore e famiglia. Un clic, una scusa pronta." />
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="ScusaPronta – Generatore di scuse epiche" />
+  <meta property="og:description" content="Ti serve una scusa al volo? Lavoro, amici, amore, famiglia: una scusa epica in un clic." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://scusapronta.github.io/misterscusa/" />
-  <meta property="og:image" content="https://scusapronta.github.io/misterscusa/og-image.png" />
-  <meta property="og:site_name" content="ScusaPronta" />
+  <meta property="og:url" content="https://scusapronta.github.io/scusapronta/" />
+  <meta property="og:image" content="https://scusapronta.github.io/scusapronta/og-image.png" />
 
-  <!-- Structured Data: WebApp -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "ScusaPronta",
-    "url": "https://scusapronta.github.io/misterscusa/",
-    "description": "Generatore di scuse divertenti, credibili e originali per lavoro, amici, amore e famiglia.",
-    "applicationCategory": "Utility",
-    "operatingSystem": "All",
-    "creator": { "@type": "Person", "name": "Antonio" }
-  }
-  </script>
+  <style>
+    :root {
+      --bg-main: #fafafa;
+      --bg-card: #ffffff;
+      --text-main: #1a1a1a;
+      --text-muted: #666666;
+      --accent: #ffd447;
+      --accent-dark: #f0b800;
+      --accent-secondary: #00c2a8;
+      --border-soft: #e5e5e5;
+      --danger: #ff4b6a;
+      --radius-lg: 18px;
+      --radius-md: 10px;
+      --shadow-soft: 0 14px 35px rgba(0, 0, 0, 0.06);
+      --transition-fast: 0.2s ease-out;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
 
-  <!-- CSS -->
-  <link rel="preload" href="style.css" as="style" />
-  <link rel="stylesheet" href="style.css" media="all" />
+    /* Dark mode (classe sul body) */
+    body.dark {
+      --bg-main: #050509;
+      --bg-card: #101017;
+      --text-main: #f7f7f7;
+      --text-muted: #a2a2b3;
+      --border-soft: #2a2a3a;
+      background: radial-gradient(circle at top, #1b1620 0, #050509 55%, #000000 100%);
+      color: var(--text-main);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-main);
+      background: radial-gradient(circle at top, #fff7d4 0, #fafafa 45%, #f3f3f3 100%);
+      color: var(--text-main);
+      transition: background 0.25s ease-out, color 0.25s ease-out;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    header {
+      padding: 24px 0 8px;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      justify-content: space-between;
+    }
+
+    .logo-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 22px;
+      color: #1a1a1a;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    body.dark .logo-badge {
+      color: #050509;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.8);
+    }
+
+    .site-title {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .badge-beta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #1a1a1a;
+      color: #fceba8;
+      margin-left: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    body.dark .badge-beta {
+      background: #ffffff;
+      color: #1a1a1a;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin: 4px 0 0;
+    }
+
+    .theme-toggle-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.1);
+      background: rgba(255,255,255,0.9);
+      padding: 6px 11px;
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #444;
+      cursor: pointer;
+      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    body.dark .theme-toggle-btn {
+      background: rgba(15,15,20,0.9);
+      color: #f7f7f7;
+      border-color: rgba(255,255,255,0.13);
+    }
+
+    .theme-toggle-btn:hover {
+      transform: translateY(-0.5px);
+      background: #ffffff;
+    }
+
+    body.dark .theme-toggle-btn:hover {
+      background: #181822;
+    }
+
+    .hero {
+      margin-top: 16px;
+      margin-bottom: 18px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 18px;
+      align-items: center;
+    }
+
+    .hero-main-title {
+      font-size: 26px;
+      line-height: 1.25;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .hero-highlight {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(255, 212, 71, 0.25);
+    }
+
+    body.dark .hero-highlight {
+      background: rgba(255, 212, 71, 0.15);
+    }
+
+    .hero-claim {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .hero-tagline {
+      font-size: 14px;
+      color: #333;
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    body.dark .hero-tagline {
+      color: #d3d3e5;
+    }
+
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .pill strong {
+      font-weight: 700;
+      color: #111;
+    }
+
+    body.dark .pill {
+      background: #151520;
+      border-color: rgba(255,255,255,0.05);
+      color: #b2b2c4;
+      box-shadow: none;
+    }
+
+    body.dark .pill strong {
+      color: #ffffff;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 4px;
+      margin-bottom: 4px;
+    }
+
+    .btn-primary {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: radial-gradient(circle at top left, #fff6bf 0, #ffd447 40%, #f0b800 100%);
+      color: #1a1a1a;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+    }
+
+    body.dark .btn-primary {
+      box-shadow: 0 12px 30px rgba(0,0,0,0.75);
+      color: #050509;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.02);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.24);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 7px 18px rgba(0,0,0,0.18);
+    }
+
+    .btn-secondary {
+      border-radius: 999px;
+      border: 1px solid #dedede;
+      background: rgba(255,255,255,0.8);
+      padding: 8px 14px;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #444;
+      cursor: pointer;
+      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .btn-secondary:hover {
+      background: #ffffff;
+      border-color: #c5c5c5;
+      transform: translateY(-0.5px);
+    }
+
+    body.dark .btn-secondary {
+      background: #151520;
+      border-color: #2b2b3b;
+      color: #dedeea;
+    }
+
+    body.dark .btn-secondary:hover {
+      background: #1a1a26;
+      border-color: #3c3c4e;
+    }
+
+    .hero-side-card {
+      border-radius: var(--radius-lg);
+      padding: 16px 14px;
+      background: rgba(26,26,26,0.96);
+      color: #fceba8;
+      box-shadow: 0 14px 35px rgba(0,0,0,0.52);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-side-card::before {
+      content: "";
+      position: absolute;
+      inset: -60%;
+      background: radial-gradient(circle at top, rgba(255,212,71,0.1), transparent 60%);
+      opacity: 0.9;
+    }
+
+    .hero-side-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-side-title {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #ffffff;
+      opacity: 0.85;
+      margin-bottom: 4px;
+    }
+
+    .hero-side-main {
+      font-size: 15px;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #fff9d5;
+    }
+
+    .hero-side-bullets {
+      font-size: 12px;
+      color: #f2eac5;
+      margin-bottom: 10px;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .hero-side-bullets li {
+      margin-bottom: 4px;
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+    }
+
+    .hero-side-footnote {
+      font-size: 11px;
+      color: #b8b299;
+      margin-top: 4px;
+    }
+
+    main {
+      flex: 1;
+      padding-bottom: 32px;
+    }
+
+    .card-main {
+      background: var(--bg-card);
+      border-radius: 22px;
+      box-shadow: var(--shadow-soft);
+      padding: 18px 16px 18px;
+      border: 1px solid rgba(255,255,255,0.8);
+      transition: background 0.25s ease-out, border-color 0.25s ease-out, box-shadow 0.25s ease-out;
+    }
+
+    body.dark .card-main {
+      border-color: rgba(255,255,255,0.04);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.75);
+    }
+
+    .card-main-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .card-main-title {
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .chip-live {
+      padding: 3px 8px;
+      font-size: 11px;
+      border-radius: 999px;
+      background: rgba(0,194,168,0.09);
+      color: #007463;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .chip-live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #00c2a8;
+      box-shadow: 0 0 0 5px rgba(0,194,168,0.25);
+    }
+
+    .card-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .stat-pill {
+      border-radius: 999px;
+      padding: 4px 9px;
+      border: 1px solid var(--border-soft);
+      background: rgba(255,255,255,0.7);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    body.dark .stat-pill {
+      background: rgba(8,8,14,0.9);
+      border-color: #2a2a3a;
+    }
+
+    .category-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .category-tab {
+      font-size: 12px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: #fbfbfb;
+      color: #555;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast), color var(--transition-fast);
+    }
+
+    .category-tab span.emoji {
+      font-size: 15px;
+    }
+
+    .category-tab.active {
+      border-color: #111;
+      background: #111111;
+      color: #fceba8;
+      box-shadow: 0 9px 22px rgba(0,0,0,0.25);
+      transform: translateY(-1px);
+    }
+
+    body.dark .category-tab {
+      background: #13131d;
+      color: #e2e2f2;
+      border-color: #2f2f40;
+    }
+
+    body.dark .category-tab.active {
+      background: #fceba8;
+      color: #14141c;
+      border-color: #f9d858;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.8);
+    }
+
+    .category-tab:hover:not(.active) {
+      background: #ffffff;
+      border-color: #d0d0d0;
+      transform: translateY(-0.5px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+
+    body.dark .category-tab:hover:not(.active) {
+      background: #1a1a26;
+      border-color: #3d3d50;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.7);
+    }
+
+    .category-help {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .excuse-box-wrapper {
+      position: relative;
+      margin-bottom: 14px;
+    }
+
+    .excuse-box {
+      position: relative;
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      background: linear-gradient(135deg, #fffefa, #ffffff);
+      padding: 14px 14px 12px;
+      min-height: 86px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+      transition: background 0.25s ease-out, border-color 0.25s ease-out;
+    }
+
+    body.dark .excuse-box {
+      background: radial-gradient(circle at top, #21212f 0, #131320 55%, #101018 100%);
+      border-color: #303046;
+    }
+
+    .excuse-category-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      color: #b39b00;
+      margin-bottom: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    body.dark .excuse-category-label {
+      color: #f3dc7b;
+    }
+
+    .excuse-text {
+      font-size: 15px;
+      line-height: 1.4;
+      color: #222222;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+    }
+
+    body.dark .excuse-text {
+      color: #f7f7ff;
+    }
+
+    .excuse-text.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .excuse-tagline {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    body.dark .excuse-tagline {
+      color: #9a9ab2;
+    }
+
+    .excuse-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .btn-ghost {
+      border-radius: 999px;
+      border: 1px dashed #c1c1c1;
+      background: transparent;
+      padding: 7px 12px;
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #444;
+      cursor: pointer;
+      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .btn-ghost:hover {
+      background: #f9f9f9;
+      border-color: #a6a6a6;
+      transform: translateY(-0.5px);
+    }
+
+    .btn-ghost-danger {
+      border-style: solid;
+      border-color: rgba(255,75,106,0.4);
+      color: #c32746;
+      background: rgba(255,230,236,0.6);
+    }
+
+    .btn-ghost-danger:hover {
+      background: rgba(255,214,226,0.95);
+    }
+
+    body.dark .btn-ghost {
+      border-color: #3d3d4f;
+      color: #dedeea;
+    }
+
+    body.dark .btn-ghost:hover {
+      background: #181824;
+      border-color: #4a4a60;
+    }
+
+    body.dark .btn-ghost-danger {
+      background: rgba(154,27,58,0.12);
+      border-color: rgba(255,89,124,0.7);
+      color: #ff819f;
+    }
+
+    body.dark .btn-ghost-danger:hover {
+      background: rgba(154,27,58,0.22);
+    }
+
+    .share-row {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed #ececec;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    body.dark .share-row {
+      border-top-color: #343449;
+    }
+
+    .share-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    body.dark .share-label {
+      color: #9c9cc0;
+    }
+
+    .share-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .share-btn {
+      border-radius: 999px;
+      border: 1px solid #e4e4e4;
+      background: #ffffff;
+      padding: 5px 9px;
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #444;
+      cursor: pointer;
+      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .share-btn:hover {
+      background: #f5f5f5;
+      border-color: #cccccc;
+      transform: translateY(-0.5px);
+    }
+
+    .share-btn.whatsapp { border-color: rgba(37,211,102,0.4); color:#1f8f4a; }
+    .share-btn.telegram { border-color: rgba(0,136,204,0.4); color:#0368a3; }
+    .share-btn.facebook { border-color: rgba(24,119,242,0.4); color:#1456b1; }
+    .share-btn.twitter { border-color: rgba(15,20,25,0.5); color:#111111; }
+    .share-btn.email { border-color: rgba(244,118,35,0.4); color:#c55712; }
+    .share-btn.link { border-style: dashed; }
+
+    body.dark .share-btn {
+      background: #14141f;
+      border-color: #303040;
+      color: #d0d0e4;
+    }
+
+    .status-row {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-muted);
+      gap: 8px;
+    }
+
+    .status-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 212, 71, 0.22);
+      color: #6b5600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #f0b800;
+    }
+
+    body.dark .status-pill {
+      background: rgba(252, 235, 168, 0.12);
+      color: #f1df93;
+    }
+
+    .status-random {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-random span.dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: #00c2a8;
+    }
+
+    /* Sezione annunci / banner (placeholder) */
+    .ad-section {
+      margin-top: 14px;
+      padding: 12px 10px;
+      border-radius: 16px;
+      border: 1px dashed #d0d0d0;
+      background: rgba(255,255,255,0.9);
+      font-size: 11px;
+      color: #777777;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .ad-section strong {
+      color: #444;
+    }
+
+    .ad-placeholder {
+      width: 180px;
+      height: 60px;
+      border-radius: 10px;
+      border: 1px dashed #cccccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #999;
+      background: #fcfcfc;
+    }
+
+    body.dark .ad-section {
+      background: #14141e;
+      border-color: #353548;
+      color: #a4a4b6;
+    }
+
+    body.dark .ad-section strong {
+      color: #e0e0f2;
+    }
+
+    body.dark .ad-placeholder {
+      background: #171722;
+      border-color: #3c3c50;
+      color: #777792;
+    }
+
+    footer {
+      padding: 18px 0 24px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-disclaimer {
+      max-width: 630px;
+      line-height: 1.5;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .footer-pill {
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      color: #777;
+    }
+
+    .footer-mini {
+      font-size: 10px;
+      color: #999;
+    }
+
+    .footer-mini span {
+      opacity: 0.9;
+    }
+
+    body.dark .footer-pill {
+      background: #10101a;
+      border-color: #323244;
+      color: #bebed4;
+    }
+
+    body.dark .footer-mini {
+      color: #7f7f96;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-side-card {
+        order: -1;
+      }
+
+      header {
+        padding-top: 18px;
+      }
+
+      .site-title {
+        font-size: 24px;
+      }
+
+      .hero-main-title {
+        font-size: 22px;
+      }
+
+      .card-main {
+        padding: 15px 12px 16px;
+      }
+
+      .ad-section {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .ad-placeholder {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
 </head>
-
 <body>
   <div class="page">
     <div class="container">
-
-      <!-- HEADER -->
       <header>
         <div class="logo-row">
           <div class="logo-left">
-            <div class="logo-badge">
-              <div class="logo-badge-inner"></div>
-              <div class="logo-badge-letter">SP</div>
-            </div>
+            <div class="logo-badge">S</div>
             <div>
               <div class="site-title">
-                <span class="site-title-main">SCUSA·PRONTA</span>
-                <span class="site-title-tag">scuse on‑demand</span>
-                <span class="badge-beta"><span>⚡</span> generatore di scuse</span>
+                ScusaPronta
+                <span class="badge-beta">
+                  <span>⚡</span> generatore di scuse
+                </span>
               </div>
-              <p class="subtitle">La vita è un casino. Le scuse no.</p>
+              <p class="subtitle">La vita è complicata. Le scuse no.</p>
             </div>
           </div>
-
           <button class="theme-toggle-btn" id="themeToggleBtn">
             <span id="themeToggleEmoji">🌙</span>
             <span id="themeToggleText">Dark mode</span>
@@ -69,193 +932,194 @@
         </div>
       </header>
 
-      <!-- HERO -->
       <section class="hero">
         <div>
           <h1 class="hero-main-title">
             <span class="hero-highlight">Scuse epiche</span> in un clic.
           </h1>
-          <p class="hero-claim">Lavoro, amici, amore, famiglia o situazioni imbarazzanti: scegli la categoria e ScusaPronta inventa la scusa al posto tuo.</p>
-          <p class="hero-tagline">Il generatore di scuse che non ti giudica. Ti salva e basta.</p>
+          <p class="hero-claim">
+            Lavoro, amici, amore, famiglia, altro: scegli la categoria, premi il pulsante e ottieni la scusa perfetta.
+          </p>
+          <p class="hero-tagline">
+            Il primo generatore di scuse che non ti giudica (ma ti salva all’ultimo minuto).
+          </p>
 
           <div class="hero-pills">
             <span class="pill"><strong>5</strong> categorie socialmente discutibili</span>
-            <span class="pill"><strong>Breve</strong> o <strong>Lunga</strong></span>
-            <span class="pill"><strong>Condividi</strong> ovunque</span>
+            <span class="pill"><strong>Random</strong> davvero casuale</span>
+            <span class="pill"><strong>Condividi</strong> su WhatsApp, Telegram & co.</span>
           </div>
 
           <div class="hero-cta-row">
-            <button class="btn-primary" id="btnGenerateHero">🎲 Genera una scusa ora</button>
-            <button class="btn-secondary" id="btnHeroCycle">🔀 Cambia categoria</button>
+            <button class="btn-primary" id="btnGenerateHero">
+              <span>🎲 Genera una scusa ora</span>
+            </button>
+            <button class="btn-secondary" id="btnHeroCycle">
+              <span>🔀 Cambia categoria</span>
+            </button>
           </div>
         </div>
 
-        <aside class="hero-side-card">
+        <aside class="hero-side-card" aria-hidden="true">
           <div class="hero-side-inner">
             <div class="hero-side-title">Uso tipico</div>
-            <div class="hero-side-main">È lunedì, sei in ritardo e il cervello è ancora in modalità aereo.</div>
+            <div class="hero-side-main">
+              È lunedì mattina, sei in ritardo, e la creatività è rimasta nel letto.
+            </div>
             <ul class="hero-side-bullets">
-              <li>✅ Premi il pulsante e copi.</li>
-              <li>✅ Domani fai finta che sia spontanea.</li>
-              <li>✅ La coscienza? Torna più tardi.</li>
+              <li><span>✅</span><span>Selezioni “Lavoro”, premi il pulsante, copi e incolli.</span></li>
+              <li><span>✅</span><span>Il giorno dopo passi su “Amore” (con cautela).</span></li>
+              <li><span>✅</span><span>La coscienza? È in modalità aereo.</span></li>
             </ul>
-            <div class="hero-side-footnote">Pro tip: usala con autoironia.</div>
+            <div class="hero-side-footnote">
+              Pro tip: usala con ironia, non per fare danni veri.
+            </div>
           </div>
         </aside>
       </section>
 
-      <!-- SCUSA DEL GIORNO -->
-      <section class="daily-excuse-card" id="dailyExcuseCard">
-        <div class="daily-excuse-header">
-          <div class="daily-excuse-title">🎁 Scusa del giorno</div>
-          <div class="daily-excuse-meta" id="dailyExcuseMeta">Aggiornata ogni 24 ore.</div>
-        </div>
-        <div class="daily-excuse-text" id="dailyExcuseText"></div>
-        <div class="daily-excuse-actions">
-          <button class="btn-mini" id="dailyUseBtn">👉 Usa questa</button>
-          <button class="btn-mini" id="dailyNewBtn">🎲 Nuova</button>
-        </div>
-      </section>
-
-      <!-- MAIN -->
       <main>
-        <section>
-          <h2 class="section-title">Come funziona ScusaPronta</h2>
-          <p class="section-description">Scegli la categoria, premi il pulsante e copia. Il resto lo fa la matematica delle scuse.</p>
-        </section>
-
-        <section class="card-main">
+        <section class="card-main" aria-label="Generatore di scuse">
           <div class="card-main-header">
             <div class="card-main-title">
-              🎛️ Pannello ScusaPronta
-              <span class="chip-live"><span class="chip-live-dot"></span> live</span>
+              <span>🎛️ Pannello ScusaPronta</span>
+              <span class="chip-live">
+                <span class="chip-live-dot"></span>
+                live, generatore attivo
+              </span>
+            </div>
+            <div class="card-stats">
+              <div class="stat-pill" id="statTotal">
+                <span>📊</span>
+                <span>Scuse generate: 0</span>
+              </div>
+              <div class="stat-pill" id="statMostUsed">
+                <span>🏆</span>
+                <span>Categoria top: –</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-tabs" id="categoryTabs">
+            <button class="category-tab active" data-category="lavoro">
+              <span class="emoji">💼</span>
+              <span>Lavoro</span>
+            </button>
+            <button class="category-tab" data-category="amici">
+              <span class="emoji">🍻</span>
+              <span>Amici</span>
+            </button>
+            <button class="category-tab" data-category="amore">
+              <span class="emoji">❤️</span>
+              <span>Amore</span>
+            </button>
+            <button class="category-tab" data-category="famiglia">
+              <span class="emoji">🏡</span>
+              <span>Famiglia</span>
+            </button>
+            <button class="category-tab" data-category="altro">
+              <span class="emoji">🎭</span>
+              <span>Altro</span>
+            </button>
+          </div>
+
+          <p class="category-help">
+            Seleziona la categoria, premi “Genera” e lascia che l’algoritmo si sporchi le mani al posto tuo.
+          </p>
+
+          <div class="excuse-box-wrapper">
+            <div class="excuse-box">
+              <div class="excuse-category-label" id="excuseCategoryLabel">
+                <span>Categoria:</span><span id="excuseCategoryName">Lavoro</span>
+              </div>
+              <div class="excuse-text" id="excuseText">
+                <!-- Scusa generata qui -->
+              </div>
+              <div class="excuse-tagline">
+                <span>💡</span>
+                <span>Pro tip: usala con un sorriso, non con aria colpevole.</span>
+              </div>
             </div>
 
-            <div class="card-stats">
-              <div class="stat-pill" id="statTotal">📊 Scuse generate: 0</div>
-              <div class="stat-pill" id="statMostUsed">🏆 Categoria top: –</div>
-              <div class="stat-pill">🎖️ <span id="badgeLabel">Livello scuse: Novizio educato</span></div>
-              <button class="stat-pill stat-pill-toggle" id="fastModeToggle">
-                <span class="fast-mode-indicator" id="fastModeDot"></span>
-                <span id="fastModeLabel">Modalità veloce: OFF</span>
+            <div class="excuse-actions">
+              <button class="btn-primary" id="btnGenerate">
+                <span>🎲 Genera un’altra scusa</span>
+              </button>
+              <button class="btn-ghost" id="btnCopy">
+                <span>📋</span>
+                <span>Copia negli appunti</span>
+              </button>
+              <button class="btn-ghost" id="btnCopyWithCategory">
+                <span>📝</span>
+                <span>Copia con categoria + firma</span>
+              </button>
+              <button class="btn-ghost btn-ghost-danger" id="btnPanic">
+                <span>🚨</span>
+                <span>Modalità panico</span>
               </button>
             </div>
-          </div>
 
-          <!-- CATEGORIE -->
-          <div class="category-tabs" id="categoryTabs">
-            <button class="category-tab active" data-category="lavoro">💼 Lavoro</button>
-            <button class="category-tab" data-category="amici">🍻 Amici</button>
-            <button class="category-tab" data-category="amore">❤️ Amore</button>
-            <button class="category-tab" data-category="famiglia">🏡 Famiglia</button>
-            <button class="category-tab" data-category="altro">🎭 Altro</button>
-          </div>
-
-          <!-- SCUSA -->
-          <div class="excuse-box">
-            <div class="excuse-category-label">Categoria: <span id="excuseCategoryName">Lavoro</span></div>
-            <div class="excuse-text" id="excuseText"></div>
-            <div class="excuse-tagline">💡 Funziona meglio se sorridi come se fosse tutto normalissimo.</div>
-          </div>
-
-          <!-- AZIONI -->
-          <div class="excuse-actions">
-            <button class="btn-primary" id="btnGenerate">🎲 Scusa casuale</button>
-            <button class="btn-ghost" id="btnShortExcuse">⚡ Breve</button>
-            <button class="btn-ghost" id="btnLongExcuse">📜 Lunga</button>
-            <button class="btn-ghost" id="btnCopy">📋 Copia</button>
-            <button class="btn-ghost" id="btnCopyWithCategory">📝 Copia + categoria</button>
-            <button class="btn-ghost btn-ghost-danger" id="btnPanic">🚨 Panico</button>
-          </div>
-
-          <!-- CONDIVISIONE -->
-          <section class="share-row">
-            <div class="share-label">🔗 Condividi:</div>
-            <div class="share-buttons">
-              <button class="share-btn whatsapp" data-share="whatsapp">WhatsApp</button>
-              <button class="share-btn telegram" data-share="telegram">Telegram</button>
-              <button class="share-btn facebook" data-share="facebook">Facebook</button>
-              <button class="share-btn twitter" data-share="twitter">X/Twitter</button>
-              <button class="share-btn email" data-share="email">Email</button>
-              <button class="share-btn link" data-share="link">Copia link</button>
+            <div class="share-row">
+              <div class="share-label">
+                <span>🔗</span>
+                <span>Condividi la tua scusa al volo:</span>
+              </div>
+              <div class="share-buttons">
+                <button class="share-btn whatsapp" data-share="whatsapp">WhatsApp</button>
+                <button class="share-btn telegram" data-share="telegram">Telegram</button>
+                <button class="share-btn facebook" data-share="facebook">Facebook</button>
+                <button class="share-btn twitter" data-share="twitter">X/Twitter</button>
+                <button class="share-btn email" data-share="email">Email</button>
+                <button class="share-btn link" data-share="link">Copia link</button>
+              </div>
             </div>
-          </section>
 
-          <!-- STATUS -->
-          <div class="status-row">
-            <div class="status-pill" id="statusRandomInfo">
-              <span class="status-dot"></span>
-              Random attivo: nessuna scusa si ripete in modo prevedibile.
+            <div class="status-row">
+              <div class="status-pill" id="statusRandomInfo">
+                <span class="status-dot"></span>
+                <span>Random attivo: nessuna scusa si ripete in modo prevedibile.</span>
+              </div>
+              <div class="status-random">
+                <span class="dot"></span>
+                <span>Base di frasi combinabili per centinaia di scuse uniche.</span>
+              </div>
             </div>
           </div>
 
-          <!-- SPAZIO ANNUNCI -->
-          <section class="ad-section">
-            <strong>Spazio annunci pronto.</strong><br />
-            Qui potrai inserire AdSense quando avrai il dominio.
-            <div class="ad-placeholder">Slot banner</div>
-          </section>
-
-          <!-- PWA -->
-          <section class="pwa-banner" id="pwaBanner">
-            <div class="pwa-banner-left">
-              <div class="pwa-banner-title">📱 Aggiungi alla Home</div>
-              <div>Aprilo come un’app, anche offline.</div>
+          <!-- Sezione annunci / banner – QUI AGGIUNGERAI LE PUBBLICITÀ -->
+          <section class="ad-section" aria-label="Spazio pubblicitario">
+            <div>
+              <strong>Spazio annunci pronto.</strong><br />
+              Qui puoi integrare il codice dei tuoi banner (es. AdSense, affiliazioni, promozioni personali).
             </div>
-            <div class="pwa-banner-actions">
-              <button class="pwa-banner-btn" id="pwaHowBtn">❓ Come si fa</button>
-              <button class="pwa-banner-close" id="pwaCloseBtn">✕</button>
+            <div class="ad-placeholder">
+              Slot banner 180×60 (esempio)
             </div>
           </section>
         </section>
       </main>
 
-      <!-- FOOTER -->
       <footer>
         <div class="footer-inner">
-          <p class="footer-disclaimer">
-            <strong>Disclaimer:</strong> le scuse sono pensate per ridere e sdrammatizzare. Non usarle per fare danni veri.
-          </p>
-          <div class="footer-mini">Made with 🧠+😅 in Italia</div>
+          <div class="footer-row">
+            <p class="footer-disclaimer">
+              <strong>Disclaimer serio in un sito poco serio:</strong> le scuse generate sono pensate per ridere e sdrammatizzare.
+              Non usarle per ferire, truffare, manipolare o evitare responsabilità importanti.
+              La vita vera viene prima, le scuse dopo.
+            </p>
+            <div class="footer-links">
+              <span class="footer-pill">Made with 🧠+😅 in Italia</span>
+            </div>
+          </div>
+          <div class="footer-mini">
+            <span>ScusaPronta non si assume alcuna responsabilità per capi arrabbiati, partner sospettosi o amici vendicativi.</span>
+          </div>
         </div>
       </footer>
-
     </div>
   </div>
 
-  <!-- MOBILE STICKY BAR -->
-  <div class="mobile-sticky-bar" id="mobileStickyBar">
-    <div class="mobile-sticky-inner">
-      <div class="mobile-sticky-label">
-        <strong>Scusa veloce</strong>
-        <span>Genera o copia al volo.</span>
-      </div>
-      <div class="mobile-sticky-buttons">
-        <button class="mobile-sticky-btn mobile-sticky-btn-primary" id="mobileBtnGenerate">🎲</button>
-        <button class="mobile-sticky-btn" id="mobileBtnCycle">🔀</button>
-        <button class="mobile-sticky-btn" id="mobileBtnCopy">📋</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- FIREBASE -->
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyCyYOT6CLusuaGDUs4ML-U1isyXWditrw",
-      authDomain: "scuopronta.firebaseapp.com",
-      projectId: "scuopronta",
-      storageBucket: "scuopronta.appspot.com",
-      messagingSenderId: "617863746356",
-      appId: "1:617863746356:web:211b7a331c2c226e81e0bf"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-  </script>
-
-  <!-- SCRIPT PRINCIPALE -->
-  <script src="script.js" defer></script>
+  <!-- JS separato -->
+  <script src="script.js"></script>
 </body>
 </html>
