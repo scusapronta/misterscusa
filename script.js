@@ -382,6 +382,8 @@ const categoryTabs = document.querySelectorAll(".category-tab");
 const excuseTextEl = document.getElementById("excuseText");
 const excuseCategoryNameEl = document.getElementById("excuseCategoryName");
 const btnGenerate = document.getElementById("btnGenerate");
+const btnShortExcuse = document.getElementById("btnShortExcuse");
+const btnLongExcuse = document.getElementById("btnLongExcuse");
 const btnGenerateHero = document.getElementById("btnGenerateHero");
 const btnHeroCycle = document.getElementById("btnHeroCycle");
 const btnCopy = document.getElementById("btnCopy");
@@ -390,6 +392,8 @@ const btnPanic = document.getElementById("btnPanic");
 const statusRandomInfo = document.getElementById("statusRandomInfo");
 const statTotalEl = document.getElementById("statTotal");
 const statMostUsedEl = document.getElementById("statMostUsed");
+const statBadgeEl = document.getElementById("statBadge");
+const badgeLabelEl = document.getElementById("badgeLabel");
 const themeToggleBtn = document.getElementById("themeToggleBtn");
 const themeToggleEmoji = document.getElementById("themeToggleEmoji");
 const themeToggleText = document.getElementById("themeToggleText");
@@ -418,6 +422,9 @@ let currentCategory = "lavoro";
 let lastExcuseByCategory = {};
 let statusTimeout = null;
 
+// lengthMode: "auto" | "short" | "long"
+let lengthMode = "auto";
+
 // ==========================
 //  RANDOM & GENERAZIONE
 // ==========================
@@ -426,7 +433,7 @@ function randomIndex(max) {
   return Math.floor(Math.random() * max);
 }
 
-function generateExcuseForCategory(categoryKey) {
+function generateExcuseForCategory(categoryKey, mode = "auto") {
   const cat = excuseFragments[categoryKey];
   if (!cat) return "Errore nella matrice delle scuse. Riprova più tardi.";
 
@@ -439,7 +446,18 @@ function generateExcuseForCategory(categoryKey) {
     const r = cat.reason[randomIndex(cat.reason.length)];
     const d = cat.detail[randomIndex(cat.detail.length)];
     const e = cat.end[randomIndex(cat.end.length)];
-    result = s + " " + r + ", " + d + " " + e;
+
+    if (mode === "short") {
+      // Scusa breve: motivo + chiusura
+      result = r.charAt(0).toUpperCase() + r.slice(1) + ", " + e;
+    } else if (mode === "long") {
+      // Scusa lunga: frase completa
+      result = s + " " + r + ", " + d + " " + e;
+    } else {
+      // auto / standard
+      result = s + " " + r + ", " + d + " " + e;
+    }
+
     attempt++;
   } while (result === lastExcuseByCategory[categoryKey] && attempt < maxAttempts);
 
@@ -451,11 +469,11 @@ function updateCategoryLabel() {
   excuseCategoryNameEl.textContent = categoryNames[currentCategory] || currentCategory;
 }
 
-// fastMode: se true, niente animazioni lente/scroll extra
+// fastMode: se true, meno animazioni/scroll
 let fastMode = false;
 
 function renderNewExcuse(opts = { countAsStat: true }) {
-  const text = generateExcuseForCategory(currentCategory);
+  const text = generateExcuseForCategory(currentCategory, lengthMode);
 
   if (!fastMode) {
     excuseTextEl.classList.remove("visible");
@@ -476,7 +494,7 @@ function renderNewExcuse(opts = { countAsStat: true }) {
 //  STATISTICHE + STATO (localStorage)
 // ==========================
 
-const STATS_KEY = "scusapronta_stats_v2";
+const STATS_KEY = "scusapronta_stats_v3";
 const THEME_KEY = "scusapronta_theme_v1";
 const DAILY_KEY = "scusapronta_daily_v1";
 const PWA_KEY = "scusapronta_pwa_dismissed_v1";
@@ -542,6 +560,16 @@ function getMostUsedCategory() {
   return bestCount > 0 ? { key: bestCat, count: bestCount } : null;
 }
 
+function getBadgeLabel(total) {
+  if (total >= 200) return "Leggenda dell’assenza";
+  if (total >= 100) return "Maestro della scusa";
+  if (total >= 50) return "Atleta del ritardo";
+  if (total >= 25) return "Professionista della fuga elegante";
+  if (total >= 10) return "Apprendista della giustificazione";
+  if (total >= 1) return "Novizio educato";
+  return "Novizio educato";
+}
+
 function renderStats() {
   if (statTotalEl) {
     const label = `Scuse generate: ${stats.total}`;
@@ -553,6 +581,9 @@ function renderStats() {
       ? `Categoria top: ${categoryNames[best.key]} (${best.count})`
       : "Categoria top: –";
     statMostUsedEl.querySelector("span:last-child").textContent = label;
+  }
+  if (badgeLabelEl) {
+    badgeLabelEl.textContent = `Livello scuse: ${getBadgeLabel(stats.total)}`;
   }
   updateFastModeUI();
 }
@@ -608,7 +639,6 @@ function messageForTopCategory(catKey, count) {
   }
 }
 
-// Tips per CTA (salva preferiti / fast mode)
 function loadTipsState() {
   try {
     const raw = localStorage.getItem(TIPS_KEY);
@@ -636,7 +666,7 @@ function maybeShowTipsAndEasterEgg() {
   const total = stats.total;
   let message = null;
 
-  // CTA "Salva nei preferiti" dopo 5 scuse (una volta sola)
+  // CTA "Salva nei preferiti" dopo 5 scuse
   if (total === 5 && !tipsState.savedFavoriteTip) {
     message =
       "Ti sta tornando utile? Salvalo nei preferiti (Ctrl+D o 'Aggiungi ai preferiti' nel browser).";
@@ -644,7 +674,7 @@ function maybeShowTipsAndEasterEgg() {
     saveTipsState(tipsState);
   }
 
-  // CTA "Modalità veloce" dopo 10 scuse (una volta sola)
+  // CTA "Modalità veloce" dopo 10 scuse
   if (!message && total === 10 && !tipsState.fastModeTip) {
     message =
       "Hai già generato 10 scuse. Se vuoi andare ancora più rapido, prova ad attivare la Modalità veloce.";
@@ -736,7 +766,24 @@ categoryTabs.forEach(tab => {
   });
 });
 
-// Pulsante genera principale
+// Pulsanti lunghezza scusa
+if (btnShortExcuse) {
+  btnShortExcuse.addEventListener("click", () => {
+    lengthMode = "short";
+    renderNewExcuse();
+    showTemporaryStatus("Modalità scusa breve: dritta al punto (più o meno).");
+  });
+}
+
+if (btnLongExcuse) {
+  btnLongExcuse.addEventListener("click", () => {
+    lengthMode = "long";
+    renderNewExcuse();
+    showTemporaryStatus("Modalità scusa lunga: storia completa, con retroscena.");
+  });
+}
+
+// Pulsante genera principale (auto: usa lengthMode corrente)
 btnGenerate.addEventListener("click", () => renderNewExcuse());
 
 // Pulsante genera dalla hero
@@ -782,7 +829,7 @@ function getCurrentExcuseText() {
 async function copyToClipboard(text) {
   try {
     await navigator.clipboard.writeText(text);
-    showTemporaryStatus("Scusa copiata negli appunti.");
+    showTemporaryStatus("Scusa copiata negli appunti. Ora tocca a te recitarla.");
   } catch (e) {
     console.error("Clipboard error", e);
     showTemporaryStatus("Impossibile copiare automaticamente, copia manualmente.", true);
@@ -800,20 +847,20 @@ btnCopy.addEventListener("click", () => {
 });
 
 btnCopyWithCategory.addEventListener("click", () => {
-  const excuse = getCurrentExcuseText() || generateExcuseForCategory(currentCategory);
+  const excuse = getCurrentExcuseText() || generateExcuseForCategory(currentCategory, lengthMode);
   const catLabel = categoryNames[currentCategory] || currentCategory;
   const formatted =
     "[" +
     catLabel +
     "] " +
     excuse +
-    " (Scusa generata da ScusaPronta: https://scusapronta.github.io/scusapronta/ )";
+    " (Scusa generata da ScusaPronta: https://scusapronta.github.io/misterscusa/ )";
   copyToClipboard(formatted);
 });
 
 // Modalità panico
 btnPanic.addEventListener("click", () => {
-  const excuse = generateExcuseForCategory(currentCategory);
+  const excuse = generateExcuseForCategory(currentCategory, "long");
   const panicWrap = "Versione modalità panico attivata:\n\n" + excuse;
   if (!fastMode) {
     excuseTextEl.classList.remove("visible");
@@ -834,19 +881,19 @@ btnPanic.addEventListener("click", () => {
 
 function buildShareText() {
   const catLabel = categoryNames[currentCategory] || currentCategory;
-  const excuse = getCurrentExcuseText() || generateExcuseForCategory(currentCategory);
+  const excuse = getCurrentExcuseText() || generateExcuseForCategory(currentCategory, lengthMode);
   return (
     "[" +
     catLabel +
     "] " +
     excuse +
-    "\n\nScusa generata da ScusaPronta: https://scusapronta.github.io/scusapronta/"
+    "\n\nScusa generata da ScusaPronta: https://scusapronta.github.io/misterscusa/"
   );
 }
 
 function buildShareUrlFor(platform) {
   const text = encodeURIComponent(buildShareText());
-  const url = encodeURIComponent("https://scusapronta.github.io/scusapronta/");
+  const url = encodeURIComponent("https://scusapronta.github.io/misterscusa/");
   switch (platform) {
     case "whatsapp":
       return "https://wa.me/?text=" + text;
@@ -859,7 +906,7 @@ function buildShareUrlFor(platform) {
     case "email":
       return "mailto:?subject=" + encodeURIComponent("Scusa epica generata per te") + "&body=" + text;
     default:
-      return "https://scusapronta.github.io/scusapronta/";
+      return "https://scusapronta.github.io/misterscusa/";
   }
 }
 
@@ -867,7 +914,7 @@ document.querySelectorAll(".share-btn").forEach(btn => {
   btn.addEventListener("click", async () => {
     const platform = btn.getAttribute("data-share");
     const text = buildShareText();
-    const pageUrl = "https://scusapronta.github.io/scusapronta/";
+    const pageUrl = "https://scusapronta.github.io/misterscusa/";
 
     if (platform === "link") {
       copyToClipboard(pageUrl);
@@ -1006,7 +1053,7 @@ function todayString() {
 function generateDailyExcuse() {
   const cats = Object.keys(excuseFragments);
   const cat = cats[randomIndex(cats.length)];
-  const text = generateExcuseForCategory(cat);
+  const text = generateExcuseForCategory(cat, "long");
   return {
     date: todayString(),
     category: cat,
