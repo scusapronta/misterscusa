@@ -365,7 +365,7 @@ const excuseFragments = {
   }
 };
 
-// Mappatura nomi categorie
+// Nomi categorie
 const categoryNames = {
   lavoro: "Lavoro",
   amici: "Amici",
@@ -393,11 +393,26 @@ const statMostUsedEl = document.getElementById("statMostUsed");
 const themeToggleBtn = document.getElementById("themeToggleBtn");
 const themeToggleEmoji = document.getElementById("themeToggleEmoji");
 const themeToggleText = document.getElementById("themeToggleText");
+const fastModeToggle = document.getElementById("fastModeToggle");
+const fastModeDot = document.getElementById("fastModeDot");
+const fastModeLabel = document.getElementById("fastModeLabel");
 
 // Sticky bar mobile
 const mobileBtnGenerate = document.getElementById("mobileBtnGenerate");
 const mobileBtnCycle = document.getElementById("mobileBtnCycle");
 const mobileBtnCopy = document.getElementById("mobileBtnCopy");
+
+// Scusa del giorno
+const dailyCard = document.getElementById("dailyExcuseCard");
+const dailyTextEl = document.getElementById("dailyExcuseText");
+const dailyMetaEl = document.getElementById("dailyExcuseMeta");
+const dailyUseBtn = document.getElementById("dailyUseBtn");
+const dailyNewBtn = document.getElementById("dailyNewBtn");
+
+// Banner PWA
+const pwaBanner = document.getElementById("pwaBanner");
+const pwaHowBtn = document.getElementById("pwaHowBtn");
+const pwaCloseBtn = document.getElementById("pwaCloseBtn");
 
 let currentCategory = "lavoro";
 let lastExcuseByCategory = {};
@@ -424,7 +439,6 @@ function generateExcuseForCategory(categoryKey) {
     const r = cat.reason[randomIndex(cat.reason.length)];
     const d = cat.detail[randomIndex(cat.detail.length)];
     const e = cat.end[randomIndex(cat.end.length)];
-
     result = s + " " + r + ", " + d + " " + e;
     attempt++;
   } while (result === lastExcuseByCategory[categoryKey] && attempt < maxAttempts);
@@ -437,12 +451,21 @@ function updateCategoryLabel() {
   excuseCategoryNameEl.textContent = categoryNames[currentCategory] || currentCategory;
 }
 
+// fastMode: se true, niente animazioni lente/scroll extra
+let fastMode = false;
+
 function renderNewExcuse(opts = { countAsStat: true }) {
   const text = generateExcuseForCategory(currentCategory);
-  excuseTextEl.classList.remove("visible");
-  void excuseTextEl.offsetWidth; // forza reflow
-  excuseTextEl.textContent = text;
-  excuseTextEl.classList.add("visible");
+
+  if (!fastMode) {
+    excuseTextEl.classList.remove("visible");
+    void excuseTextEl.offsetWidth;
+    excuseTextEl.textContent = text;
+    excuseTextEl.classList.add("visible");
+  } else {
+    excuseTextEl.textContent = text;
+    excuseTextEl.classList.add("visible");
+  }
 
   if (opts.countAsStat) {
     incrementStats(currentCategory);
@@ -450,11 +473,14 @@ function renderNewExcuse(opts = { countAsStat: true }) {
 }
 
 // ==========================
-//  STATISTICHE LOCALI (localStorage)
+//  STATISTICHE + STATO (localStorage)
 // ==========================
 
-const STATS_KEY = "scusapronta_stats_v1";
+const STATS_KEY = "scusapronta_stats_v2";
 const THEME_KEY = "scusapronta_theme_v1";
+const DAILY_KEY = "scusapronta_daily_v1";
+const PWA_KEY = "scusapronta_pwa_dismissed_v1";
+const TIPS_KEY = "scusapronta_tips_v1";
 
 function loadStats() {
   try {
@@ -464,7 +490,8 @@ function loadStats() {
         total: 0,
         perCategory: { lavoro: 0, amici: 0, amore: 0, famiglia: 0, altro: 0 },
         lastCategory: "lavoro",
-        lastGeneratedAt: null
+        lastGeneratedAt: null,
+        fastMode: false
       };
     }
     const parsed = JSON.parse(raw);
@@ -472,18 +499,21 @@ function loadStats() {
       total: 0,
       perCategory: { lavoro: 0, amici: 0, amore: 0, famiglia: 0, altro: 0 },
       lastCategory: "lavoro",
-      lastGeneratedAt: null
+      lastGeneratedAt: null,
+      fastMode: false
     };
-    return Object.assign(base, parsed, {
+    const merged = Object.assign(base, parsed, {
       perCategory: Object.assign(base.perCategory, parsed.perCategory || {})
     });
+    return merged;
   } catch (e) {
     console.error("Errore nel parsing delle stats:", e);
     return {
       total: 0,
       perCategory: { lavoro: 0, amici: 0, amore: 0, famiglia: 0, altro: 0 },
       lastCategory: "lavoro",
-      lastGeneratedAt: null
+      lastGeneratedAt: null,
+      fastMode: false
     };
   }
 }
@@ -497,6 +527,7 @@ function saveStats(stats) {
 }
 
 let stats = loadStats();
+fastMode = !!stats.fastMode;
 
 function getMostUsedCategory() {
   let bestCat = null;
@@ -523,10 +554,41 @@ function renderStats() {
       : "Categoria top: –";
     statMostUsedEl.querySelector("span:last-child").textContent = label;
   }
+  updateFastModeUI();
 }
 
 // ==========================
-//  EASTER EGG SU USO INTENSIVO
+//  GESTIONE FAST MODE
+// ==========================
+
+function updateFastModeUI() {
+  if (!fastModeDot || !fastModeLabel) return;
+  if (fastMode) {
+    fastModeDot.classList.add("fast-mode-on");
+    fastModeLabel.textContent = "Modalità veloce: ON";
+  } else {
+    fastModeDot.classList.remove("fast-mode-on");
+    fastModeLabel.textContent = "Modalità veloce: OFF";
+  }
+}
+
+if (fastModeToggle) {
+  fastModeToggle.addEventListener("click", () => {
+    fastMode = !fastMode;
+    stats.fastMode = fastMode;
+    saveStats(stats);
+    updateFastModeUI();
+    showTemporaryStatus(
+      fastMode
+        ? "Modalità veloce attivata: niente fronzoli, solo scuse."
+        : "Modalità veloce disattivata: torna qualche effetto scenico.",
+      false
+    );
+  });
+}
+
+// ==========================
+//  EASTER EGG + CTA DISCRETE
 // ==========================
 
 function messageForTopCategory(catKey, count) {
@@ -546,26 +608,65 @@ function messageForTopCategory(catKey, count) {
   }
 }
 
-function maybeShowEasterEgg() {
+// Tips per CTA (salva preferiti / fast mode)
+function loadTipsState() {
+  try {
+    const raw = localStorage.getItem(TIPS_KEY);
+    if (!raw) return { savedFavoriteTip: false, fastModeTip: false };
+    const parsed = JSON.parse(raw);
+    return Object.assign({ savedFavoriteTip: false, fastModeTip: false }, parsed);
+  } catch {
+    return { savedFavoriteTip: false, fastModeTip: false };
+  }
+}
+
+function saveTipsState(tips) {
+  try {
+    localStorage.setItem(TIPS_KEY, JSON.stringify(tips));
+  } catch (e) {
+    console.error("Impossibile salvare tips:", e);
+  }
+}
+
+let tipsState = loadTipsState();
+
+function maybeShowTipsAndEasterEgg() {
   if (!statusRandomInfo) return;
 
   const total = stats.total;
   let message = null;
 
-  if (total === 25) {
-    message = "Hai già generato 25 scuse. Stai diventando un professionista della fuga elegante.";
-  } else if (total === 50) {
-    message = "50 scuse generate. Consiglio: valuta anche dire la verità una volta ogni tanto.";
-  } else if (total === 100) {
-    message = "100 scuse. Complimenti, hai sbloccato il livello 'Ma sei serio?'.";
-  } else if (total === 200) {
-    message = "200 scuse: a questo punto devi scrivere un manuale di sopravvivenza sociale.";
+  // CTA "Salva nei preferiti" dopo 5 scuse (una volta sola)
+  if (total === 5 && !tipsState.savedFavoriteTip) {
+    message =
+      "Ti sta tornando utile? Salvalo nei preferiti (Ctrl+D o 'Aggiungi ai preferiti' nel browser).";
+    tipsState.savedFavoriteTip = true;
+    saveTipsState(tipsState);
   }
 
-  if (!message && total > 0 && total % 30 === 0) {
-    const best = getMostUsedCategory();
-    if (best) {
-      message = messageForTopCategory(best.key, best.count);
+  // CTA "Modalità veloce" dopo 10 scuse (una volta sola)
+  if (!message && total === 10 && !tipsState.fastModeTip) {
+    message =
+      "Hai già generato 10 scuse. Se vuoi andare ancora più rapido, prova ad attivare la Modalità veloce.";
+    tipsState.fastModeTip = true;
+    saveTipsState(tipsState);
+  }
+
+  // Easter egg per soglie alte
+  if (!message) {
+    if (total === 25) {
+      message = "Hai già generato 25 scuse. Stai diventando un professionista della fuga elegante.";
+    } else if (total === 50) {
+      message = "50 scuse generate. Valuta anche l’opzione 'dire la verità', ogni tanto.";
+    } else if (total === 100) {
+      message = "100 scuse. Complimenti, hai sbloccato il livello 'Ma sei serio?'.";
+    } else if (total === 200) {
+      message = "200 scuse: a questo punto devi scrivere un manuale di sopravvivenza sociale.";
+    } else if (total > 0 && total % 30 === 0) {
+      const best = getMostUsedCategory();
+      if (best) {
+        message = messageForTopCategory(best.key, best.count);
+      }
     }
   }
 
@@ -594,11 +695,12 @@ function incrementStats(categoryKey) {
   stats.lastGeneratedAt = Date.now();
   saveStats(stats);
   renderStats();
-  maybeShowEasterEgg();
+  maybeShowTipsAndEasterEgg();
+  maybeShowPwaBanner();
 }
 
 // ==========================
-//  STATUS TEMPORANEO
+//  STATUS TEMPORANEO GENERICO
 // ==========================
 
 function showTemporaryStatus(message, isError = false) {
@@ -640,7 +742,7 @@ btnGenerate.addEventListener("click", () => renderNewExcuse());
 // Pulsante genera dalla hero
 btnGenerateHero.addEventListener("click", () => {
   const mainCard = document.querySelector(".card-main");
-  if (mainCard) {
+  if (mainCard && !fastMode) {
     mainCard.scrollIntoView({ behavior: "smooth", block: "center" });
   }
   renderNewExcuse();
@@ -664,7 +766,7 @@ btnHeroCycle.addEventListener("click", () => {
   renderNewExcuse();
 
   const mainCard = document.querySelector(".card-main");
-  if (mainCard) {
+  if (mainCard && !fastMode) {
     mainCard.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 });
@@ -713,10 +815,15 @@ btnCopyWithCategory.addEventListener("click", () => {
 btnPanic.addEventListener("click", () => {
   const excuse = generateExcuseForCategory(currentCategory);
   const panicWrap = "Versione modalità panico attivata:\n\n" + excuse;
-  excuseTextEl.classList.remove("visible");
-  void excuseTextEl.offsetWidth;
-  excuseTextEl.textContent = panicWrap;
-  excuseTextEl.classList.add("visible");
+  if (!fastMode) {
+    excuseTextEl.classList.remove("visible");
+    void excuseTextEl.offsetWidth;
+    excuseTextEl.textContent = panicWrap;
+    excuseTextEl.classList.add("visible");
+  } else {
+    excuseTextEl.textContent = panicWrap;
+    excuseTextEl.classList.add("visible");
+  }
   incrementStats(currentCategory);
   showTemporaryStatus("Modalità panico: scusa extra carica attivata.");
 });
@@ -786,7 +893,7 @@ document.querySelectorAll(".share-btn").forEach(btn => {
 });
 
 // ==========================
-//  DARK MODE (con localStorage)
+//  DARK MODE
 // ==========================
 
 function applyTheme(theme) {
@@ -870,11 +977,150 @@ if (mobileBtnCopy) {
 }
 
 // ==========================
+//  SCUSA DEL GIORNO
+// ==========================
+
+function loadDaily() {
+  try {
+    const raw = localStorage.getItem(DAILY_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+function saveDaily(daily) {
+  try {
+    localStorage.setItem(DAILY_KEY, JSON.stringify(daily));
+  } catch (e) {
+    console.error("Impossibile salvare scusa del giorno:", e);
+  }
+}
+
+function todayString() {
+  const d = new Date();
+  return d.toISOString().slice(0, 10);
+}
+
+function generateDailyExcuse() {
+  const cats = Object.keys(excuseFragments);
+  const cat = cats[randomIndex(cats.length)];
+  const text = generateExcuseForCategory(cat);
+  return {
+    date: todayString(),
+    category: cat,
+    text
+  };
+}
+
+function renderDailyExcuse(daily) {
+  if (!dailyTextEl || !dailyMetaEl) return;
+  dailyTextEl.textContent = daily.text;
+  const catLabel = categoryNames[daily.category] || daily.category;
+  dailyMetaEl.textContent = `Categoria: ${catLabel} · aggiornata il ${daily.date}`;
+}
+
+let dailyState = loadDaily();
+
+function ensureDailyExcuse() {
+  const today = todayString();
+  if (!dailyState || dailyState.date !== today) {
+    dailyState = generateDailyExcuse();
+    saveDaily(dailyState);
+  }
+  renderDailyExcuse(dailyState);
+}
+
+if (dailyUseBtn) {
+  dailyUseBtn.addEventListener("click", () => {
+    if (!dailyState) {
+      dailyState = generateDailyExcuse();
+      saveDaily(dailyState);
+    }
+    currentCategory = dailyState.category || "altro";
+    categoryTabs.forEach(t => {
+      const cat = t.getAttribute("data-category");
+      if (cat === currentCategory) t.classList.add("active");
+      else t.classList.remove("active");
+    });
+    updateCategoryLabel();
+    excuseTextEl.textContent = dailyState.text;
+    excuseTextEl.classList.add("visible");
+    incrementStats(currentCategory);
+    showTemporaryStatus("Scusa del giorno applicata al generatore.");
+  });
+}
+
+if (dailyNewBtn) {
+  dailyNewBtn.addEventListener("click", () => {
+    dailyState = generateDailyExcuse();
+    saveDaily(dailyState);
+    renderDailyExcuse(dailyState);
+    showTemporaryStatus("Nuova scusa del giorno generata.");
+  });
+}
+
+// ==========================
+//  BANNER "AGGIUNGI ALLA HOME"
+// ==========================
+
+function hasDismissedPwaBanner() {
+  try {
+    return localStorage.getItem(PWA_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function dismissPwaBanner() {
+  try {
+    localStorage.setItem(PWA_KEY, "1");
+  } catch (e) {
+    console.error("Impossibile salvare dismiss PWA:", e);
+  }
+  if (pwaBanner) pwaBanner.style.display = "none";
+}
+
+function isMobileLike() {
+  return window.innerWidth <= 768;
+}
+
+function maybeShowPwaBanner() {
+  if (!pwaBanner) return;
+  if (hasDismissedPwaBanner()) return;
+  if (!isMobileLike()) {
+    pwaBanner.style.display = "none";
+    return;
+  }
+  if (stats.total >= 5) {
+    pwaBanner.style.display = "flex";
+  }
+}
+
+if (pwaCloseBtn) {
+  pwaCloseBtn.addEventListener("click", () => {
+    dismissPwaBanner();
+  });
+}
+
+if (pwaHowBtn) {
+  pwaHowBtn.addEventListener("click", () => {
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent || "");
+    const msg = isIOS
+      ? "Su iPhone/iPad: tocca l’icona Condividi nel browser, poi 'Aggiungi alla schermata Home'."
+      : "Su Android: apri il menu del browser (⋮) e scegli 'Aggiungi alla schermata Home'.";
+    showTemporaryStatus(msg, false);
+  });
+}
+
+// ==========================
 //  INIZIALIZZAZIONE
 // ==========================
 
 (function init() {
   Math.random();
+
   if (stats.lastCategory && categoryNames[stats.lastCategory]) {
     currentCategory = stats.lastCategory;
     categoryTabs.forEach(t => {
@@ -883,7 +1129,10 @@ if (mobileBtnCopy) {
       else t.classList.remove("active");
     });
   }
+
   updateCategoryLabel();
   renderStats();
-  renderNewExcuse(); // genera subito una scusa random al primo accesso
+  ensureDailyExcuse();
+  renderNewExcuse(); // genera subito una scusa random
+  maybeShowPwaBanner();
 })();
