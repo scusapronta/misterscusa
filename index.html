@@ -5,6 +5,7 @@
   <title>ScusaPronta – Generatore di scuse epiche</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Generatore di scuse divertenti per lavoro, amici, amore, famiglia e altro. Un clic, una scusa epica." />
+  <meta name="theme-color" content="#ffd447" />
 
   <!-- Open Graph / Social -->
   <meta property="og:title" content="ScusaPronta – Generatore di scuse epiche" />
@@ -66,18 +67,18 @@
       width: 100%;
       max-width: 960px;
       margin: 0 auto;
-      padding: 16px;
+      padding: 12px 16px 70px; /* spazio extra in basso per sticky bar mobile */
     }
 
     header {
-      padding: 24px 0 8px;
+      padding: 18px 0 6px;
     }
 
     .logo-row {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       justify-content: space-between;
     }
 
@@ -88,15 +89,15 @@
     }
 
     .logo-badge {
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
       border-radius: 12px;
       background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      font-size: 22px;
+      font-size: 21px;
       color: #1a1a1a;
       box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
     }
@@ -107,7 +108,7 @@
     }
 
     .site-title {
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 800;
       letter-spacing: 0.02em;
     }
@@ -117,7 +118,7 @@
       align-items: center;
       gap: 6px;
       font-size: 11px;
-      padding: 4px 10px;
+      padding: 3px 9px;
       border-radius: 999px;
       background: #1a1a1a;
       color: #fceba8;
@@ -132,16 +133,16 @@
     }
 
     .subtitle {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--text-muted);
-      margin: 4px 0 0;
+      margin: 3px 0 0;
     }
 
     .theme-toggle-btn {
       border-radius: 999px;
       border: 1px solid rgba(0,0,0,0.1);
       background: rgba(255,255,255,0.9);
-      padding: 6px 11px;
+      padding: 5px 10px;
       font-size: 12px;
       display: inline-flex;
       align-items: center;
@@ -167,19 +168,19 @@
     }
 
     .hero {
-      margin-top: 16px;
-      margin-bottom: 18px;
+      margin-top: 10px;
+      margin-bottom: 14px;
       display: grid;
       grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
-      gap: 18px;
+      gap: 16px;
       align-items: center;
     }
 
     .hero-main-title {
-      font-size: 26px;
+      font-size: 24px;
       line-height: 1.25;
       font-weight: 800;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .hero-highlight {
@@ -194,16 +195,16 @@
     }
 
     .hero-claim {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--text-muted);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .hero-tagline {
-      font-size: 14px;
+      font-size: 13px;
       color: #333;
       font-style: italic;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     body.dark .hero-tagline {
@@ -214,7 +215,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .pill {
@@ -249,7 +250,7 @@
     .hero-cta-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
       align-items: center;
       margin-top: 4px;
       margin-bottom: 4px;
@@ -259,7 +260,7 @@
       border: none;
       outline: none;
       cursor: pointer;
-      padding: 10px 18px;
+      padding: 9px 16px;
       border-radius: 999px;
       font-size: 14px;
       font-weight: 700;
@@ -292,7 +293,7 @@
       border-radius: 999px;
       border: 1px solid #dedede;
       background: rgba(255,255,255,0.8);
-      padding: 8px 14px;
+      padding: 7px 13px;
       font-size: 13px;
       display: inline-flex;
       align-items: center;
@@ -321,7 +322,7 @@
 
     .hero-side-card {
       border-radius: var(--radius-lg);
-      padding: 16px 14px;
+      padding: 14px 12px;
       background: rgba(26,26,26,0.96);
       color: #fceba8;
       box-shadow: 0 14px 35px rgba(0,0,0,0.52);
@@ -343,17 +344,17 @@
     }
 
     .hero-side-title {
-      font-size: 13px;
+      font-size: 12px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: #ffffff;
       opacity: 0.85;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .hero-side-main {
-      font-size: 15px;
-      margin-bottom: 8px;
+      font-size: 14px;
+      margin-bottom: 7px;
       font-weight: 600;
       color: #fff9d5;
     }
@@ -361,13 +362,13 @@
     .hero-side-bullets {
       font-size: 12px;
       color: #f2eac5;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       list-style: none;
       padding-left: 0;
     }
 
     .hero-side-bullets li {
-      margin-bottom: 4px;
+      margin-bottom: 3px;
       display: flex;
       gap: 6px;
       align-items: flex-start;
@@ -376,19 +377,19 @@
     .hero-side-footnote {
       font-size: 11px;
       color: #b8b299;
-      margin-top: 4px;
+      margin-top: 2px;
     }
 
     main {
       flex: 1;
-      padding-bottom: 32px;
+      padding-bottom: 24px;
     }
 
     .card-main {
       background: var(--bg-card);
-      border-radius: 22px;
+      border-radius: 20px;
       box-shadow: var(--shadow-soft);
-      padding: 18px 16px 18px;
+      padding: 15px 14px 16px;
       border: 1px solid rgba(255,255,255,0.8);
       transition: background 0.25s ease-out, border-color 0.25s ease-out, box-shadow 0.25s ease-out;
     }
@@ -401,14 +402,14 @@
     .card-main-header {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .card-main-title {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       display: flex;
       align-items: center;
@@ -437,7 +438,7 @@
     .card-stats {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
       font-size: 11px;
       color: var(--text-muted);
     }
@@ -461,7 +462,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
 
     .category-tab {
@@ -519,12 +520,12 @@
     .category-help {
       font-size: 11px;
       color: var(--text-muted);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .excuse-box-wrapper {
       position: relative;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .excuse-box {
@@ -532,8 +533,8 @@
       border-radius: 18px;
       border: 1px solid var(--border-soft);
       background: linear-gradient(135deg, #fffefa, #ffffff);
-      padding: 14px 14px 12px;
-      min-height: 86px;
+      padding: 12px 12px 10px;
+      min-height: 84px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -551,7 +552,7 @@
       text-transform: uppercase;
       letter-spacing: 0.11em;
       color: #b39b00;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -582,7 +583,7 @@
     }
 
     .excuse-tagline {
-      margin-top: 6px;
+      margin-top: 5px;
       font-size: 11px;
       color: var(--text-muted);
       display: flex;
@@ -598,14 +599,14 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
     .btn-ghost {
       border-radius: 999px;
       border: 1px dashed #c1c1c1;
       background: transparent;
-      padding: 7px 12px;
+      padding: 6px 11px;
       font-size: 12px;
       display: inline-flex;
       align-items: center;
@@ -653,8 +654,8 @@
     }
 
     .share-row {
-      margin-top: 10px;
-      padding-top: 10px;
+      margin-top: 8px;
+      padding-top: 8px;
       border-top: 1px dashed #ececec;
       display: flex;
       flex-wrap: wrap;
@@ -767,8 +768,8 @@
 
     /* Sezione annunci / banner (placeholder) */
     .ad-section {
-      margin-top: 14px;
-      padding: 12px 10px;
+      margin-top: 12px;
+      padding: 10px 10px;
       border-radius: 16px;
       border: 1px dashed #d0d0d0;
       background: rgba(255,255,255,0.9);
@@ -786,7 +787,7 @@
 
     .ad-placeholder {
       width: 180px;
-      height: 60px;
+      height: 56px;
       border-radius: 10px;
       border: 1px dashed #cccccc;
       display: flex;
@@ -814,7 +815,7 @@
     }
 
     footer {
-      padding: 18px 0 24px;
+      padding: 16px 0 20px;
       font-size: 11px;
       color: var(--text-muted);
     }
@@ -872,7 +873,11 @@
       color: #7f7f96;
     }
 
-    /* Responsive */
+    /* Sticky bottom bar mobile */
+    .mobile-sticky-bar {
+      display: none;
+    }
+
     @media (max-width: 768px) {
       .hero {
         grid-template-columns: minmax(0, 1fr);
@@ -883,19 +888,23 @@
       }
 
       header {
-        padding-top: 18px;
+        padding-top: 14px;
       }
 
       .site-title {
-        font-size: 24px;
-      }
-
-      .hero-main-title {
         font-size: 22px;
       }
 
+      .hero-main-title {
+        font-size: 21px;
+      }
+
       .card-main {
-        padding: 15px 12px 16px;
+        padding: 13px 11px 14px;
+      }
+
+      .container {
+        padding: 10px 10px 78px; /* spazio per sticky bar */
       }
 
       .ad-section {
@@ -906,6 +915,93 @@
       .ad-placeholder {
         width: 100%;
         justify-content: center;
+      }
+
+      .mobile-sticky-bar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 30;
+        padding: 6px 10px 9px;
+        background: linear-gradient(180deg, rgba(250,250,250,0.92) 0, rgba(246,246,246,1) 35%, #f2f2f2 100%);
+        border-top: 1px solid rgba(0,0,0,0.06);
+        backdrop-filter: blur(10px);
+      }
+
+      body.dark .mobile-sticky-bar {
+        background: linear-gradient(180deg, rgba(10,10,16,0.96) 0, #050509 60%, #000000 100%);
+        border-top-color: rgba(255,255,255,0.06);
+      }
+
+      .mobile-sticky-inner {
+        max-width: 960px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .mobile-sticky-label {
+        font-size: 11px;
+        color: var(--text-muted);
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .mobile-sticky-label strong {
+        font-size: 12px;
+        color: #222;
+      }
+
+      body.dark .mobile-sticky-label strong {
+        color: #f7f7ff;
+      }
+
+      .mobile-sticky-buttons {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+        gap: 6px;
+      }
+
+      .mobile-sticky-btn {
+        flex: 1;
+        max-width: 120px;
+        border-radius: 999px;
+        border: 1px solid #dedede;
+        background: #ffffff;
+        padding: 7px 6px;
+        font-size: 11px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        color: #444;
+        cursor: pointer;
+        transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+      }
+
+      .mobile-sticky-btn span.icon {
+        font-size: 14px;
+      }
+
+      .mobile-sticky-btn-primary {
+        border-color: rgba(255,212,71,0.8);
+        background: radial-gradient(circle at top left, #fff6bf 0, #ffd447 40%, #f0b800 100%);
+        font-weight: 600;
+      }
+
+      .mobile-sticky-btn:hover {
+        transform: translateY(-0.5px);
+      }
+
+      body.dark .mobile-sticky-btn {
+        background: #14141f;
+        border-color: #34344a;
+        color: #e0e0f5;
       }
     }
   </style>
@@ -1118,6 +1214,27 @@
           </div>
         </div>
       </footer>
+    </div>
+  </div>
+
+  <!-- Sticky bar mobile -->
+  <div class="mobile-sticky-bar" id="mobileStickyBar">
+    <div class="mobile-sticky-inner">
+      <div class="mobile-sticky-label">
+        <strong>Scusa veloce</strong>
+        <span>Genera, cambia o copia senza muovere il pollice.</span>
+      </div>
+      <div class="mobile-sticky-buttons">
+        <button class="mobile-sticky-btn mobile-sticky-btn-primary" id="mobileBtnGenerate">
+          <span class="icon">🎲</span><span>Scusa</span>
+        </button>
+        <button class="mobile-sticky-btn" id="mobileBtnCycle">
+          <span class="icon">🔀</span><span>Categoria</span>
+        </button>
+        <button class="mobile-sticky-btn" id="mobileBtnCopy">
+          <span class="icon">📋</span><span>Copia</span>
+        </button>
+      </div>
     </div>
   </div>
 
