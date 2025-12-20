@@ -32,7 +32,7 @@
       --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
-    /* Dark mode (classe sul body) */
+    /* Dark mode */
     body.dark {
       --bg-main: #050509;
       --bg-card: #101017;
@@ -67,7 +67,7 @@
       width: 100%;
       max-width: 960px;
       margin: 0 auto;
-      padding: 12px 16px 70px; /* spazio extra in basso per sticky bar mobile */
+      padding: 12px 16px 70px;
     }
 
     header {
@@ -169,7 +169,7 @@
 
     .hero {
       margin-top: 10px;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
       display: grid;
       grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
       gap: 16px;
@@ -197,14 +197,14 @@
     .hero-claim {
       font-size: 14px;
       color: var(--text-muted);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .hero-tagline {
       font-size: 13px;
       color: #333;
       font-style: italic;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     body.dark .hero-tagline {
@@ -385,6 +385,75 @@
       padding-bottom: 24px;
     }
 
+    /* Scusa del giorno */
+    .daily-excuse-card {
+      margin-bottom: 12px;
+      border-radius: 16px;
+      padding: 10px 12px;
+      background: #fffdf5;
+      border: 1px dashed rgba(240,184,0,0.7);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 13px;
+    }
+
+    .daily-excuse-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .daily-excuse-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .daily-excuse-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .daily-excuse-text {
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .daily-excuse-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .btn-mini {
+      border-radius: 999px;
+      border: 1px solid #e0cf92;
+      background: #ffffff;
+      padding: 4px 8px;
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      color: #6b5600;
+    }
+
+    body.dark .daily-excuse-card {
+      background: #161621;
+      border-color: rgba(248,214,95,0.6);
+    }
+
+    body.dark .btn-mini {
+      background: #14141f;
+      border-color: #45455b;
+      color: #f0e5a0;
+    }
+
     .card-main {
       background: var(--bg-card);
       border-radius: 20px;
@@ -453,9 +522,29 @@
       gap: 6px;
     }
 
+    .stat-pill-toggle {
+      cursor: pointer;
+      user-select: none;
+    }
+
     body.dark .stat-pill {
       background: rgba(8,8,14,0.9);
       border-color: #2a2a3a;
+    }
+
+    .stat-pill-toggle-label {
+      font-weight: 500;
+    }
+
+    .fast-mode-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #c0c0c0;
+    }
+
+    .fast-mode-on {
+      background: #00c2a8;
     }
 
     .category-tabs {
@@ -513,7 +602,7 @@
 
     body.dark .category-tab:hover:not(.active) {
       background: #1a1a26;
-      border-color: #3d3d50;
+      border-color: #3c3c50;
       box-shadow: 0 8px 22px rgba(0,0,0,0.7);
     }
 
@@ -766,7 +855,7 @@
       background: #00c2a8;
     }
 
-    /* Sezione annunci / banner (placeholder) */
+    /* Sezione annunci / banner */
     .ad-section {
       margin-top: 12px;
       padding: 10px 10px;
@@ -812,6 +901,76 @@
       background: #171722;
       border-color: #3c3c50;
       color: #777792;
+    }
+
+    /* Banner "Aggiungi alla Home" */
+    .pwa-banner {
+      margin-top: 10px;
+      padding: 8px 10px;
+      border-radius: 14px;
+      background: #fffdf5;
+      border: 1px solid rgba(240,184,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      font-size: 11px;
+    }
+
+    .pwa-banner-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .pwa-banner-title {
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pwa-banner-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pwa-banner-btn {
+      border-radius: 999px;
+      border: 1px solid #e0cf92;
+      background: #ffffff;
+      padding: 4px 8px;
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      color: #6b5600;
+    }
+
+    .pwa-banner-close {
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 14px;
+      color: #b59b3d;
+    }
+
+    body.dark .pwa-banner {
+      background: #171721;
+      border-color: rgba(248,214,95,0.6);
+    }
+
+    body.dark .pwa-banner-btn {
+      background: #14141f;
+      border-color: #45455b;
+      color: #f0e5a0;
+    }
+
+    body.dark .pwa-banner-close {
+      color: #f0e5a0;
     }
 
     footer {
@@ -904,7 +1063,7 @@
       }
 
       .container {
-        padding: 10px 10px 78px; /* spazio per sticky bar */
+        padding: 10px 10px 78px;
       }
 
       .ad-section {
@@ -1020,7 +1179,7 @@
                   <span>⚡</span> generatore di scuse
                 </span>
               </div>
-              <p class="subtitle">La vita è complicata. Le scuse no.</p>
+              <p class="subtitle">La vita è un casino. Le scuse no.</p>
             </div>
           </div>
           <button class="theme-toggle-btn" id="themeToggleBtn">
@@ -1036,10 +1195,10 @@
             <span class="hero-highlight">Scuse epiche</span> in un clic.
           </h1>
           <p class="hero-claim">
-            Lavoro, amici, amore, famiglia, altro: scegli la categoria, premi il pulsante e ottieni la scusa perfetta.
+            Scegli la categoria, premi il pulsante e lascia che la fantasia sporca la metta l’algoritmo.
           </p>
           <p class="hero-tagline">
-            Il primo generatore di scuse che non ti giudica (ma ti salva all’ultimo minuto).
+            Il generatore di scuse che non ti giudica. Ti salva e basta.
           </p>
 
           <div class="hero-pills">
@@ -1062,18 +1221,42 @@
           <div class="hero-side-inner">
             <div class="hero-side-title">Uso tipico</div>
             <div class="hero-side-main">
-              È lunedì mattina, sei in ritardo, e la creatività è rimasta nel letto.
+              È lunedì, sei in ritardo e il cervello è ancora in modalità aereo.
             </div>
             <ul class="hero-side-bullets">
-              <li><span>✅</span><span>Selezioni “Lavoro”, premi il pulsante, copi e incolli.</span></li>
-              <li><span>✅</span><span>Il giorno dopo passi su “Amore” (con cautela).</span></li>
-              <li><span>✅</span><span>La coscienza? È in modalità aereo.</span></li>
+              <li><span>✅</span><span>Selezioni la categoria giusta, premi il pulsante e copi.</span></li>
+              <li><span>✅</span><span>Il giorno dopo fai finta che sia tutto spontaneo.</span></li>
+              <li><span>✅</span><span>La coscienza? Torna più tardi, ora c’è da sopravvivere.</span></li>
             </ul>
             <div class="hero-side-footnote">
-              Pro tip: usala con ironia, non per fare danni veri.
+              Pro tip: usala con autoironia, non per fare danni veri.
             </div>
           </div>
         </aside>
+      </section>
+
+      <!-- Scusa del giorno -->
+      <section class="daily-excuse-card" id="dailyExcuseCard">
+        <div class="daily-excuse-header">
+          <div class="daily-excuse-title">
+            <span>🎁</span>
+            <span>Scusa del giorno</span>
+          </div>
+          <div class="daily-excuse-meta" id="dailyExcuseMeta">
+            Aggiornata ogni 24 ore (più o meno).
+          </div>
+        </div>
+        <div class="daily-excuse-text" id="dailyExcuseText">
+          <!-- Scusa del giorno qui -->
+        </div>
+        <div class="daily-excuse-actions">
+          <button class="btn-mini" id="dailyUseBtn">
+            <span>👉</span><span>Usa questa come base</span>
+          </button>
+          <button class="btn-mini" id="dailyNewBtn">
+            <span>🎲</span><span>Rigenera ora</span>
+          </button>
+        </div>
       </section>
 
       <main>
@@ -1094,6 +1277,10 @@
               <div class="stat-pill" id="statMostUsed">
                 <span>🏆</span>
                 <span>Categoria top: –</span>
+              </div>
+              <div class="stat-pill stat-pill-toggle" id="fastModeToggle">
+                <span class="fast-mode-indicator" id="fastModeDot"></span>
+                <span class="stat-pill-toggle-label" id="fastModeLabel">Modalità veloce: OFF</span>
               </div>
             </div>
           </div>
@@ -1122,7 +1309,7 @@
           </div>
 
           <p class="category-help">
-            Seleziona la categoria, premi “Genera” e lascia che l’algoritmo si sporchi le mani al posto tuo.
+            Scegli a chi devi dare buca, poi clicca. Il resto lo fa la matematica delle scuse.
           </p>
 
           <div class="excuse-box-wrapper">
@@ -1135,7 +1322,7 @@
               </div>
               <div class="excuse-tagline">
                 <span>💡</span>
-                <span>Pro tip: usala con un sorriso, non con aria colpevole.</span>
+                <span>Funziona meglio se sorridi come se fosse tutto normale.</span>
               </div>
             </div>
 
@@ -1184,7 +1371,7 @@
             </div>
           </div>
 
-          <!-- Sezione annunci / banner – QUI AGGIUNGERAI LE PUBBLICITÀ -->
+          <!-- Sezione annunci / banner -->
           <section class="ad-section" aria-label="Spazio pubblicitario">
             <div>
               <strong>Spazio annunci pronto.</strong><br />
@@ -1192,6 +1379,25 @@
             </div>
             <div class="ad-placeholder">
               Slot banner 180×60 (esempio)
+            </div>
+          </section>
+
+          <!-- Banner "Aggiungi alla Home" -->
+          <section class="pwa-banner" id="pwaBanner">
+            <div class="pwa-banner-left">
+              <div class="pwa-banner-title">
+                <span>📱</span>
+                <span>Aggiungi ScusaPronta alla Home</span>
+              </div>
+              <div>
+                Così lo apri come un’app e la scusa è sempre a un tap di distanza.
+              </div>
+            </div>
+            <div class="pwa-banner-actions">
+              <button class="pwa-banner-btn" id="pwaHowBtn">
+                <span>❓</span><span>Come si fa</span>
+              </button>
+              <button class="pwa-banner-close" id="pwaCloseBtn">✕</button>
             </div>
           </section>
         </section>
@@ -1202,15 +1408,14 @@
           <div class="footer-row">
             <p class="footer-disclaimer">
               <strong>Disclaimer serio in un sito poco serio:</strong> le scuse generate sono pensate per ridere e sdrammatizzare.
-              Non usarle per ferire, truffare, manipolare o evitare responsabilità importanti.
-              La vita vera viene prima, le scuse dopo.
+              Non usarle per ferire, truffare, manipolare o evitare responsabilità importanti. Il karma legge tutto.
             </p>
             <div class="footer-links">
               <span class="footer-pill">Made with 🧠+😅 in Italia</span>
             </div>
           </div>
           <div class="footer-mini">
-            <span>ScusaPronta non si assume alcuna responsabilità per capi arrabbiati, partner sospettosi o amici vendicativi.</span>
+            <span>ScusaPronta non si assume alcuna responsabilità per capi arrabbiati, partner sospettosi o amici vendicativi. Usala con buon senso.</span>
           </div>
         </div>
       </footer>
@@ -1229,7 +1434,7 @@
           <span class="icon">🎲</span><span>Scusa</span>
         </button>
         <button class="mobile-sticky-btn" id="mobileBtnCycle">
-          <span class="icon">🔀</span><span>Categoria</span>
+          <span class="icon">🔀</span><span>Categ.</span>
         </button>
         <button class="mobile-sticky-btn" id="mobileBtnCopy">
           <span class="icon">📋</span><span>Copia</span>
@@ -1238,7 +1443,6 @@
     </div>
   </div>
 
-  <!-- JS separato -->
   <script src="script.js"></script>
 </body>
 </html>
