@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>ScusaPronta – Generatore di scuse epiche</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Generatore di scuse divertenti per lavoro, amici, amore, famiglia e altro. Un clic, una scusa epica." />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="ScusaPronta – Generatore di scuse epiche" />
+  <meta property="og:description" content="Ti serve una scusa al volo? Lavoro, amici, amore, famiglia: una scusa epica in un clic." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://scusapronta.github.io/scusapronta/" />
+  <!-- Puoi sostituire con un'immagine tua -->
+  <meta property="og:image" content="https://scusapronta.github.io/scusapronta/og-image.png" />
+
+  <style>
+    :root {
+      --bg-main: #fafafa;
+      --bg-card: #ffffff;
+      --text-main: #1a1a1a;
+      --text-muted: #666666;
+      --accent: #ffd447;
+      --accent-dark: #f0b800;
+      --accent-secondary: #00c2a8;
+      --border-soft: #e5e5e5;
+      --danger: #ff4b6a;
+      --radius-lg: 18px;
+      --radius-md: 10px;
+      --shadow-soft: 0 14px 35px rgba(0, 0, 0, 0.06);
+      --transition-fast: 0.2s ease-out;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-main);
+      background: radial-gradient(circle at top, #fff7d4 0, #fafafa 45%, #f3f3f3 100%);
+      color: var(--text-main);
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    header {
+      padding: 24px 0 8px;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .logo-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 22px;
+      color: #1a1a1a;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .site-title {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .badge-beta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #1a1a1a;
+      color: #fceba8;
+      margin-left: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin: 4px 0 0;
+    }
+
+    .hero {
+      margin-top: 16px;
+      margin-bottom: 18px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 18px;
+      align-items: center;
+    }
+
+    .hero-main-title {
+      font-size: 26px;
+      line-height: 1.25;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .hero-highlight {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(255, 212, 71, 0.25);
+    }
+
+    .hero-claim {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .hero-tagline {
+      font-size: 14px;
+      color: #333;
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .pill strong {
+      font-weight: 700;
+      color: #111;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 4px;
+      margin-bottom: 4px;
+    }
+
+    .btn-primary {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: radial-gradient(circle at top left, #fff6bf 0, #ffd447 40%, #f0b800 100%);
+      color: #1a1a1a;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.02);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.24);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 7px 18px rgba(0,0,0,0.18);
+    }
+
+    .btn-secondary {
+      border-radius: 999px;
+      border: 1px solid #dedede;
+      background: rgba(255,255,255,0.8);
+      padding: 8px 14px;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #444;
+      cursor: pointer;
+      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .btn-secondary:hover {
+      background: #ffffff;
+      border-color: #c5c5c5;
+      transform: translateY(-0.5px);
+    }
+
+    .hero-side-card {
+      border-radius: var(--radius-lg);
+      padding: 16px 14px;
+      background: rgba(26,26,26,0.96);
+      color: #fceba8;
+      box-shadow: 0 14px 35px rgba(0,0,0,0.52);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-side-card::before {
+      content: "";
+      position: absolute;
+      inset: -60%;
+      background: radial-gradient(circle at top, rgba(255,212,71,0.1), transparent 60%);
+      opacity: 0.9;
+    }
+
+    .hero-side-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-side-title {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #ffffff;
+      opacity: 0.85;
+      margin-bottom: 4px;
+    }
+
+    .hero-side-main {
+      font-size: 15px;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #fff9d5;
+    }
+
+    .hero-side-bullets {
+      font-size: 12px;
+      color: #f2eac5;
+      margin-bottom: 10px;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .hero-side-bullets li {
+      margin-bottom: 4px;
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+    }
+
+    .hero-side-footnote {
+      font-size: 11px;
+      color: #b8b299;
+      margin-top: 4px;
+    }
+
+    main {
+      flex: 1;
+      padding-bottom: 32px;
+    }
+
+    .card-main {
+      background: var(--bg-card);
+      border-radius: 22px;
+      box-shadow: var(--shadow-soft);
+      padding: 18px 16px 18px;
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+
+    .card-main-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .card-main-title {
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .chip-live {
+      padding: 3px 8px;
+      font-size: 11px;
+      border-radius: 999px;
+      background: rgba(0,194,168,0.09);
+      color: #007463;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .chip-live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #00c2a8;
+      box-shadow: 0 0 0 5px rgba(0,194,168,0.25);
+    }
+
+    .category-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .category-tab {
+      font-size: 12px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: #fbfbfb;
+      color: #555;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast), color var(--transition-fast);
+    }
+
+    .category-tab span.emoji {
+      font-size: 15px;
+    }
+
+    .category-tab.active {
+      border-color: #111;
+      background: #111111;
+      color: #fceba8;
+      box-shadow: 0 9px 22px rgba(0,0,0,0.25);
+      transform: translateY(-1px);
+    }
+
+    .category-tab:hover:not(.active) {
+      background: #ffffff;
+      border-color: #d0d0d0;
+      transform: translateY(-0.5px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+
+    .category-help {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .excuse-box-wrapper {
+      position: relative;
+      margin-bottom: 14px;
+    }
+
+    .excuse-box {
+      position: relative;
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      background: linear-gradient(135deg, #fffefa, #ffffff);
+      padding: 14px 14px 12px;
+      min-height: 86px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .excuse-category-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.11em;
+      color: #b39b00;
+      margin-bottom: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .excuse-text {
+      font-size: 15px;
+      line-height: 1.4;
+      color: #222222;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+    }
+
+    .excuse-text.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .excuse-tagline {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .excuse-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .btn-ghost {
+      border-radius: 999px;
+      border: 1px dashed #c1c1c1;
+      background: transparent;
+      padding: 7px 12px;
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #444;
+      cursor: pointer;
+      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .btn-ghost:hover {
+      background: #f9f9f9;
+      border-color: #a6a6a6;
+      transform: translateY(-0.5px);
+    }
+
+    .btn-ghost-danger {
+      border-style: solid;
+      border-color: rgba(255,75,106,0.4);
+      color: #c32746;
+      background: rgba(255,230,236,0.6);
+    }
+
+    .btn-ghost-danger:hover {
+      background: rgba(255,214,226,0.95);
+    }
+
+    .share-row {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed #ececec;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .share-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .share-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .share-btn {
+      border-radius: 999px;
+      border: 1px solid #e4e4e4;
+      background: #ffffff;
+      padding: 5px 9px;
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #444;
+      cursor: pointer;
+      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .share-btn:hover {
+      background: #f5f5f5;
+      border-color: #cccccc;
+      transform: translateY(-0.5px);
+    }
+
+    .share-btn.whatsapp {
+      border-color: rgba(37, 211, 102, 0.4);
+      color: #1f8f4a;
+    }
+
+    .share-btn.telegram {
+      border-color: rgba(0, 136, 204, 0.4);
+      color: #0368a3;
+    }
+
+    .share-btn.facebook {
+      border-color: rgba(24, 119, 242, 0.4);
+      color: #1456b1;
+    }
+
+    .share-btn.twitter {
+      border-color: rgba(15, 20, 25, 0.5);
+      color: #111111;
+    }
+
+    .share-btn.email {
+      border-color: rgba(244, 118, 35, 0.4);
+      color: #c55712;
+    }
+
+    .share-btn.link {
+      border-style: dashed;
+    }
+
+    .status-row {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-muted);
+      gap: 8px;
+    }
+
+    .status-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 212, 71, 0.22);
+      color: #6b5600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #f0b800;
+    }
+
+    .status-random {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-random span.dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: #00c2a8;
+    }
+
+    /* Sezione annunci / banner (placeholder) */
+    .ad-section {
+      margin-top: 14px;
+      padding: 12px 10px;
+      border-radius: 16px;
+      border: 1px dashed #d0d0d0;
+      background: rgba(255,255,255,0.9);
+      font-size: 11px;
+      color: #777777;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .ad-section strong {
+      color: #444;
+    }
+
+    .ad-placeholder {
+      width: 180px;
+      height: 60px;
+      border-radius: 10px;
+      border: 1px dashed #cccccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #999;
+      background: #fcfcfc;
+    }
+
+    footer {
+      padding: 18px 0 24px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-disclaimer {
+      max-width: 630px;
+      line-height: 1.5;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .footer-pill {
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      color: #777;
+    }
+
+    .footer-mini {
+      font-size: 10px;
+      color: #999;
+    }
+
+    .footer-mini span {
+      opacity: 0.9;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-side-card {
+        order: -1;
+      }
+
+      header {
+        padding-top: 18px;
+      }
+
+      .site-title {
+        font-size: 24px;
+      }
+
+      .hero-main-title {
+        font-size: 22px;
+      }
+
+      .card-main {
+        padding: 15px 12px 16px;
+      }
+
+      .ad-section {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .ad-placeholder {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="container">
+      <header>
+        <div class="logo-row">
+          <div class="logo-badge">S</div>
+          <div>
+            <div class="site-title">
+              ScusaPronta
+              <span class="badge-beta">
+                <span>⚡</span> generatore di scuse
+              </span>
+            </div>
+            <p class="subtitle">La vita è complicata. Le scuse no.</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div>
+          <h1 class="hero-main-title">
+            <span class="hero-highlight">Scuse epiche</span> in un clic.
+          </h1>
+          <p class="hero-claim">
+            Lavoro, amici, amore, famiglia, altro: scegli la categoria, premi il pulsante e ottieni la scusa perfetta.
+          </p>
+          <p class="hero-tagline">
+            Il primo generatore di scuse che non ti giudica (ma ti salva all’ultimo minuto).
+          </p>
+
+          <div class="hero-pills">
+            <span class="pill"><strong>5</strong> categorie socialmente discutibili</span>
+            <span class="pill"><strong>Random</strong> davvero casuale</span>
+            <span class="pill"><strong>Condividi</strong> su WhatsApp, Telegram & co.</span>
+          </div>
+
+          <div class="hero-cta-row">
+            <button class="btn-primary" id="btnGenerateHero">
+              <span>🎲 Genera una scusa ora</span>
+            </button>
+            <button class="btn-secondary" id="btnHeroCycle">
+              <span>🔀 Cambia categoria</span>
+            </button>
+          </div>
+        </div>
+
+        <aside class="hero-side-card" aria-hidden="true">
+          <div class="hero-side-inner">
+            <div class="hero-side-title">Uso tipico</div>
+            <div class="hero-side-main">
+              È lunedì mattina, sei in ritardo, e la creatività è rimasta nel letto.
+            </div>
+            <ul class="hero-side-bullets">
+              <li><span>✅</span><span>Selezioni “Lavoro”, premi il pulsante, copi e incolli.</span></li>
+              <li><span>✅</span><span>Il giorno dopo passi su “Amore” (con cautela).</span></li>
+              <li><span>✅</span><span>La coscienza? È in modalità aereo.</span></li>
+            </ul>
+            <div class="hero-side-footnote">
+              Pro tip: usala con ironia, non per fare danni veri.
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <main>
+        <section class="card-main" aria-label="Generatore di scuse">
+          <div class="card-main-header">
+            <div class="card-main-title">
+              <span>🎛️ Pannello ScusaPronta</span>
+              <span class="chip-live">
+                <span class="chip-live-dot"></span>
+                live, generatore attivo
+              </span>
+            </div>
+          </div>
+
+          <div class="category-tabs" id="categoryTabs">
+            <button class="category-tab active" data-category="lavoro">
+              <span class="emoji">💼</span>
+              <span>Lavoro</span>
+            </button>
+            <button class="category-tab" data-category="amici">
+              <span class="emoji">🍻</span>
+              <span>Amici</span>
+            </button>
+            <button class="category-tab" data-category="amore">
+              <span class="emoji">❤️</span>
+              <span>Amore</span>
+            </button>
+            <button class="category-tab" data-category="famiglia">
+              <span class="emoji">🏡</span>
+              <span>Famiglia</span>
+            </button>
+            <button class="category-tab" data-category="altro">
+              <span class="emoji">🎭</span>
+              <span>Altro</span>
+            </button>
+          </div>
+
+          <p class="category-help">
+            Seleziona la categoria, premi “Genera” e lascia che l’algoritmo si sporchi le mani al posto tuo.
+          </p>
+
+          <div class="excuse-box-wrapper">
+            <div class="excuse-box">
+              <div class="excuse-category-label" id="excuseCategoryLabel">
+                <span>Categoria:</span><span id="excuseCategoryName">Lavoro</span>
+              </div>
+              <div class="excuse-text" id="excuseText">
+                <!-- Scusa generata qui -->
+              </div>
+              <div class="excuse-tagline">
+                <span>💡</span>
+                <span>Pro tip: usala con un sorriso, non con aria colpevole.</span>
+              </div>
+            </div>
+
+            <div class="excuse-actions">
+              <button class="btn-primary" id="btnGenerate">
+                <span>🎲 Genera un’altra scusa</span>
+              </button>
+              <button class="btn-ghost" id="btnCopy">
+                <span>📋</span>
+                <span>Copia negli appunti</span>
+              </button>
+              <button class="btn-ghost" id="btnCopyWithCategory">
+                <span>📝</span>
+                <span>Copia con categoria + firma</span>
+              </button>
+              <button class="btn-ghost btn-ghost-danger" id="btnPanic">
+                <span>🚨</span>
+                <span>Modalità panico</span>
+              </button>
+            </div>
+
+            <div class="share-row">
+              <div class="share-label">
+                <span>🔗</span>
+                <span>Condividi la tua scusa al volo:</span>
+              </div>
+              <div class="share-buttons">
+                <button class="share-btn whatsapp" data-share="whatsapp">WhatsApp</button>
+                <button class="share-btn telegram" data-share="telegram">Telegram</button>
+                <button class="share-btn facebook" data-share="facebook">Facebook</button>
+                <button class="share-btn twitter" data-share="twitter">X/Twitter</button>
+                <button class="share-btn email" data-share="email">Email</button>
+                <button class="share-btn link" data-share="link">Copia link</button>
+              </div>
+            </div>
+
+            <div class="status-row">
+              <div class="status-pill" id="statusRandomInfo">
+                <span class="status-dot"></span>
+                <span>Random attivo: nessuna scusa si ripete in modo prevedibile.</span>
+              </div>
+              <div class="status-random">
+                <span class="dot"></span>
+                <span>Base di frasi combinabili per centinaia di scuse uniche.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sezione annunci / banner – QUI AGGIUNGERAI LE PUBBLICITÀ -->
+          <section class="ad-section" aria-label="Spazio pubblicitario">
+            <div>
+              <strong>Spazio annunci pronto.</strong><br />
+              Qui puoi integrare il codice dei tuoi banner (es. AdSense, affiliazioni, promozioni personali).
+            </div>
+            <div class="ad-placeholder">
+              Slot banner 180×60 (esempio)
+            </div>
+          </section>
+        </section>
+      </main>
+
+      <footer>
+        <div class="footer-inner">
+          <div class="footer-row">
+            <p class="footer-disclaimer">
+              <strong>Disclaimer serio in un sito poco serio:</strong> le scuse generate sono pensate per ridere e sdrammatizzare.
+              Non usarle per ferire, truffare, manipolare o evitare responsabilità importanti.
+              La vita vera viene prima, le scuse dopo.
+            </p>
+            <div class="footer-links">
+              <span class="footer-pill">Made with 🧠+😅 in Italia</span>
+            </div>
+          </div>
+          <div class="footer-mini">
+            <span>ScusaPronta non si assume alcuna responsabilità per capi arrabbiati, partner sospettosi o amici vendicativi.</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // ==========================
+    //  DATABASE SCUSE (COMBINABILE)
+    // ==========================
+
+    // Struttura:
+    // - per ogni categoria, abbiamo blocchi: inizio, motivo, dettaglio, chiusura
+    // - le combinazioni danno centinaia di scuse diverse senza ripetizioni ovvie
+
+    const excuseFragments = {
+      lavoro: {
+        start: [
+          "Giuro che stavo arrivando, ma",
+          "Allora, il punto è che",
+          "Ti dico la verità:",
+          "Piccolo aggiornamento sulla mia puntualità:",
+          "Lo so che suona male, ma",
+          "Stavo partendo in orario, solo che",
+          "Mi ero organizzato benissimo, finché",
+          "La mia intenzione era essere in anticipo, però",
+          "Non è colpa mia (credo), perché",
+          "Vorrei dire che è colpa del traffico, ma"
+        ],
+        reason: [
+          "il treno ha deciso di fermarsi a caso in mezzo al nulla",
+          "il bus sembrava in sciopero personale",
+          "Google Maps mi ha mandato letteralmente nel lato sbagliato della città",
+          "il vicino ha deciso di usare il trapano alle 7 di mattina",
+          "il caffè ha fatto più danni che benefici",
+          "la sveglia ha suonato, ma solo dentro il mio cuore",
+          "il mio pc ha deciso di aggiornarsi proprio quando dovevo uscire",
+          "il cane ha rubato una scarpa e ho dovuto negoziare",
+          "il gatto ha pensato fosse il momento giusto per sdraiarsi sulla tastiera",
+          "il condominio ha organizzato un concerto di rumori improvvisati",
+          "il mio router ha pensato fosse ora di un reset spirituale",
+          "la caldaia ha scelto oggi per avere una crisi esistenziale",
+          "il citofono ha suonato tre volte di fila per pacchi non miei",
+          "il mio cervello ha confuso l’ora di ingresso con l’ora di uscita",
+          "ho sbagliato clamorosamente fuso orario mentale"
+        ],
+        detail: [
+          "e ho dovuto capire se fossi ancora nel 2025 o in un universo parallelo.",
+          "e da lì è iniziata una catena di eventi degna di una serie TV.",
+          "e da quel momento la logica ha smesso di avere senso.",
+          "e sistemare la situazione ha richiesto più tempo del previsto.",
+          "e se ti mando le prove penserai che sia un meme.",
+          "e mi ci è voluto un po’ per risolvere il casino.",
+          "e ho capito che l’universo oggi non gioca dalla mia parte.",
+          "e da lì il tempo ha iniziato a correre più veloce di me.",
+          "e ogni volta che provavo a recuperare succedeva un imprevisto nuovo.",
+          "e ovviamente tutto questo è capitato proprio oggi."
+        ],
+        end: [
+          "Arrivo il prima possibile, promesso.",
+          "Recupero tutto, anche se oggi sembra una missione impossibile.",
+          "Giuro che non è pigrizia, è solo sfiga organizzata.",
+          "Se servono dettagli, ho un intero romanzo da raccontare.",
+          "La prossima volta metto la sveglia anche al frigorifero.",
+          "Da domani divento una persona puntuale, o almeno ci provo.",
+          "Prometto che rientro nelle grazie del karma lavorando extra.",
+          "Se può aiutare, oggi porto anche la mia coscienza con me.",
+          "Per farmi perdonare oggi faccio anche le call difficili.",
+          "Oggi la mia produttività parte in ritardo, ma poi recupera."
+        ]
+      },
+      amici: {
+        start: [
+          "Lo so, sembro la persona peggiore del gruppo, ma",
+          "Raga, non odiatemi, però",
+          "Vi voglio bene, quindi sarò sincero:",
+          "Vi chiedo perdono in anticipo perché",
+          "Giuro che non è una scusa cheap, ma",
+          "So che dovevo esserci, però",
+          "Ero prontissimo ad uscire, poi",
+          "La mia parte sociale ce l’ha messa tutta, ma",
+          "Non voglio diventare il friend tossico, però",
+          "Appena ho messo un piede fuori casa"
+        ],
+        reason: [
+          "il divano mi ha guardato negli occhi e mi ha chiesto di restare",
+          "il mio livello di energia sociale è finito al -3",
+          "ho realizzato che oggi ho fatto finta di essere un adulto per troppe ore",
+          "il meteo interno ha segnato pigrizia con possibilità di sonno",
+          "ho iniziato a prepararmi e ho perso la motivazione cercando le calze",
+          "il mio outfit ha smesso di avere senso appena l’ho indossato",
+          "la mia mente ha premuto alt+f4 sulla modalità uscire",
+          "è partita una combo letale tra fame, stanchezza e noia",
+          "il mio corpo ha deciso che oggi è modalità risparmio energetico",
+          "ho avuto un improvviso bisogno di non vedere nessun essere umano"
+        ],
+        detail: [
+          "e onestamente non voglio rovinare la serata col mio mood da panda stanco.",
+          "e finirei a fare la pianta grassa in un angolo del locale.",
+          "e non credo di avere la faccia adatta per fingere entusiasmo credibile.",
+          "e la mia batteria sociale ha bisogno di un reset totale.",
+          "e l’unica cosa che il mio cervello supporta è tuta e serie TV.",
+          "e rischierei di addormentarmi sul tavolo a metà frase.",
+          "e non voglio essere quella persona che sta lì e guarda il vuoto.",
+          "e l’unico contatto umano che reggo oggi è quello col cuscino.",
+          "e penso che il mondo sia più sicuro se resto sul divano.",
+          "e se esco in queste condizioni divento un meme vivente."
+        ],
+        end: [
+          "Recuperiamo nei prossimi giorni, promesso, birra inclusa.",
+          "La prossima volta offro io, così bilanciamo il karma.",
+          "Non cancellatemi dal gruppo, vi prego.",
+          "Metto già in calendario una serata extra per farmi perdonare.",
+          "Resto umano, solo con Wi-Fi e pigiama.",
+          "Vi mando vocali imbarazzanti come pegno.",
+          "Vi devo almeno due serate di fila per rimediare.",
+          "Vi autorizzo a rinfacciarmelo alla prossima occasione.",
+          "Faccio ammenda con cibo, tanto cibo.",
+          "Vi mando meme tutta la sera in segno di presenza spirituale."
+        ]
+      },
+      amore: {
+        start: [
+          "Ok, prima che ti arrabbi, lascia che ti spieghi:",
+          "Prometto che non è la solita scusa, ma",
+          "So che sembra sospetto, però",
+          "Non voglio litigare, quindi te lo dico subito:",
+          "Ti giuro che non è perché non voglio vederti, ma",
+          "Lo so che ti meriti qualcuno più organizzato di me, però",
+          "Prima che pensi male:",
+          "Non prendertela con me, ma con il destino perché",
+          "Ho un annuncio poco romantico:",
+          "Se ti dico la verità, non ti arrabbi troppo, vero?"
+        ],
+        reason: [
+          "la mia giornata è esplosa in mille micro problemi tutti insieme",
+          "il tempo oggi ha deciso di essere contro di noi",
+          "sono fisicamente distrutto e ho paura di essere solo metà persona con te",
+          "il caos che ho in testa non merita di investirti",
+          "se esco adesso rischio di portarti solo la versione laggata di me stesso",
+          "sono talmente stanco che potrei addormentarmi mentre mi guardi negli occhi",
+          "ho una serie di cose urgenti da chiudere che non spostano, ma stressano",
+          "il mio cervello ha deciso che oggi è manutenzione straordinaria",
+          "non voglio vederti di corsa e con l’ansia addosso",
+          "se ci vediamo ora, parlo solo in buffering"
+        ],
+        detail: [
+          "e tu meriti una versione di me che non sbadiglia ogni 30 secondi.",
+          "e preferisco rimandare piuttosto che stare insieme male.",
+          "e vorrei vederti quando posso davvero essere presente, non solo fisicamente.",
+          "e non voglio trasformare il tempo con te in una checklist.",
+          "e preferisco arrivare da te con la testa e il cuore, non solo con il corpo.",
+          "e voglio che quando ci vediamo sia un momento bello, non un’aggiunta caotica alla giornata.",
+          "e so che forse non sembra, ma lo faccio proprio perché ci tengo.",
+          "e non mi va di farti vivere la mia giornata in slow motion.",
+          "e non voglio appoggiarmi a te solo come antistress umano.",
+          "e vorrei che ogni volta che ci vediamo sia qualcosa da ricordare, non da sopportare."
+        ],
+        end: [
+          "Ti va se recuperiamo domani con più calma e più noi?",
+          "Prometto di compensare con una versione di me al 110%.",
+          "Se vuoi arrabbiarti lo capisco, ma ci tengo davvero a noi.",
+          "Non è una fuga, è solo un pit stop per arrivare meglio da te.",
+          "Ti mando un abbraccio virtuale, in attesa di quello vero.",
+          "Scrivimi pure tutto quello che pensi, ci sto.",
+          "Nel dubbio, mi sto già organizzando per il recupero ufficiale.",
+          "Non ti sto evitando, sto solo cercando di arrivare da te meglio di così.",
+          "Se reggi ancora un giorno, ti prometto che ne varrà la pena.",
+          "Ti devo una serata bella, senza fretta e senza scuse."
+        ]
+      },
+      famiglia: {
+        start: [
+          "Prometto che non lo faccio apposta, ma",
+          "Lo so che sembra che vi eviti, però",
+          "Non è che non vi voglio vedere, solo che",
+          "Prima che parta il dibattito familiare:",
+          "Giuro che non è ingratitudine, è solo organizzazione pessima perché",
+          "Non arrabbiatevi subito, ascoltate:",
+          "Vi voglio bene, ma oggi",
+          "Non prendetela sul personale, perché",
+          "Lo dico con affetto e un po’ di ansia:",
+          "Non sono sparito, è solo che"
+        ],
+        reason: [
+          "ho una giornata incastrata malissimo tra impegni e imprevisti",
+          "mi sono reso conto all’ultimo che ho sovrastimato le mie energie",
+          "il tempo mi è scappato di mano in modo imbarazzante",
+          "sono in ritardo con mille cose che non posso più rimandare",
+          "sto cercando di chiudere alcune cose importanti prima di vedervi",
+          "se esco ora lascio tutto a metà e peggioro solo il caos",
+          "la mia testa è un browser con 48 tab aperte e nessuna musica",
+          "la giornata è partita storta e non si è ancora raddrizzata",
+          "tra una cosa e l’altra è saltata completamente la mia pianificazione",
+          "non voglio arrivare da voi stanco e nervoso"
+        ],
+        detail: [
+          "e non mi va di portarvi solo la versione stremata di me.",
+          "e preferisco venire quando posso essere presente davvero.",
+          "e voglio evitare di arrivare nervoso e scaricare tutto su di voi.",
+          "e vorrei che il tempo insieme fosse di qualità, non solo di presenza.",
+          "e non mi piace vedervi quando sono con la testa altrove.",
+          "e non voglio trasformare una visita in un altro impegno da spuntare.",
+          "e preferisco organizzarmi meglio per la prossima volta.",
+          "e voglio che quando vengo sia un momento bello, non di corsa.",
+          "e preferisco recuperare in modo decente, non al volo.",
+          "e so che magari non sembra, ma lo faccio anche per rispetto."
+        ],
+        end: [
+          "Recuperiamo prestissimo, promesso.",
+          "Vi chiamo con calma più tardi, così vi racconto meglio.",
+          "Organizziamo già una nuova data e stavolta la proteggo davvero.",
+          "Tenetemi un posto al tavolo la prossima volta.",
+          "Non arrabbiatevi troppo, almeno non tutti insieme.",
+          "Vi mando un messaggio più lungo dopo per spiegare meglio.",
+          "Vi devo un pranzo/cena fatti come si deve.",
+          "La prossima volta porto io il dolce in segno di pace.",
+          "Mettiamo già a calendario una nuova visita, senza imprevisti.",
+          "Vi voglio bene anche se oggi sembro irreperibile."
+        ]
+      },
+      altro: {
+        start: [
+          "Lo so che fa ridere anche a me, ma",
+          "Ti giuro che non è inventata, però",
+          "Sembra una scusa, ma è quasi vero che",
+          "Ti devo una spiegazione bizzarra:",
+          "Non è facile da dire con faccia seria, ma",
+          "Senza giudicare, ti chiedo di credermi quando dico che",
+          "Ti prego di non ridere subito perché",
+          "Non succede mai, ma oggi",
+          "Lo so, suona come una barzelletta, però",
+          "Se ti dico cosa è successo non mi crederai, ma"
+        ],
+        reason: [
+          "ho perso la cognizione del tempo guardando video inutili ma profondamente necessari",
+          "ho iniziato a sistemare una cosa e ho finito in un buco nero di riordino",
+          "mi sono messo a fare una cosa veloce e tre ore dopo ero ancora lì",
+          "ho avuto un blackout organizzativo totale",
+          "mi sono distratto in modo olimpico e non so spiegare come",
+          "ho iniziato a rispondere a un paio di messaggi e sono sparito dal mondo",
+          "ho deciso di essere produttivo proprio nell’unico momento sbagliato",
+          "ho messo il telefono in modalità silenziosa e poi ho silenziato anche il cervello",
+          "ho provato a fare multitasking e ho perso tutte le task",
+          "mi sono incastrato in una missione secondaria della vita reale"
+        ],
+        detail: [
+          "e da lì il resto della giornata ha perso ogni logica.",
+          "e da quel momento ho capito che non controllo più la mia agenda.",
+          "e non ho il coraggio di guardare l’orologio.",
+          "e mi sono reso conto troppo tardi di aver perso il controllo.",
+          "e onestamente non so più in che timeline mi trovo.",
+          "e il tempo ha iniziato a scorrere in modo non regolamentare.",
+          "e quando ho alzato gli occhi era già tardi.",
+          "e l’unica cosa che posso fare ora è ammetterlo.",
+          "e non so se ridere o piangere della mia gestione del tempo.",
+          "e da quel momento la giornata è diventata una sit-com."
+        ],
+        end: [
+          "Quindi sì, sono in ritardo mentale con il mondo.",
+          "Prometto che la prossima volta provo ad agire da adulto responsabile.",
+          "Se vuoi prendermi in giro hai piena autorizzazione.",
+          "Mi prendo tutte le battute che ne deriveranno.",
+          "Puoi usare questa storia contro di me più avanti.",
+          "Farò finta che sia tutto parte di un grande piano.",
+          "La prossima volta metto un timer anche per le distrazioni.",
+          "Da oggi istituisco un controllo qualità sulle mie decisioni.",
+          "Segno questo giorno come monito per il futuro.",
+          "Se avessi una cartella 'scuse strane', questa entrerebbe di diritto."
+        ]
+      }
+    };
+
+    // ==========================
+    //  LOGICA GENERATORE
+    // ==========================
+
+    const categoryNames = {
+      lavoro: "Lavoro",
+      amici: "Amici",
+      amore: "Amore",
+      famiglia: "Famiglia",
+      altro: "Altro"
+    };
+
+    let currentCategory = "lavoro";
+
+    const categoryTabs = document.querySelectorAll(".category-tab");
+    const excuseTextEl = document.getElementById("excuseText");
+    const excuseCategoryNameEl = document.getElementById("excuseCategoryName");
+    const btnGenerate = document.getElementById("btnGenerate");
+    const btnGenerateHero = document.getElementById("btnGenerateHero");
+    const btnHeroCycle = document.getElementById("btnHeroCycle");
+    const btnCopy = document.getElementById("btnCopy");
+    const btnCopyWithCategory = document.getElementById("btnCopyWithCategory");
+    const btnPanic = document.getElementById("btnPanic");
+
+    // Random helper con protezione da ripetizione immediata sulla stessa combinazione
+    let lastExcuseByCategory = {};
+
+    function randomIndex(max) {
+      return Math.floor(Math.random() * max);
+    }
+
+    function generateExcuseForCategory(categoryKey) {
+      const cat = excuseFragments[categoryKey];
+      if (!cat) return "Errore nella matrice delle scuse. Riprova più tardi.";
+
+      let attempt = 0;
+      let result = "";
+      const maxAttempts = 8;
+
+      do {
+        const s = cat.start[randomIndex(cat.start.length)];
+        const r = cat.reason[randomIndex(cat.reason.length)];
+        const d = cat.detail[randomIndex(cat.detail.length)];
+        const e = cat.end[randomIndex(cat.end.length)];
+
+        result = s + " " + r + ", " + d + " " + e;
+        attempt++;
+      } while (result === lastExcuseByCategory[categoryKey] && attempt < maxAttempts);
+
+      lastExcuseByCategory[categoryKey] = result;
+      return result;
+    }
+
+    function updateCategoryLabel() {
+      excuseCategoryNameEl.textContent = categoryNames[currentCategory] || currentCategory;
+    }
+
+    function renderNewExcuse() {
+      const text = generateExcuseForCategory(currentCategory);
+      excuseTextEl.classList.remove("visible");
+      void excuseTextEl.offsetWidth; // forza reflow per riavviare animazione
+      excuseTextEl.textContent = text;
+      excuseTextEl.classList.add("visible");
+    }
+
+    // Cambia categoria da tab
+    categoryTabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        categoryTabs.forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+        currentCategory = tab.getAttribute("data-category");
+        updateCategoryLabel();
+        renderNewExcuse();
+      });
+    });
+
+    // Pulsanti genera
+    btnGenerate.addEventListener("click", renderNewExcuse);
+    btnGenerateHero.addEventListener("click", () => {
+      // scroll al generatore su mobile
+      const mainCard = document.querySelector(".card-main");
+      if (mainCard) {
+        mainCard.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      renderNewExcuse();
+    });
+
+    // Pulsante cambia categoria (hero)
+    const cycleOrder = ["lavoro", "amici", "amore", "famiglia", "altro"];
+    btnHeroCycle.addEventListener("click", () => {
+      let idx = cycleOrder.indexOf(currentCategory);
+      if (idx === -1) idx = 0;
+      idx = (idx + 1) % cycleOrder.length;
+      currentCategory = cycleOrder[idx];
+
+      // aggiorna tab attive
+      categoryTabs.forEach(t => {
+        const cat = t.getAttribute("data-category");
+        if (cat === currentCategory) {
+          t.classList.add("active");
+        } else {
+          t.classList.remove("active");
+        }
+      });
+
+      updateCategoryLabel();
+      renderNewExcuse();
+
+      const mainCard = document.querySelector(".card-main");
+      if (mainCard) {
+        mainCard.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    });
+
+    // Copia testo
+    async function copyToClipboard(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        showTemporaryStatus("Scusa copiata negli appunti.");
+      } catch (e) {
+        console.error("Clipboard error", e);
+        showTemporaryStatus("Impossibile copiare automaticamente, copia manualmente.", true);
+      }
+    }
+
+    function getCurrentExcuseText() {
+      return excuseTextEl.textContent.trim();
+    }
+
+    btnCopy.addEventListener("click", () => {
+      const excuse = getCurrentExcuseText();
+      if (!excuse) {
+        renderNewExcuse();
+        setTimeout(() => copyToClipboard(getCurrentExcuseText()), 160);
+      } else {
+        copyToClipboard(excuse);
+      }
+    });
+
+    btnCopyWithCategory.addEventListener("click", () => {
+      const excuse = getCurrentExcuseText();
+      const catLabel = categoryNames[currentCategory] || currentCategory;
+      const formatted =
+        "[" +
+        catLabel +
+        "] " +
+        excuse +
+        " (Scusa generata da ScusaPronta: https://scusapronta.github.io/scusapronta/ )";
+      copyToClipboard(formatted);
+    });
+
+    // Modalità panico: forza una scusa ancora più “drammatica”
+    btnPanic.addEventListener("click", () => {
+      const excuse = generateExcuseForCategory(currentCategory);
+      const panicWrap = "Versione modalità panico attivata:\n\n" + excuse;
+      excuseTextEl.classList.remove("visible");
+      void excuseTextEl.offsetWidth;
+      excuseTextEl.textContent = panicWrap;
+      excuseTextEl.classList.add("visible");
+      showTemporaryStatus("Modalità panico: scusa extra carica attivata.");
+    });
+
+    // Status temporaneo
+    const statusRandomInfo = document.getElementById("statusRandomInfo");
+    let statusTimeout = null;
+    function showTemporaryStatus(message, isError = false) {
+      if (!statusRandomInfo) return;
+      statusRandomInfo.querySelector("span:last-child").textContent = message;
+      if (isError) {
+        statusRandomInfo.style.background = "rgba(255, 75, 106, 0.06)";
+        statusRandomInfo.style.color = "#a01c39";
+      } else {
+        statusRandomInfo.style.background = "rgba(255, 212, 71, 0.22)";
+        statusRandomInfo.style.color = "#6b5600";
+      }
+      if (statusTimeout) clearTimeout(statusTimeout);
+      statusTimeout = setTimeout(() => {
+        statusRandomInfo.querySelector("span:last-child").textContent =
+          "Random attivo: nessuna scusa si ripete in modo prevedibile.";
+        statusRandomInfo.style.background = "rgba(255, 212, 71, 0.22)";
+        statusRandomInfo.style.color = "#6b5600";
+      }, 3300);
+    }
+
+    // ==========================
+    //  CONDIVISIONE
+    // ==========================
+
+    function buildShareText() {
+      const catLabel = categoryNames[currentCategory] || currentCategory;
+      const excuse = getCurrentExcuseText() || generateExcuseForCategory(currentCategory);
+      return (
+        "[" +
+        catLabel +
+        "] " +
+        excuse +
+        "\n\nScusa generata da ScusaPronta: https://scusapronta.github.io/scusapronta/"
+      );
+    }
+
+    function buildShareUrlFor(platform) {
+      const text = encodeURIComponent(buildShareText());
+      const url = encodeURIComponent("https://scusapronta.github.io/scusapronta/");
+      switch (platform) {
+        case "whatsapp":
+          return "https://wa.me/?text=" + text;
+        case "telegram":
+          return "https://t.me/share/url?url=" + url + "&text=" + text;
+        case "facebook":
+          return "https://www.facebook.com/sharer/sharer.php?u=" + url;
+        case "twitter":
+          return "https://twitter.com/intent/tweet?text=" + text;
+        case "email":
+          return "mailto:?subject=" + encodeURIComponent("Scusa epica generata per te") + "&body=" + text;
+        default:
+          return "https://scusapronta.github.io/scusapronta/";
+      }
+    }
+
+    document.querySelectorAll(".share-btn").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const platform = btn.getAttribute("data-share");
+        const text = buildShareText();
+        const pageUrl = "https://scusapronta.github.io/scusapronta/";
+
+        if (platform === "link") {
+          copyToClipboard(pageUrl);
+          return;
+        }
+
+        if (navigator.share && (platform === "whatsapp" || platform === "telegram")) {
+          try {
+            await navigator.share({
+              title: "ScusaPronta",
+              text,
+              url: pageUrl
+            });
+            return;
+          } catch (e) {
+            // fallback sotto
+          }
+        }
+
+        const shareUrl = buildShareUrlFor(platform);
+        window.open(shareUrl, "_blank", "noopener,noreferrer");
+      });
+    });
+
+    // ==========================
+    //  INIZIALIZZAZIONE
+    // ==========================
+
+    // All'avvio: random vero, anche al primo accesso
+    (function init() {
+      // Seed “naturale” basato sull’ora, anche se Math.random è già pseudo-random:
+      Math.random(); // call just to avoid "cold" state
+      updateCategoryLabel();
+      renderNewExcuse();
+    })();
+  </script>
+</body>
+</html>
+
