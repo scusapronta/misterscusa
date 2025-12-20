@@ -2,17 +2,20 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>ScusaPronta – Generatore di scuse epiche</title>
+  <title>ScusaPronta – Generatore di scuse divertenti per ogni occasione</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Generatore di scuse divertenti per lavoro, amici, amore, famiglia e altro. Un clic, una scusa epica." />
+  <meta name="description" content="ScusaPronta è il generatore di scuse divertenti per lavoro, amici, amore, famiglia e altro. Scegli la categoria e ottieni una scusa epica in un clic." />
+  <meta name="keywords" content="scuse, generatore di scuse, scuse divertenti, scuse per il lavoro, scuse per gli amici, scuse amore, scuse famiglia, scuse credibili, scuse buffe" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://scusapronta.github.io/misterscusa/" />
   <meta name="theme-color" content="#ffd447" />
 
   <!-- Open Graph / Social -->
-  <meta property="og:title" content="ScusaPronta – Generatore di scuse epiche" />
-  <meta property="og:description" content="Ti serve una scusa al volo? Lavoro, amici, amore, famiglia: una scusa epica in un clic." />
+  <meta property="og:title" content="ScusaPronta – Generatore di scuse divertenti" />
+  <meta property="og:description" content="Ti serve una scusa al volo? Lavoro, amici, amore, famiglia: una scusa epica (o breve) in un clic." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://scusapronta.github.io/scusapronta/" />
-  <meta property="og:image" content="https://scusapronta.github.io/scusapronta/og-image.png" />
+  <meta property="og:url" content="https://scusapronta.github.io/misterscusa/" />
+  <meta property="og:image" content="https://scusapronta.github.io/misterscusa/og-image.png" />
 
   <style>
     :root {
@@ -92,7 +95,7 @@
       width: 40px;
       height: 40px;
       border-radius: 12px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      background: conic-gradient(from 210deg, #ffd447, #ffe9a0, #00c2a8, #ffd447);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -100,6 +103,24 @@
       font-size: 21px;
       color: #1a1a1a;
       box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-badge-inner {
+      background: radial-gradient(circle at 30% 20%, #ffffff 0, #ffeaa6 25%, transparent 55%);
+      width: 130%;
+      height: 130%;
+      position: absolute;
+      inset: -15%;
+      opacity: 0.9;
+    }
+
+    .logo-badge-letter {
+      position: relative;
+      z-index: 1;
+      font-size: 19px;
+      letter-spacing: 0.04em;
     }
 
     body.dark .logo-badge {
@@ -108,9 +129,37 @@
     }
 
     .site-title {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 800;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.03em;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .site-title-main {
+      text-transform: uppercase;
+    }
+
+    .site-title-dot {
+      font-size: 16px;
+      color: #f0b800;
+      transform: translateY(-1px);
+    }
+
+    .site-title-tag {
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.06);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+
+    body.dark .site-title-tag {
+      background: rgba(255,255,255,0.08);
+      color: #f8f2c3;
     }
 
     .badge-beta {
@@ -122,7 +171,7 @@
       border-radius: 999px;
       background: #1a1a1a;
       color: #fceba8;
-      margin-left: 6px;
+      margin-left: 4px;
       text-transform: uppercase;
       letter-spacing: 0.09em;
     }
@@ -527,15 +576,6 @@
       user-select: none;
     }
 
-    body.dark .stat-pill {
-      background: rgba(8,8,14,0.9);
-      border-color: #2a2a3a;
-    }
-
-    .stat-pill-toggle-label {
-      font-weight: 500;
-    }
-
     .fast-mode-indicator {
       width: 8px;
       height: 8px;
@@ -545,6 +585,15 @@
 
     .fast-mode-on {
       background: #00c2a8;
+    }
+
+    body.dark .stat-pill {
+      background: rgba(8,8,14,0.9);
+      border-color: #2a2a3a;
+    }
+
+    .badge-label {
+      font-weight: 600;
     }
 
     .category-tabs {
@@ -1051,7 +1100,7 @@
       }
 
       .site-title {
-        font-size: 22px;
+        font-size: 20px;
       }
 
       .hero-main-title {
@@ -1163,6 +1212,15 @@
         color: #e0e0f5;
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        scroll-behavior: auto !important;
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1171,10 +1229,15 @@
       <header>
         <div class="logo-row">
           <div class="logo-left">
-            <div class="logo-badge">S</div>
+            <div class="logo-badge" aria-hidden="true">
+              <div class="logo-badge-inner"></div>
+              <div class="logo-badge-letter">SP</div>
+            </div>
             <div>
               <div class="site-title">
-                ScusaPronta
+                <span class="site-title-main">ScusaPronta</span>
+                <span class="site-title-dot">•</span>
+                <span class="site-title-tag">scuse on‑demand</span>
                 <span class="badge-beta">
                   <span>⚡</span> generatore di scuse
                 </span>
@@ -1182,7 +1245,7 @@
               <p class="subtitle">La vita è un casino. Le scuse no.</p>
             </div>
           </div>
-          <button class="theme-toggle-btn" id="themeToggleBtn">
+          <button class="theme-toggle-btn" id="themeToggleBtn" type="button" aria-label="Cambia tema chiaro/scuro">
             <span id="themeToggleEmoji">🌙</span>
             <span id="themeToggleText">Dark mode</span>
           </button>
@@ -1195,7 +1258,7 @@
             <span class="hero-highlight">Scuse epiche</span> in un clic.
           </h1>
           <p class="hero-claim">
-            Scegli la categoria, premi il pulsante e lascia che la fantasia sporca la metta l’algoritmo.
+            Lavoro, amici, amore, famiglia o situazioni imbarazzanti: scegli la categoria e ScusaPronta inventa la scusa al posto tuo.
           </p>
           <p class="hero-tagline">
             Il generatore di scuse che non ti giudica. Ti salva e basta.
@@ -1203,15 +1266,15 @@
 
           <div class="hero-pills">
             <span class="pill"><strong>5</strong> categorie socialmente discutibili</span>
-            <span class="pill"><strong>Random</strong> davvero casuale</span>
+            <span class="pill"><strong>Breve</strong> o <strong>lunga</strong>, tu scegli</span>
             <span class="pill"><strong>Condividi</strong> su WhatsApp, Telegram & co.</span>
           </div>
 
           <div class="hero-cta-row">
-            <button class="btn-primary" id="btnGenerateHero">
+            <button class="btn-primary" id="btnGenerateHero" type="button">
               <span>🎲 Genera una scusa ora</span>
             </button>
-            <button class="btn-secondary" id="btnHeroCycle">
+            <button class="btn-secondary" id="btnHeroCycle" type="button">
               <span>🔀 Cambia categoria</span>
             </button>
           </div>
@@ -1236,7 +1299,7 @@
       </section>
 
       <!-- Scusa del giorno -->
-      <section class="daily-excuse-card" id="dailyExcuseCard">
+      <section class="daily-excuse-card" id="dailyExcuseCard" aria-label="Scusa del giorno">
         <div class="daily-excuse-header">
           <div class="daily-excuse-title">
             <span>🎁</span>
@@ -1250,11 +1313,11 @@
           <!-- Scusa del giorno qui -->
         </div>
         <div class="daily-excuse-actions">
-          <button class="btn-mini" id="dailyUseBtn">
+          <button class="btn-mini" id="dailyUseBtn" type="button">
             <span>👉</span><span>Usa questa come base</span>
           </button>
-          <button class="btn-mini" id="dailyNewBtn">
-            <span>🎲</span><span>Rigenera ora</span>
+          <button class="btn-mini" id="dailyNewBtn" type="button">
+            <span>🎲</span><span>Nuova scusa del giorno</span>
           </button>
         </div>
       </section>
@@ -1278,31 +1341,35 @@
                 <span>🏆</span>
                 <span>Categoria top: –</span>
               </div>
+              <div class="stat-pill" id="statBadge">
+                <span>🎖️</span>
+                <span class="badge-label" id="badgeLabel">Livello scuse: Novizio educato</span>
+              </div>
               <div class="stat-pill stat-pill-toggle" id="fastModeToggle">
                 <span class="fast-mode-indicator" id="fastModeDot"></span>
-                <span class="stat-pill-toggle-label" id="fastModeLabel">Modalità veloce: OFF</span>
+                <span id="fastModeLabel">Modalità veloce: OFF</span>
               </div>
             </div>
           </div>
 
           <div class="category-tabs" id="categoryTabs">
-            <button class="category-tab active" data-category="lavoro">
+            <button class="category-tab active" data-category="lavoro" type="button">
               <span class="emoji">💼</span>
               <span>Lavoro</span>
             </button>
-            <button class="category-tab" data-category="amici">
+            <button class="category-tab" data-category="amici" type="button">
               <span class="emoji">🍻</span>
               <span>Amici</span>
             </button>
-            <button class="category-tab" data-category="amore">
+            <button class="category-tab" data-category="amore" type="button">
               <span class="emoji">❤️</span>
               <span>Amore</span>
             </button>
-            <button class="category-tab" data-category="famiglia">
+            <button class="category-tab" data-category="famiglia" type="button">
               <span class="emoji">🏡</span>
               <span>Famiglia</span>
             </button>
-            <button class="category-tab" data-category="altro">
+            <button class="category-tab" data-category="altro" type="button">
               <span class="emoji">🎭</span>
               <span>Altro</span>
             </button>
@@ -1322,23 +1389,31 @@
               </div>
               <div class="excuse-tagline">
                 <span>💡</span>
-                <span>Funziona meglio se sorridi come se fosse tutto normale.</span>
+                <span>Funziona meglio se sorridi come se fosse tutto normalissimo.</span>
               </div>
             </div>
 
             <div class="excuse-actions">
-              <button class="btn-primary" id="btnGenerate">
-                <span>🎲 Genera un’altra scusa</span>
+              <button class="btn-primary" id="btnGenerate" type="button">
+                <span>🎲 Scusa casuale</span>
               </button>
-              <button class="btn-ghost" id="btnCopy">
+              <button class="btn-ghost" id="btnShortExcuse" type="button">
+                <span>⚡</span>
+                <span>Scusa breve</span>
+              </button>
+              <button class="btn-ghost" id="btnLongExcuse" type="button">
+                <span>📜</span>
+                <span>Scusa lunga</span>
+              </button>
+              <button class="btn-ghost" id="btnCopy" type="button">
                 <span>📋</span>
-                <span>Copia negli appunti</span>
+                <span>Copia scusa</span>
               </button>
-              <button class="btn-ghost" id="btnCopyWithCategory">
+              <button class="btn-ghost" id="btnCopyWithCategory" type="button">
                 <span>📝</span>
                 <span>Copia con categoria + firma</span>
               </button>
-              <button class="btn-ghost btn-ghost-danger" id="btnPanic">
+              <button class="btn-ghost btn-ghost-danger" id="btnPanic" type="button">
                 <span>🚨</span>
                 <span>Modalità panico</span>
               </button>
@@ -1350,17 +1425,29 @@
                 <span>Condividi la tua scusa al volo:</span>
               </div>
               <div class="share-buttons">
-                <button class="share-btn whatsapp" data-share="whatsapp">WhatsApp</button>
-                <button class="share-btn telegram" data-share="telegram">Telegram</button>
-                <button class="share-btn facebook" data-share="facebook">Facebook</button>
-                <button class="share-btn twitter" data-share="twitter">X/Twitter</button>
-                <button class="share-btn email" data-share="email">Email</button>
-                <button class="share-btn link" data-share="link">Copia link</button>
+                <button class="share-btn whatsapp" data-share="whatsapp" type="button" aria-label="Condividi su WhatsApp">
+                  WhatsApp
+                </button>
+                <button class="share-btn telegram" data-share="telegram" type="button" aria-label="Condividi su Telegram">
+                  Telegram
+                </button>
+                <button class="share-btn facebook" data-share="facebook" type="button" aria-label="Condividi su Facebook">
+                  Facebook
+                </button>
+                <button class="share-btn twitter" data-share="twitter" type="button" aria-label="Condividi su X/Twitter">
+                  X/Twitter
+                </button>
+                <button class="share-btn email" data-share="email" type="button" aria-label="Condividi via email">
+                  Email
+                </button>
+                <button class="share-btn link" data-share="link" type="button" aria-label="Copia link del sito">
+                  Copia link
+                </button>
               </div>
             </div>
 
             <div class="status-row">
-              <div class="status-pill" id="statusRandomInfo">
+              <div class="status-pill" id="statusRandomInfo" role="status" aria-live="polite">
                 <span class="status-dot"></span>
                 <span>Random attivo: nessuna scusa si ripete in modo prevedibile.</span>
               </div>
@@ -1383,21 +1470,23 @@
           </section>
 
           <!-- Banner "Aggiungi alla Home" -->
-          <section class="pwa-banner" id="pwaBanner">
+          <section class="pwa-banner" id="pwaBanner" aria-label="Suggerimento: aggiungi alla schermata Home">
             <div class="pwa-banner-left">
               <div class="pwa-banner-title">
                 <span>📱</span>
                 <span>Aggiungi ScusaPronta alla Home</span>
               </div>
               <div>
-                Così lo apri come un’app e la scusa è sempre a un tap di distanza.
+                Così lo apri come un’app e la scusa è sempre a un tap di distanza. Funziona anche offline.
               </div>
             </div>
             <div class="pwa-banner-actions">
-              <button class="pwa-banner-btn" id="pwaHowBtn">
+              <button class="pwa-banner-btn" id="pwaHowBtn" type="button">
                 <span>❓</span><span>Come si fa</span>
               </button>
-              <button class="pwa-banner-close" id="pwaCloseBtn">✕</button>
+              <button class="pwa-banner-close" id="pwaCloseBtn" type="button" aria-label="Chiudi suggerimento">
+                ✕
+              </button>
             </div>
           </section>
         </section>
@@ -1408,14 +1497,14 @@
           <div class="footer-row">
             <p class="footer-disclaimer">
               <strong>Disclaimer serio in un sito poco serio:</strong> le scuse generate sono pensate per ridere e sdrammatizzare.
-              Non usarle per ferire, truffare, manipolare o evitare responsabilità importanti. Il karma legge tutto.
+              Non usarle per ferire, truffare, manipolare o evitare responsabilità importanti. Il karma legge tutto, anche le note piccole.
             </p>
             <div class="footer-links">
               <span class="footer-pill">Made with 🧠+😅 in Italia</span>
             </div>
           </div>
           <div class="footer-mini">
-            <span>ScusaPronta non si assume alcuna responsabilità per capi arrabbiati, partner sospettosi o amici vendicativi. Usala con buon senso.</span>
+            <span>ScusaPronta non si assume alcuna responsabilità per capi arrabbiati, partner sospettosi o amici vendicativi. Tu generi, tu gestisci.</span>
           </div>
         </div>
       </footer>
@@ -1430,13 +1519,13 @@
         <span>Genera, cambia o copia senza muovere il pollice.</span>
       </div>
       <div class="mobile-sticky-buttons">
-        <button class="mobile-sticky-btn mobile-sticky-btn-primary" id="mobileBtnGenerate">
+        <button class="mobile-sticky-btn mobile-sticky-btn-primary" id="mobileBtnGenerate" type="button" aria-label="Genera scusa veloce">
           <span class="icon">🎲</span><span>Scusa</span>
         </button>
-        <button class="mobile-sticky-btn" id="mobileBtnCycle">
+        <button class="mobile-sticky-btn" id="mobileBtnCycle" type="button" aria-label="Cambia categoria">
           <span class="icon">🔀</span><span>Categ.</span>
         </button>
-        <button class="mobile-sticky-btn" id="mobileBtnCopy">
+        <button class="mobile-sticky-btn" id="mobileBtnCopy" type="button" aria-label="Copia scusa corrente">
           <span class="icon">📋</span><span>Copia</span>
         </button>
       </div>
