@@ -1,24 +1,24 @@
-/* BASE --------------------------------------------------- */
-
-html,
-body {
+/* --------------------------------------------------
+   BASE
+-------------------------------------------------- */
+html, body {
   margin: 0;
   padding: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
   background: #ffffff;
-  color: #222222;
+  color: #222;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Dark mode base */
 body.dark {
-  background: #111111;
-  color: #eeeeee;
+  background: #111;
+  color: #eee;
 }
 
-/* LAYOUT ------------------------------------------------- */
-
+/* --------------------------------------------------
+   LAYOUT
+-------------------------------------------------- */
 .page {
   display: flex;
   justify-content: center;
@@ -30,13 +30,14 @@ body.dark {
   padding: 20px;
 }
 
-/* HEADER ------------------------------------------------- */
-
+/* --------------------------------------------------
+   HEADER
+-------------------------------------------------- */
 .logo-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .logo-left {
@@ -61,18 +62,18 @@ body.dark {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: #ffffff;
+  background: #fff;
 }
 
 body.dark .logo-badge-inner {
-  background: #222222;
+  background: #222;
 }
 
 .logo-badge-letter {
   position: relative;
   font-weight: 700;
   font-size: 20px;
-  color: #222222;
+  color: #222;
 }
 
 body.dark .logo-badge-letter {
@@ -87,12 +88,12 @@ body.dark .logo-badge-letter {
 
 .site-title-tag {
   font-size: 14px;
-  color: #666666;
+  color: #666;
   margin-left: 4px;
 }
 
 body.dark .site-title-tag {
-  color: #aaaaaa;
+  color: #aaa;
 }
 
 .badge-beta {
@@ -106,22 +107,22 @@ body.dark .site-title-tag {
 }
 
 body.dark .badge-beta {
-  background: #333333;
+  background: #333;
   color: #ffd447;
 }
 
 .subtitle {
   margin: 4px 0 0;
-  color: #555555;
+  color: #555;
 }
 
 body.dark .subtitle {
-  color: #bbbbbb;
+  color: #bbb;
 }
 
 .theme-toggle-btn {
   background: none;
-  border: 1px solid #cccccc;
+  border: 1px solid #ccc;
   padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
@@ -129,12 +130,13 @@ body.dark .subtitle {
 }
 
 body.dark .theme-toggle-btn {
-  border-color: #444444;
-  color: #eeeeee;
+  border-color: #444;
+  color: #eee;
 }
 
-/* HERO --------------------------------------------------- */
-
+/* --------------------------------------------------
+   HERO
+-------------------------------------------------- */
 .hero {
   display: flex;
   flex-wrap: wrap;
@@ -155,12 +157,12 @@ body.dark .theme-toggle-btn {
 .hero-claim,
 .hero-tagline {
   margin: 10px 0;
-  color: #444444;
+  color: #444;
 }
 
 body.dark .hero-claim,
 body.dark .hero-tagline {
-  color: #cccccc;
+  color: #ccc;
 }
 
 .hero-pills {
@@ -178,8 +180,8 @@ body.dark .hero-tagline {
 }
 
 body.dark .pill {
-  background: #222222;
-  color: #dddddd;
+  background: #222;
+  color: #ddd;
 }
 
 .hero-cta-row {
@@ -188,8 +190,9 @@ body.dark .pill {
   margin-top: 12px;
 }
 
-/* BUTTONS ------------------------------------------------ */
-
+/* --------------------------------------------------
+   BUTTONS
+-------------------------------------------------- */
 .btn-primary,
 .btn-secondary,
 .btn-ghost,
@@ -207,12 +210,12 @@ body.dark .pill {
 }
 
 .btn-secondary {
-  background: #eeeeee;
+  background: #eee;
 }
 
 body.dark .btn-secondary {
-  background: #333333;
-  color: #eeeeee;
+  background: #333;
+  color: #eee;
 }
 
 .btn-ghost {
@@ -220,13 +223,13 @@ body.dark .btn-secondary {
 }
 
 body.dark .btn-ghost {
-  background: #222222;
-  color: #dddddd;
+  background: #222;
+  color: #ddd;
 }
 
 .btn-ghost-danger {
   background: #ffe5e5;
-  color: #aa0000;
+  color: #a00;
 }
 
 body.dark .btn-ghost-danger {
@@ -235,17 +238,18 @@ body.dark .btn-ghost-danger {
 }
 
 .btn-mini {
-  background: #eeeeee;
+  background: #eee;
   padding: 6px 10px;
 }
 
 body.dark .btn-mini {
-  background: #333333;
-  color: #eeeeee;
+  background: #333;
+  color: #eee;
 }
 
-/* HERO SIDE CARD ---------------------------------------- */
-
+/* --------------------------------------------------
+   HERO SIDE CARD
+-------------------------------------------------- */
 .hero-side-card {
   flex: 1;
   min-width: 260px;
@@ -278,76 +282,16 @@ body.dark .hero-side-card {
 
 .hero-side-footnote {
   font-size: 13px;
-  color: #666666;
+  color: #666;
 }
 
 body.dark .hero-side-footnote {
-  color: #aaaaaa;
+  color: #aaa;
 }
 
-/* DAILY EXCUSE ------------------------------------------ */
-
-.daily-excuse-card {
-  background: #fff8d6;
-  padding: 16px;
-  border-radius: 10px;
-  margin-bottom: 30px;
-}
-
-body.dark .daily-excuse-card {
-  background: #332b00;
-  color: #ffeaa7;
-}
-
-.daily-excuse-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 10px;
-}
-
-.daily-excuse-title {
-  font-weight: 700;
-  font-size: 18px;
-}
-
-.daily-excuse-meta {
-  font-size: 13px;
-  color: #666666;
-}
-
-body.dark .daily-excuse-meta {
-  color: #ffdd88;
-}
-
-.daily-excuse-text {
-  margin: 12px 0;
-  font-size: 16px;
-}
-
-.daily-excuse-actions {
-  display: flex;
-  gap: 8px;
-}
-
-/* MAIN SECTION ------------------------------------------ */
-
-.section-title {
-  font-size: 20px;
-  margin: 0 0 4px;
-}
-
-.section-description {
-  margin: 0 0 16px;
-  color: #555555;
-}
-
-body.dark .section-description {
-  color: #bbbbbb;
-}
-
-/* CARD MAIN --------------------------------------------- */
-
+/* --------------------------------------------------
+   MAIN CARD
+-------------------------------------------------- */
 .card-main {
   background: #fafafa;
   padding: 20px;
@@ -390,8 +334,9 @@ body.dark .card-main {
   background: #00b341;
 }
 
-/* STATS ------------------------------------------------- */
-
+/* --------------------------------------------------
+   STATS
+-------------------------------------------------- */
 .card-stats {
   display: flex;
   flex-wrap: wrap;
@@ -399,7 +344,7 @@ body.dark .card-main {
 }
 
 .stat-pill {
-  background: #ffffff;
+  background: #fff;
   padding: 6px 10px;
   border-radius: 6px;
   font-size: 13px;
@@ -409,8 +354,8 @@ body.dark .card-main {
 }
 
 body.dark .stat-pill {
-  background: #222222;
-  color: #dddddd;
+  background: #222;
+  color: #ddd;
 }
 
 .stat-pill-toggle {
@@ -421,11 +366,12 @@ body.dark .stat-pill {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #999999;
+  background: #999;
 }
 
-/* CATEGORY TABS ----------------------------------------- */
-
+/* --------------------------------------------------
+   CATEGORY TABS
+-------------------------------------------------- */
 .category-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -434,7 +380,7 @@ body.dark .stat-pill {
 }
 
 .category-tab {
-  background: #eeeeee;
+  background: #eee;
   border: none;
   padding: 8px 12px;
   border-radius: 6px;
@@ -448,36 +394,37 @@ body.dark .stat-pill {
 }
 
 body.dark .category-tab {
-  background: #333333;
-  color: #eeeeee;
+  background: #333;
+  color: #eee;
 }
 
 body.dark .category-tab.active {
   background: #ffb300;
-  color: #111111;
+  color: #111;
 }
 
-/* EXCUSE BOX -------------------------------------------- */
-
+/* --------------------------------------------------
+   EXCUSE BOX
+-------------------------------------------------- */
 .excuse-box {
-  background: #ffffff;
+  background: #fff;
   padding: 16px;
   border-radius: 10px;
   margin-bottom: 16px;
 }
 
 body.dark .excuse-box {
-  background: #222222;
-  color: #eeeeee;
+  background: #222;
+  color: #eee;
 }
 
 .excuse-category-label {
   font-size: 13px;
-  color: #666666;
+  color: #666;
 }
 
 body.dark .excuse-category-label {
-  color: #bbbbbb;
+  color: #bbb;
 }
 
 .excuse-text {
@@ -487,24 +434,16 @@ body.dark .excuse-category-label {
 
 .excuse-tagline {
   font-size: 13px;
-  color: #777777;
+  color: #777;
 }
 
 body.dark .excuse-tagline {
-  color: #bbbbbb;
+  color: #bbb;
 }
 
-/* EXCUSE ACTIONS ---------------------------------------- */
-
-.excuse-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-/* SHARE ------------------------------------------------- */
-
+/* --------------------------------------------------
+   SHARE
+-------------------------------------------------- */
 .share-row {
   margin-top: 20px;
 }
@@ -527,16 +466,17 @@ body.dark .excuse-tagline {
   border: none;
   cursor: pointer;
   font-size: 14px;
-  background: #eeeeee;
+  background: #eee;
 }
 
 body.dark .share-btn {
-  background: #333333;
-  color: #eeeeee;
+  background: #333;
+  color: #eee;
 }
 
-/* STATUS ------------------------------------------------ */
-
+/* --------------------------------------------------
+   STATUS
+-------------------------------------------------- */
 .status-row {
   margin-top: 20px;
 }
@@ -552,7 +492,7 @@ body.dark .share-btn {
 }
 
 body.dark .status-pill {
-  background: #333333;
+  background: #333;
   color: #ffd447;
 }
 
@@ -563,95 +503,44 @@ body.dark .status-pill {
   background: #ff9800;
 }
 
-/* ADS --------------------------------------------------- */
-
+/* --------------------------------------------------
+   ADS
+-------------------------------------------------- */
 .ad-section {
-  background: #ffffff;
+  background: #fff;
   padding: 16px;
   border-radius: 10px;
   margin-top: 30px;
 }
 
 body.dark .ad-section {
-  background: #222222;
-  color: #eeeeee;
+  background: #222;
+  color: #eee;
 }
 
 .ad-placeholder {
   margin-top: 10px;
-  background: #eeeeee;
+  background: #eee;
   padding: 20px;
   text-align: center;
   border-radius: 6px;
 }
 
 body.dark .ad-placeholder {
-  background: #333333;
+  background: #333;
 }
 
-/* PWA BANNER -------------------------------------------- */
-
-.pwa-banner {
-  display: none;
-  background: #fff3c4;
-  padding: 16px;
-  border-radius: 10px;
-  margin-top: 20px;
-  justify-content: space-between;
-  align-items: center;
-}
-
-body.dark .pwa-banner {
-  background: #332b00;
-  color: #ffeaa7;
-}
-
-.pwa-banner-left {
-  font-size: 14px;
-}
-
-.pwa-banner-title {
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-
-.pwa-banner-actions {
-  display: flex;
-  gap: 8px;
-}
-
-.pwa-banner-btn,
-.pwa-banner-close {
-  border: none;
-  border-radius: 6px;
-  padding: 6px 10px;
-  cursor: pointer;
-  font-size: 13px;
-}
-
-.pwa-banner-btn {
-  background: #ffd447;
-}
-
-.pwa-banner-close {
-  background: #eeeeee;
-}
-
-body.dark .pwa-banner-close {
-  background: #444444;
-  color: #eeeeee;
-}
-
-/* FOOTER ------------------------------------------------ */
-
+/* --------------------------------------------------
+   FOOTER
+-------------------------------------------------- */
 .footer-inner {
   margin-top: 40px;
   font-size: 14px;
-  color: #666666;
+  color: #666;
 }
 
 body.dark .footer-inner {
-  color: #aaaaaa;
+  color: #aaa;
 }
 
 .footer-disclaimer {
@@ -662,23 +551,24 @@ body.dark .footer-inner {
   font-size: 13px;
 }
 
-/* MOBILE STICKY BAR ------------------------------------- */
-
+/* --------------------------------------------------
+   MOBILE STICKY BAR
+-------------------------------------------------- */
 .mobile-sticky-bar {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background: #ffffff;
-  border-top: 1px solid #dddddd;
+  background: #fff;
+  border-top: 1px solid #ddd;
   padding: 10px;
   display: none;
   z-index: 20;
 }
 
 body.dark .mobile-sticky-bar {
-  background: #111111;
-  border-color: #333333;
+  background: #111;
+  border-color: #333;
 }
 
 .mobile-sticky-inner {
@@ -694,11 +584,11 @@ body.dark .mobile-sticky-bar {
 .mobile-sticky-label span {
   display: block;
   font-size: 12px;
-  color: #666666;
+  color: #666;
 }
 
 body.dark .mobile-sticky-label span {
-  color: #aaaaaa;
+  color: #aaa;
 }
 
 .mobile-sticky-buttons {
@@ -707,7 +597,7 @@ body.dark .mobile-sticky-label span {
 }
 
 .mobile-sticky-btn {
-  background: #eeeeee;
+  background: #eee;
   border: none;
   padding: 8px 12px;
   border-radius: 6px;
@@ -716,8 +606,8 @@ body.dark .mobile-sticky-label span {
 }
 
 body.dark .mobile-sticky-btn {
-  background: #333333;
-  color: #eeeeee;
+  background: #333;
+  color: #eee;
 }
 
 .mobile-sticky-btn-primary {
@@ -725,8 +615,9 @@ body.dark .mobile-sticky-btn {
   font-weight: 700;
 }
 
-/* RESPONSIVE -------------------------------------------- */
-
+/* --------------------------------------------------
+   RESPONSIVE
+-------------------------------------------------- */
 @media (max-width: 768px) {
   .mobile-sticky-bar {
     display: block;
