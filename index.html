@@ -33,10 +33,10 @@
   <!-- ✅ Favicon -->
   <link rel="icon" href="favicon.png" type="image/png">
 
-  <!-- ✅ Mobile color (manteniamo quello attuale) -->
+  <!-- ✅ Mobile color -->
   <meta name="theme-color" content="#ffd447" />
 
-  <!-- ✅ Schema WebApp (pulito) -->
+  <!-- ✅ Schema WebApp -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -62,7 +62,7 @@
   <div class="page">
     <div class="container">
 
-      <!-- ✅ HEADER (intatto) -->
+      <!-- ✅ HEADER -->
       <header>
         <div class="logo-row">
           <div class="logo-left">
@@ -81,14 +81,16 @@
               <p class="subtitle">La vita è un casino. Le scuse no.</p>
             </div>
           </div>
-          <button class="theme-toggle-btn" id="themeToggleBtn" type="button" aria-label="Cambia tema chiaro/scuro">
+
+          <!-- ✅ ARIA: DARK MODE -->
+          <button class="theme-toggle-btn" id="themeToggleBtn" type="button" aria-label="Cambia tema chiaro/scuro" aria-pressed="false">
             <span id="themeToggleEmoji">🌙</span>
             <span id="themeToggleText">Dark mode</span>
           </button>
         </div>
       </header>
 
-      <!-- ✅ HERO (intatto) -->
+      <!-- ✅ HERO -->
       <section class="hero">
         <div>
           <h1 class="hero-main-title">
@@ -135,7 +137,7 @@
         </aside>
       </section>
 
-      <!-- ✅ SCUSA DEL GIORNO (intatta) -->
+      <!-- ✅ SCUSA DEL GIORNO -->
       <section class="daily-excuse-card" id="dailyExcuseCard" aria-label="Scusa del giorno">
         <div class="daily-excuse-header">
           <div class="daily-excuse-title">
@@ -156,16 +158,6 @@
           </button>
         </div>
       </section>
-
-      <!-- ✅ MAIN (intatto) -->
-      <main>
-        <section aria-label="Come funziona ScusaPronta">
-          <h2 class="section-title">Come funziona ScusaPronta</h2>
-          <p class="section-description">
-            Scegli la categoria, decidi se vuoi una scusa breve o lunga, premi il pulsante e copia. Puoi condividerla ovunque, ma la responsabilità di come la usi resta tutta tua.
-          </p>
-        </section>
-
         <section class="card-main" aria-label="Generatore di scuse">
           <div class="card-main-header">
             <div class="card-main-title">
@@ -189,7 +181,9 @@
                 <span>🎖️</span>
                 <span class="badge-label" id="badgeLabel">Livello scuse: Novizio educato</span>
               </div>
-              <button class="stat-pill stat-pill-toggle" id="fastModeToggle" type="button">
+
+              <!-- ✅ ARIA: FAST MODE -->
+              <button class="stat-pill stat-pill-toggle" id="fastModeToggle" type="button" aria-pressed="false">
                 <span class="fast-mode-indicator" id="fastModeDot"></span>
                 <span id="fastModeLabel">Modalità veloce: OFF</span>
               </button>
@@ -220,7 +214,10 @@
               <div class="excuse-category-label" id="excuseCategoryLabel">
                 <span>Categoria:</span><span id="excuseCategoryName">Lavoro</span>
               </div>
-              <div class="excuse-text" id="excuseText"></div>
+
+              <!-- ✅ ARIA-LIVE SOLO QUI -->
+              <div class="excuse-text" id="excuseText" aria-live="polite"></div>
+
               <div class="excuse-tagline">
                 <span>💡</span>
                 <span>Funziona meglio se sorridi come se fosse tutto normalissimo.</span>
@@ -308,7 +305,6 @@
 
     </div>
   </div>
-
   <!-- ✅ Sticky bar mobile -->
   <div class="mobile-sticky-bar" id="mobileStickyBar">
     <div class="mobile-sticky-inner">
@@ -317,9 +313,15 @@
         <span>Genera, cambia o copia senza muovere il pollice.</span>
       </div>
       <div class="mobile-sticky-buttons">
-        <button class="mobile-sticky-btn mobile-sticky-btn-primary" id="mobileBtnGenerate"><span class="icon">🎲</span><span>Scusa</span></button>
-        <button class="mobile-sticky-btn" id="mobileBtnCycle"><span class="icon">🔀</span><span>Categ.</span></button>
-        <button class="mobile-sticky-btn" id="mobileBtnCopy"><span class="icon">📋</span><span>Copia</span></button>
+        <button class="mobile-sticky-btn mobile-sticky-btn-primary" id="mobileBtnGenerate">
+          <span class="icon">🎲</span><span>Scusa</span>
+        </button>
+        <button class="mobile-sticky-btn" id="mobileBtnCycle">
+          <span class="icon">🔀</span><span>Categ.</span>
+        </button>
+        <button class="mobile-sticky-btn" id="mobileBtnCopy">
+          <span class="icon">📋</span><span>Copia</span>
+        </button>
       </div>
     </div>
   </div>
@@ -344,34 +346,35 @@
   <!-- ✅ Script principale -->
   <script src="script.js" defer></script>
 
-<!-- ==========================
-     SEZIONE SEO (AGGIUNTA)
-=========================== -->
+  <!-- ✅ SEZIONE SEO -->
+  <section class="seo-section">
+    <h2>Cos’è ScusaPronta (oltre a salvarti la giornata)</h2>
 
-<section class="seo-section">
-  <h2>Cos’è ScusaPronta (oltre a salvarti la giornata)</h2>
-  <p>
-    ScusaPronta è il generatore di scuse che non sapevi di volere, ma che userai più 
-    spesso di quanto vorresti ammettere. Funziona così: premi un pulsante, ottieni una 
-    scusa credibile, elegante o leggermente disperata. Fine. Nessun giudizio.
-  </p>
+    <p>
+      ScusaPronta è il generatore di scuse che non sapevi di volere, ma che userai più 
+      spesso di quanto vorresti ammettere. Funziona così: premi un pulsante, ottieni una 
+      scusa credibile, elegante o leggermente disperata. Fine. Nessun giudizio.
+    </p>
 
-  <p>
-    Le scuse vengono create combinando centinaia di frammenti scritti con cura, ironia 
-    e un pizzico di “non ce la posso fare oggi”. Ogni categoria ha un suo stile: 
-    professionale per il lavoro, diplomatico per la famiglia, affettuosamente stanco 
-    per l’amore, e totalmente onesto per gli amici (che tanto ti sgamano comunque).
-  </p>
+    <p>
+      Le scuse vengono create combinando centinaia di frammenti scritti con cura, ironia 
+      e un pizzico di “non ce la posso fare oggi”. Ogni categoria ha un suo stile: 
+      professionale per il lavoro, diplomatico per la famiglia, affettuosamente stanco 
+      per l’amore, e totalmente onesto per gli amici (che tanto ti sgamano comunque).
+    </p>
 
-  <h3>Perché esiste un generatore di scuse?</h3>
-  <p>
-    Perché la vita è complicata, il tempo è poco e i messaggi vanno mandati. A volte 
-    serve una frase rapida che suoni bene, sembri vera e non faccia partire un dibattito 
-    di tre ore. ScusaPronta fa esattamente questo: ti evita il panico da tastiera.
-  </p>
+    <h3>Perché esiste un generatore di scuse?</h3>
+    <p>
+      Perché la vita è complicata, il tempo è poco e i messaggi vanno mandati. A volte 
+      serve una frase rapida che suoni bene, sembri vera e non faccia partire un dibattito 
+      di tre ore. ScusaPronta fa esattamente questo: ti evita il panico da tastiera.
+    </p>
 
-  <h3>Domande frequenti (che nessuno ha fatto, ma ci stanno)</h3>
-  <p><strong>Le scuse sono sempre diverse?</strong> Sì. Se si ripetono, è colpa del karma.</p>
-  <p><strong>Funziona da mobile?</strong> Certo. È nato per essere usato mentre sei già in ritardo.</p>
-  <p><strong>Serve installarlo?</strong> No, ma puoi aggiungerlo alla Home e far finta che sia un’app seria.</p>
-</section>
+    <h3>Domande frequenti (che nessuno ha fatto, ma ci stanno)</h3>
+    <p><strong>Le scuse sono sempre diverse?</strong> Sì. Se si ripetono, è colpa del karma.</p>
+    <p><strong>Funziona da mobile?</strong> Certo. È nato per essere usato mentre sei già in ritardo.</p>
+    <p><strong>Serve installarlo?</strong> No, ma puoi aggiungerlo alla Home e far finta che sia un’app seria.</p>
+  </section>
+
+</body>
+</html>
