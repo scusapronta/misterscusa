@@ -8,11 +8,11 @@ html, body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
   background: #ffffff;
   color: #222;
-  line-height: 1.45;
+  line-height: 1.35; /* più compatto */
   -webkit-font-smoothing: antialiased;
+  font-weight: 500;
 }
 
-/* Dark mode */
 body.dark {
   background: #0d0d0d;
   color: #f0f0f0;
@@ -30,7 +30,7 @@ body.dark {
 .container {
   max-width: 760px; /* più stretto = più premium */
   width: 100%;
-  padding: 14px; /* più compatto */
+  padding: 12px; /* più compatto */
 }
 
 /* --------------------------------------------------
@@ -41,7 +41,7 @@ body.dark {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 18px;
+  margin-bottom: 16px; /* più compatto */
 }
 
 .logo-left {
@@ -51,8 +51,8 @@ body.dark {
 }
 
 .logo-badge {
-  width: 46px;
-  height: 46px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: #ffd447;
   display: flex;
@@ -63,8 +63,8 @@ body.dark {
 
 .logo-badge-inner {
   position: absolute;
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   background: #fff;
 }
@@ -76,7 +76,7 @@ body.dark .logo-badge-inner {
 .logo-badge-letter {
   position: relative;
   font-weight: 700;
-  font-size: 19px;
+  font-size: 18px;
   color: #222;
 }
 
@@ -85,13 +85,13 @@ body.dark .logo-badge-letter {
 }
 
 .site-title-main {
-  font-size: 22px;
+  font-size: 21px;
   font-weight: 700;
   letter-spacing: -0.4px;
 }
 
 .site-title-tag {
-  font-size: 13px;
+  font-size: 12px;
   color: #666;
   margin-left: 4px;
 }
@@ -116,9 +116,9 @@ body.dark .badge-beta {
 }
 
 .subtitle {
-  margin: 3px 0 0;
+  margin: 2px 0 0;
   color: #555;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 body.dark .subtitle {
@@ -146,12 +146,12 @@ body.dark .theme-toggle-btn {
 .hero {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
-  margin-bottom: 20px;
+  gap: 16px;
+  margin-bottom: 18px;
 }
 
 .hero-main-title {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 700;
   margin: 0;
 }
@@ -162,9 +162,9 @@ body.dark .theme-toggle-btn {
 
 .hero-claim,
 .hero-tagline {
-  margin: 8px 0;
+  margin: 6px 0;
   color: #444;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 body.dark .hero-claim,
@@ -176,14 +176,14 @@ body.dark .hero-tagline {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin: 10px 0;
+  margin: 8px 0;
 }
 
 .pill {
   background: #f3f3f3;
-  padding: 5px 9px;
+  padding: 4px 8px;
   border-radius: 6px;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 body.dark .pill {
@@ -194,7 +194,7 @@ body.dark .pill {
 .hero-cta-row {
   display: flex;
   gap: 8px;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 /* --------------------------------------------------
@@ -208,7 +208,7 @@ body.dark .pill {
   cursor: pointer;
   border: none;
   border-radius: 6px;
-  padding: 9px 14px;
+  padding: 8px 12px; /* più compatto */
   font-size: 14px;
   font-weight: 600;
 }
@@ -264,12 +264,11 @@ body.dark .btn-mini {
 
 .hero-side-card {
   flex: 1;
-  min-width: 250px;
+  min-width: 240px;
   background: #fafafa;
-  padding: 14px;
+  padding: 12px;
   border-radius: 10px;
 
-  /* Ombra morbida + bordo leggerissimo */
   border: 1px solid rgba(0,0,0,0.04);
   box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 }
@@ -281,21 +280,21 @@ body.dark .hero-side-card {
 
 .hero-side-title {
   font-weight: 700;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .hero-side-main {
-  margin-bottom: 8px;
-  font-size: 14px;
+  margin-bottom: 6px;
+  font-size: 13px;
 }
 
 .hero-side-bullets {
-  padding-left: 18px;
-  margin: 8px 0;
+  padding-left: 16px;
+  margin: 6px 0;
 }
 
 .hero-side-bullets li {
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .hero-side-footnote {
@@ -313,9 +312,9 @@ body.dark .hero-side-footnote {
 
 .card-main {
   background: #fafafa;
-  padding: 18px;
+  padding: 16px;
   border-radius: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 
   border: 1px solid rgba(0,0,0,0.04);
   box-shadow: 0 3px 10px rgba(0,0,0,0.08);
@@ -331,12 +330,12 @@ body.dark .card-main {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .card-main-title {
   font-weight: 700;
-  font-size: 17px;
+  font-size: 16px;
 }
 
 /* --------------------------------------------------
@@ -346,12 +345,12 @@ body.dark .card-main {
 .card-stats {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
 }
 
 .stat-pill {
   background: #fff;
-  padding: 5px 9px;
+  padding: 5px 8px;
   border-radius: 6px;
   font-size: 13px;
   display: flex;
@@ -382,16 +381,16 @@ body.dark .stat-pill {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin: 14px 0;
+  margin: 12px 0;
 }
 
 .category-tab {
   background: #eee;
   border: 1px solid rgba(0,0,0,0.05);
-  padding: 7px 11px;
+  padding: 6px 10px;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .category-tab.active {
@@ -417,9 +416,9 @@ body.dark .category-tab.active {
 
 .excuse-box {
   background: #fff;
-  padding: 14px;
+  padding: 12px;
   border-radius: 10px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 
   border: 1px solid rgba(0,0,0,0.04);
   box-shadow: 0 3px 10px rgba(0,0,0,0.08);
@@ -432,7 +431,7 @@ body.dark .excuse-box {
 }
 
 .excuse-category-label {
-  font-size: 13px;
+  font-size: 12px;
   color: #666;
 }
 
@@ -441,8 +440,8 @@ body.dark .excuse-category-label {
 }
 
 .excuse-text {
-  font-size: 17px;
-  margin: 10px 0;
+  font-size: 16px;
+  margin: 8px 0;
 }
 
 .excuse-tagline {
@@ -459,11 +458,11 @@ body.dark .excuse-tagline {
 -------------------------------------------------- */
 
 .share-row {
-  margin-top: 16px;
+  margin-top: 14px;
 }
 
 .share-label {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
 }
 
@@ -475,11 +474,11 @@ body.dark .excuse-tagline {
 }
 
 .share-btn {
-  padding: 7px 11px;
+  padding: 6px 10px;
   border-radius: 6px;
   border: 1px solid rgba(0,0,0,0.05);
   cursor: pointer;
-  font-size: 14px;
+  font-size: 13px;
   background: #eee;
 }
 
@@ -494,14 +493,14 @@ body.dark .share-btn {
 -------------------------------------------------- */
 
 .status-row {
-  margin-top: 16px;
+  margin-top: 14px;
 }
 
 .status-pill {
   background: #ffeaa7;
-  padding: 7px 11px;
+  padding: 6px 10px;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 13px;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -519,4 +518,131 @@ body.dark .status-pill {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background
+  background: #ff9800;
+}
+
+/* --------------------------------------------------
+   ADS
+-------------------------------------------------- */
+
+.ad-section {
+  background: #fff;
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 18px;
+
+  border: 1px solid rgba(0,0,0,0.04);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+body.dark .ad-section {
+  background: #222;
+  color: #eee;
+  border-color: rgba(255,255,255,0.05);
+}
+
+.ad-placeholder {
+  margin-top: 8px;
+  background: #eee;
+  padding: 16px;
+  text-align: center;
+  border-radius: 6px;
+}
+
+body.dark .ad-placeholder {
+  background: #333;
+}
+
+/* --------------------------------------------------
+   FOOTER
+-------------------------------------------------- */
+
+.footer-inner {
+  margin-top: 24px;
+  font-size: 13px;
+  color: #666;
+}
+
+body.dark .footer-inner {
+  color: #aaa;
+}
+
+.footer-mini {
+  font-size: 12px;
+}
+
+/* --------------------------------------------------
+   MOBILE STICKY BAR
+-------------------------------------------------- */
+
+.mobile-sticky-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  padding: 10px;
+  display: none;
+  z-index: 20;
+}
+
+body.dark .mobile-sticky-bar {
+  background: #111;
+  border-color: #333;
+}
+
+.mobile-sticky-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-sticky-label {
+  font-size: 12px;
+}
+
+.mobile-sticky-label span {
+  display: block;
+  font-size: 11px;
+  color: #666;
+}
+
+body.dark .mobile-sticky-label span {
+  color: #aaa;
+}
+
+.mobile-sticky-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.mobile-sticky-btn {
+  background: #eee;
+  border: 1px solid rgba(0,0,0,0.05);
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+body.dark .mobile-sticky-btn {
+  background: #333;
+  color: #eee;
+  border-color: rgba(255,255,255,0.05);
+}
+
+.mobile-sticky-btn-primary {
+  background: #ffd447;
+  font-weight: 700;
+}
+
+/* --------------------------------------------------
+   RESPONSIVE
+-------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .mobile-sticky-bar {
+    display: block;
+  }
+}
