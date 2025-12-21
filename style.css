@@ -1197,3 +1197,10 @@ body.dark .mobile-sticky-btn{
 .seo-section p strong {
   font-weight: 700;
 }
+
+/* Font leggermente più grande su desktop */
+@media screen and (min-width: 768px) {
+  body {
+    font-size: 1.05rem;
+  }
+}
