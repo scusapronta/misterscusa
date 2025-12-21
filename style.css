@@ -1163,31 +1163,31 @@ body.dark .mobile-sticky-btn{
   }
 }
 
-/* Sezione SEO — stile discreto e coerente */
+/* Sezione SEO — versione super discreta */
 .seo-section {
-  max-width: 680px;
-  margin: 40px auto 0;
-  padding: 0 20px;
-  font-size: 0.92rem;
-  line-height: 1.45;
-  opacity: 0.85;
+  max-width: 640px;
+  margin: 30px auto 0;
+  padding: 0 16px;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  opacity: 0.75;
 }
 
 .seo-section h2 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
+  font-size: 1rem;
+  margin-bottom: 6px;
   font-weight: 600;
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
 .seo-section h3 {
-  font-size: 1.05rem;
-  margin-top: 18px;
-  margin-bottom: 6px;
+  font-size: 0.92rem;
+  margin-top: 14px;
+  margin-bottom: 4px;
   font-weight: 600;
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
 .seo-section p {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
