@@ -1219,3 +1219,64 @@ body.dark .mobile-sticky-btn{
     line-height: 1.45 !important;
   }
 }
+
+/* --- Sezione SEO: versione finale, coerente, leggibile, elegante --- */
+
+/* Testo più scuro su tutti i dispositivi */
+.seo-section {
+  color: #222 !important;
+}
+
+/* Font leggermente più piccolo ma leggibile */
+.seo-section {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  max-width: 720px;
+  margin: 40px auto 0;
+  padding: 0 20px;
+  opacity: 0.95;
+}
+
+/* Titoli in grassetto */
+.seo-section h2,
+.seo-section h3 {
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 12px;
+}
+
+/* Dimensioni titoli */
+.seo-section h2 {
+  font-size: 1.15rem;
+  margin-top: 24px;
+}
+
+.seo-section h3 {
+  font-size: 1.05rem;
+  margin-top: 20px;
+}
+
+/* Paragrafi */
+.seo-section p {
+  margin-bottom: 14px;
+}
+
+/* Domande in grassetto */
+.seo-section p strong {
+  font-weight: 700;
+  color: #111;
+}
+
+/* Ultima domanda sempre visibile anche su mobile */
+.seo-section p:last-child {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Due righe di spazio alla fine della sezione SEO */
+.seo-section::after {
+  content: "";
+  display: block;
+  height: 2.5rem;
+}
