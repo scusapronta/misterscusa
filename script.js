@@ -1390,3 +1390,60 @@ themeToggleBtn.setAttribute("aria-pressed", currentTheme === "dark");
 
   window.addEventListener("load", maybeShowPwaBanner);
 })();
+
+// ==========================
+//  MODULO PANICO (universale: desktop + mobile)
+// ==========================
+(function () {
+  const btnPanic = document.getElementById("btnPanic");
+  if (!btnPanic) return;
+
+  let pressTimer = null;
+  let superPanic = false;
+
+  function triggerFlash() {
+    btnPanic.classList.add("btn-panic-boost");
+    setTimeout(() => btnPanic.classList.remove("btn-panic-boost"), 180);
+  }
+
+  function doSuperPanic() {
+    superPanic = true;
+    const excuse = typeof generateSuperPanicExcuse === "function"
+      ? generateSuperPanicExcuse()
+      : generateExcuseForCategory(currentCategory, "long");
+
+    excuseTextEl.textContent = excuse;
+    excuseTextEl.classList.add("visible");
+    incrementStats(currentCategory);
+    excuseTextEl.setAttribute("aria-live", "assertive");
+    triggerFlash();
+    showTemporaryStatus("Super Panico attivato!");
+    document.dispatchEvent(new Event("excuseGenerated"));
+  }
+
+  function doNormalPanic() {
+    const excuse = generateExcuseForCategory(currentCategory, "long");
+    excuseTextEl.textContent = "Modalità panico:\n\n" + excuse;
+    excuseTextEl.classList.add("visible");
+    incrementStats(currentCategory);
+    excuseTextEl.setAttribute("aria-live", "polite");
+    triggerFlash();
+    showTemporaryStatus("Panico attivato!");
+    document.dispatchEvent(new Event("excuseGenerated"));
+  }
+
+  function startPress() {
+    superPanic = false;
+    pressTimer = setTimeout(doSuperPanic, 450);
+  }
+
+  function endPress() {
+    clearTimeout(pressTimer);
+    if (!superPanic) doNormalPanic();
+  }
+
+  // Pointer events = funzionano ovunque
+  btnPanic.addEventListener("pointerdown", startPress);
+  btnPanic.addEventListener("pointerup", endPress);
+  btnPanic.addEventListener("pointerleave", () => clearTimeout(pressTimer));
+})();
