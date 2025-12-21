@@ -1394,3 +1394,8 @@ section.seo-section::after {
   line-height: 1.45 !important;
   opacity: 0.95 !important;
 }
+
+/* Alza la sezione SEO di circa 1–2 righe */
+section.seo-section {
+  margin-top: 20px !important; /* prima era 40px */
+}
