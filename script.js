@@ -24,7 +24,7 @@ const excuseFragments = {
     end:[ "Recuperiamo prestissimo, promesso.","Vi chiamo con calma più tardi, così vi racconto meglio.","Organizziamo già una nuova data e stavolta la proteggo davvero.","Tenetemi un posto al tavolo la prossima volta.","Non arrabbiatevi troppo, almeno non tutti insieme.","Vi mando un messaggio più lungo dopo per spiegare meglio.","Vi devo un pranzo/cena fatti come si deve.","La prossima volta porto io il dolce in segno di pace.","Mettiamo già a calendario una nuova visita, senza imprevisti.","Vi voglio bene anche se oggi sembro irreperibile.","Grazie se avete ancora pazienza con i miei tempi strani.","Cerco di organizzarmi meglio per non doverlo dire di nuovo.","La prossima volta vengo con calma e magari resto di più.","Vi aggiorno appena sopravvivo a questa giornata.","Non è mancanza di affetto, è solo mancanza di ore nel giorno." ]
   },
   altro:{ start:[ "Lo so che fa ridere anche a me, ma","Ti giuro che non è inventata, però","Sembra una scusa, ma è quasi vero che","Ti devo una spiegazione bizzarra:","Non è facile da dire con faccia seria, ma","Senza giudicare, ti chiedo di credermi quando dico che","Ti prego di non ridere subito perché","Non succede mai, ma oggi","Lo so, suona come una barzelletta, però","Se ti dico cosa è successo non mi crederai, ma","La situazione è così assurda che","Esiste una minuscola possibilità che tu mi creda quando dico che","Giuro che se fosse successo a qualcun altro riderei anche io,
-                 // Nomi categorie
+// Nomi categorie
 const categoryNames = {
   lavoro: "Lavoro",
   amici: "Amici",
