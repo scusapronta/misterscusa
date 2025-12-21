@@ -1335,3 +1335,62 @@ body.dark .mobile-sticky-btn{
   font-weight: 700;
   color: #111;
 }
+
+/* ============================
+   SEO — versione definitiva
+============================ */
+
+section.seo-section,
+section.seo-section * {
+  color: #222 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.35 !important;
+}
+
+/* Titoli */
+section.seo-section h2,
+section.seo-section h3 {
+  font-weight: 700 !important;
+  margin-bottom: 10px !important;
+  color: #111 !important;
+}
+
+/* Paragrafi */
+section.seo-section p {
+  margin-bottom: 12px !important;
+}
+
+/* Domande in grassetto */
+section.seo-section p strong {
+  font-weight: 700 !important;
+  color: #111 !important;
+}
+
+/* Ultima domanda SEMPRE visibile */
+section.seo-section p:last-child {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  overflow: visible !important;
+  margin-bottom: 20px !important;
+}
+
+/* Spazio extra alla fine */
+section.seo-section::after {
+  content: "";
+  display: block;
+  height: 40px;
+}
+
+/* ============================
+   DISCLAIMER — più leggibile
+============================ */
+
+.disclaimer,
+.disclaimer * {
+  color: #222 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.45 !important;
+  opacity: 0.95 !important;
+}
