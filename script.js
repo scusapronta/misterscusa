@@ -723,6 +723,7 @@ function updateFastModeUI() {
 if (fastModeToggle) {
   fastModeToggle.addEventListener("click", () => {
     fastMode = !fastMode;
+    fastModeToggle.setAttribute("aria-pressed", fastMode);
     stats.fastMode = fastMode;
     saveStats(stats);
     updateFastModeUI();
@@ -1046,6 +1047,7 @@ applyTheme(currentTheme);
 themeToggleBtn.addEventListener("click", () => {
   currentTheme = currentTheme === "dark" ? "light" : "dark";
   applyTheme(currentTheme);
+  themeToggleBtn.setAttribute("aria-pressed", currentTheme === "dark");
   try {
     localStorage.setItem(THEME_KEY, currentTheme);
   } catch (e) {
@@ -1238,6 +1240,9 @@ if (pwaHowBtn) {
       const cat = t.getAttribute("data-category");
       if (cat === currentCategory) t.classList.add("active");
       else t.classList.remove("active");
+      fastModeToggle.setAttribute("aria-pressed", fastMode);
+themeToggleBtn.setAttribute("aria-pressed", currentTheme === "dark");
+
     });
   }
 
