@@ -1195,7 +1195,7 @@ function dismissPwaBanner() {
   } catch (e) {
     console.error("Impossibile salvare dismiss PWA:", e);
   }
-  if (pwaBanner) pwaBanner.style.display = "none";
+  if (pwaBanner) pwaBanner.style.display = "none";}
 }
 
 function isMobileLike() {
