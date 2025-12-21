@@ -1254,3 +1254,139 @@ themeToggleBtn.setAttribute("aria-pressed", currentTheme === "dark");
   renderNewExcuse();
   maybeShowPwaBanner();
 })();
+
+// ==========================
+//  MODULO PANICO
+// ==========================
+(function () {
+  const btnPanic = document.getElementById("btnPanic");
+  if (!btnPanic) return;
+
+  let panicPressTimer = null;
+  let superPanicActive = false;
+
+  function triggerPanicFlash() {
+    btnPanic.classList.add("btn-panic-boost");
+    setTimeout(() => btnPanic.classList.remove("btn-panic-boost"), 180);
+  }
+
+  function handleSuperPanic() {
+    if (!excuseTextEl) return;
+    if (typeof generateSuperPanicExcuse !== "function") {
+      // Fallback: se non esiste, usa comunque una scusa lunga
+      const excuse = generateExcuseForCategory(currentCategory, "long");
+      excuseTextEl.textContent = "SUPER PANICO (fallback):\n\n" + excuse;
+    } else {
+      const excuse = generateSuperPanicExcuse();
+      excuseTextEl.textContent = excuse;
+    }
+    excuseTextEl.classList.add("visible");
+    if (typeof incrementStats === "function") {
+      incrementStats(currentCategory);
+    }
+    excuseTextEl.setAttribute("aria-live", "assertive");
+    triggerPanicFlash();
+    if (typeof showTemporaryStatus === "function") {
+      showTemporaryStatus("Super Panico: scusa ultra‑rapida generata.");
+    }
+  }
+
+  function handleNormalPanic() {
+    if (!excuseTextEl) return;
+    const excuse = generateExcuseForCategory(currentCategory, "long");
+    excuseTextEl.textContent = "Versione modalità panico attivata:\n\n" + excuse;
+    excuseTextEl.classList.add("visible");
+    if (typeof incrementStats === "function") {
+      incrementStats(currentCategory);
+    }
+    excuseTextEl.setAttribute("aria-live", "polite");
+    triggerPanicFlash();
+    if (typeof showTemporaryStatus === "function") {
+      showTemporaryStatus("Modalità panico: scusa extra carica attivata.");
+    }
+  }
+
+  // Desktop
+  btnPanic.addEventListener("mousedown", () => {
+    superPanicActive = false;
+    panicPressTimer = setTimeout(() => {
+      superPanicActive = true;
+      handleSuperPanic();
+    }, 450);
+  });
+
+  btnPanic.addEventListener("mouseup", () => {
+    clearTimeout(panicPressTimer);
+    if (!superPanicActive) {
+      handleNormalPanic();
+    }
+  });
+
+  // Mobile
+  btnPanic.addEventListener("touchstart", () => {
+    superPanicActive = false;
+    panicPressTimer = setTimeout(() => {
+      superPanicActive = true;
+      handleSuperPanic();
+    }, 450);
+  });
+
+  btnPanic.addEventListener("touchend", () => {
+    clearTimeout(panicPressTimer);
+    if (!superPanicActive) {
+      handleNormalPanic();
+    }
+  });
+})();
+
+// ==========================
+//  MODULO PWA
+// ==========================
+(function () {
+  const pwaBanner = document.getElementById("pwaBanner");
+  const pwaCloseBtn = document.getElementById("pwaCloseBtn");
+  const pwaHowBtn = document.getElementById("pwaHowBtn");
+
+  if (!pwaBanner) return;
+
+  function isMobileLike() {
+    return /iphone|ipad|ipod|android/i.test(navigator.userAgent);
+  }
+
+  function hasDismissedPwaBanner() {
+    return localStorage.getItem("pwaDismissed") === "1";
+  }
+
+  function maybeShowPwaBanner() {
+    if (!pwaBanner) return;
+    if (hasDismissedPwaBanner()) return;
+    if (!isMobileLike()) {
+      pwaBanner.style.display = "none";
+      return;
+    }
+    if (typeof stats === "object" && typeof stats.total === "number" && stats.total >= 5) {
+      pwaBanner.style.display = "flex";
+    } else {
+      pwaBanner.style.display = "none";
+    }
+  }
+
+  if (pwaCloseBtn) {
+    pwaCloseBtn.addEventListener("click", () => {
+      pwaBanner.style.display = "none";
+      localStorage.setItem("pwaDismissed", "1");
+    });
+  }
+
+  if (pwaHowBtn) {
+    pwaHowBtn.addEventListener("click", () => {
+      alert(
+        "Per aggiungere ScusaPronta alla schermata Home:\n\n" +
+        "• Su Android: Menu (⋮) → Aggiungi a schermata Home\n" +
+        "• Su iPhone: Condividi (⬆️) → Aggiungi a Home"
+      );
+    });
+  }
+
+  window.addEventListener("load", maybeShowPwaBanner);
+})();
