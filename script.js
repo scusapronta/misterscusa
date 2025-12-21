@@ -365,7 +365,6 @@ const excuseFragments = {
   }
 };
 
-// Nomi categorie
 const categoryNames = {
   lavoro: "Lavoro",
   amici: "Amici",
@@ -374,9 +373,7 @@ const categoryNames = {
   altro: "Altro"
 };
 
-// ==========================
-//  ELEMENTI DOM
-// ==========================
+// ELEMENTI DOM
 
 const categoryTabs = document.querySelectorAll(".category-tab");
 const excuseTextEl = document.getElementById("excuseText");
@@ -420,13 +417,9 @@ const pwaCloseBtn = document.getElementById("pwaCloseBtn");
 let currentCategory = "lavoro";
 let lastExcuseByCategory = {};
 let statusTimeout = null;
-
-// lengthMode: "auto" | "short" | "long"
 let lengthMode = "auto";
 
-// ==========================
-//  RANDOM & GENERAZIONE
-// ==========================
+// RANDOM & GENERAZIONE
 
 function randomIndex(max) {
   return Math.floor(Math.random() * max);
@@ -447,13 +440,10 @@ function generateExcuseForCategory(categoryKey, mode = "auto") {
     const e = cat.end[randomIndex(cat.end.length)];
 
     if (mode === "short") {
-      // Scusa breve: motivo + chiusura
       result = r.charAt(0).toUpperCase() + r.slice(1) + ", " + e;
     } else if (mode === "long") {
-      // Scusa lunga: frase completa
       result = s + " " + r + ", " + d + " " + e;
     } else {
-      // auto / standard
       result = s + " " + r + ", " + d + " " + e;
     }
 
@@ -468,7 +458,6 @@ function updateCategoryLabel() {
   excuseCategoryNameEl.textContent = categoryNames[currentCategory] || currentCategory;
 }
 
-// fastMode: se true, meno animazioni/scroll
 let fastMode = false;
 
 function renderNewExcuse(opts = { countAsStat: true }) {
@@ -489,9 +478,7 @@ function renderNewExcuse(opts = { countAsStat: true }) {
   }
 }
 
-// ==========================
-//  STATISTICHE + STATO (localStorage)
-// ==========================
+// STATISTICHE + STATO (localStorage)
 
 const STATS_KEY = "scusapronta_stats_v3";
 const THEME_KEY = "scusapronta_theme_v1";
@@ -587,9 +574,7 @@ function renderStats() {
   updateFastModeUI();
 }
 
-// ==========================
-//  GESTIONE FAST MODE
-// ==========================
+// FAST MODE
 
 function updateFastModeUI() {
   if (!fastModeDot || !fastModeLabel) return;
@@ -617,9 +602,7 @@ if (fastModeToggle) {
   });
 }
 
-// ==========================
-//  EASTER EGG + CTA DISCRETE
-// ==========================
+// EASTER EGG + CTA
 
 function messageForTopCategory(catKey, count) {
   switch (catKey) {
@@ -665,7 +648,6 @@ function maybeShowTipsAndEasterEgg() {
   const total = stats.total;
   let message = null;
 
-  // CTA "Salva nei preferiti" dopo 5 scuse
   if (total === 5 && !tipsState.savedFavoriteTip) {
     message =
       "Ti sta tornando utile? Salvalo nei preferiti (Ctrl+D o 'Aggiungi ai preferiti' nel browser).";
@@ -673,7 +655,6 @@ function maybeShowTipsAndEasterEgg() {
     saveTipsState(tipsState);
   }
 
-  // CTA "Modalità veloce" dopo 10 scuse
   if (!message && total === 10 && !tipsState.fastModeTip) {
     message =
       "Hai già generato 10 scuse. Se vuoi andare ancora più rapido, prova ad attivare la Modalità veloce.";
@@ -681,7 +662,6 @@ function maybeShowTipsAndEasterEgg() {
     saveTipsState(tipsState);
   }
 
-  // Easter egg per soglie alte
   if (!message) {
     if (total === 25) {
       message = "Hai già generato 25 scuse. Stai diventando un professionista della fuga elegante.";
@@ -728,9 +708,7 @@ function incrementStats(categoryKey) {
   maybeShowPwaBanner();
 }
 
-// ==========================
-//  STATUS TEMPORANEO GENERICO
-// ==========================
+// STATUS TEMPORANEO
 
 function showTemporaryStatus(message, isError = false) {
   if (!statusRandomInfo) return;
@@ -751,9 +729,7 @@ function showTemporaryStatus(message, isError = false) {
   }, 3300);
 }
 
-// ==========================
-//  CAMBIO CATEGORIA
-// ==========================
+// CAMBIO CATEGORIA
 
 categoryTabs.forEach(tab => {
   tab.addEventListener("click", () => {
@@ -765,7 +741,6 @@ categoryTabs.forEach(tab => {
   });
 });
 
-// Pulsanti lunghezza scusa
 if (btnShortExcuse) {
   btnShortExcuse.addEventListener("click", () => {
     lengthMode = "short";
@@ -782,10 +757,8 @@ if (btnLongExcuse) {
   });
 }
 
-// Pulsante genera principale (auto: usa lengthMode corrente)
 btnGenerate.addEventListener("click", () => renderNewExcuse());
 
-// Pulsante genera dalla hero
 btnGenerateHero.addEventListener("click", () => {
   const mainCard = document.querySelector(".card-main");
   if (mainCard && !fastMode) {
@@ -794,7 +767,6 @@ btnGenerateHero.addEventListener("click", () => {
   renderNewExcuse();
 });
 
-// Pulsante cambio categoria dalla hero
 const cycleOrder = ["lavoro", "amici", "amore", "famiglia", "altro"];
 btnHeroCycle.addEventListener("click", () => {
   let idx = cycleOrder.indexOf(currentCategory);
@@ -817,9 +789,7 @@ btnHeroCycle.addEventListener("click", () => {
   }
 });
 
-// ==========================
-//  COPIA
-// ==========================
+// COPIA
 
 function getCurrentExcuseText() {
   return excuseTextEl.textContent.trim();
@@ -857,7 +827,6 @@ btnCopyWithCategory.addEventListener("click", () => {
   copyToClipboard(formatted);
 });
 
-// Modalità panico
 btnPanic.addEventListener("click", () => {
   const excuse = generateExcuseForCategory(currentCategory, "long");
   const panicWrap = "Versione modalità panico attivata:\n\n" + excuse;
@@ -874,9 +843,7 @@ btnPanic.addEventListener("click", () => {
   showTemporaryStatus("Modalità panico: scusa extra carica attivata.");
 });
 
-// ==========================
-//  CONDIVISIONE
-// ==========================
+// CONDIVISIONE
 
 function buildShareText() {
   const catLabel = categoryNames[currentCategory] || currentCategory;
@@ -928,9 +895,7 @@ document.querySelectorAll(".share-btn").forEach(btn => {
           url: pageUrl
         });
         return;
-      } catch (e) {
-        // fallback sotto
-      }
+      } catch (e) {}
     }
 
     const shareUrl = buildShareUrlFor(platform);
@@ -938,9 +903,7 @@ document.querySelectorAll(".share-btn").forEach(btn => {
   });
 });
 
-// ==========================
-//  DARK MODE
-// ==========================
+// DARK MODE
 
 function applyTheme(theme) {
   if (theme === "dark") {
@@ -982,9 +945,7 @@ themeToggleBtn.addEventListener("click", () => {
   }
 });
 
-// ==========================
-//  STICKY BAR MOBILE HANDLERS
-// ==========================
+// STICKY BAR MOBILE
 
 if (mobileBtnGenerate) {
   mobileBtnGenerate.addEventListener("click", () => {
@@ -1022,9 +983,7 @@ if (mobileBtnCopy) {
   });
 }
 
-// ==========================
-//  SCUSA DEL GIORNO
-// ==========================
+// SCUSA DEL GIORNO
 
 function loadDaily() {
   try {
@@ -1107,9 +1066,7 @@ if (dailyNewBtn) {
   });
 }
 
-// ==========================
-//  BANNER "AGGIUNGI ALLA HOME"
-// ==========================
+// BANNER PWA
 
 function hasDismissedPwaBanner() {
   try {
@@ -1160,9 +1117,7 @@ if (pwaHowBtn) {
   });
 }
 
-// ==========================
-//  INIZIALIZZAZIONE
-// ==========================
+// INIZIALIZZAZIONE
 
 (function init() {
   Math.random();
@@ -1179,6 +1134,6 @@ if (pwaHowBtn) {
   updateCategoryLabel();
   renderStats();
   ensureDailyExcuse();
-  renderNewExcuse(); // genera subito una scusa random
+  renderNewExcuse();
   maybeShowPwaBanner();
 })();
