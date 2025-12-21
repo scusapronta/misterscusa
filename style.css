@@ -1280,3 +1280,58 @@ body.dark .mobile-sticky-btn{
   display: block;
   height: 2.5rem;
 }
+
+/* ============================
+   1. Disclaimer più leggibile
+============================ */
+
+.disclaimer,
+.disclaimer p,
+.disclaimer span {
+  color: #222 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.45 !important;
+  opacity: 0.95 !important;
+}
+
+/* ============================
+   2. Ultima domanda SEO visibile su mobile
+============================ */
+
+.seo-section p:last-child {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* Fix aggiuntivo per alcuni browser mobile */
+@media screen and (max-width: 480px) {
+  .seo-section p:last-child {
+    margin-bottom: 16px !important;
+    padding-bottom: 4px !important;
+  }
+}
+
+/* ============================
+   3. Interlinea SEO più piccola
+============================ */
+
+.seo-section {
+  line-height: 1.35 !important;  /* più compatta */
+  font-size: 0.95rem !important; /* leggermente più piccola */
+  color: #222 !important;        /* più leggibile */
+  opacity: 0.95;
+}
+
+.seo-section p {
+  margin-bottom: 10px !important;
+}
+
+.seo-section h2,
+.seo-section h3 {
+  margin-bottom: 8px !important;
+  font-weight: 700;
+  color: #111;
+}
