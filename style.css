@@ -1163,31 +1163,35 @@ body.dark .mobile-sticky-btn{
   }
 }
 
-/* Sezione SEO — stile coerente con il resto del sito */
+/* Sezione SEO — stile coerente con layout e tono */
 .seo-section {
-  max-width: 680px;
+  max-width: 720px;
   margin: 40px auto 0;
   padding: 0 20px;
   font-size: 1rem;
-  line-height: 1.45;
+  line-height: 1.5;
   opacity: 0.9;
 }
 
-.seo-section h2 {
-  font-size: 1.15rem;
+.seo-section h2,
+.seo-section h3 {
+  font-weight: 700;
   margin-bottom: 12px;
-  font-weight: 600;
+  opacity: 0.95;
+}
+
+.seo-section h2 {
+  font-size: 1.2rem;
+  margin-top: 24px;
 }
 
 .seo-section h3 {
   font-size: 1.05rem;
   margin-top: 20px;
-  margin-bottom: 8px;
-  font-weight: 600;
 }
 
 .seo-section p {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .seo-section p strong {
