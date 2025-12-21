@@ -3,6 +3,5 @@ Allow: /
 
 Sitemap: https://scusapronta.github.io/misterscusa/sitemap.xml
 
-# Link ai file spostati
 Security: https://scusapronta.github.io/misterscusa/security.txt
 Humans: https://scusapronta.github.io/misterscusa/humans.txt
