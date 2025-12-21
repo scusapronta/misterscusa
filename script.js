@@ -582,31 +582,86 @@ function renderNewExcuse(opts = { countAsStat: true }) {
 }
 
 // ==========================
-//  SUPER PANICO — EVENTI
+//  SUPER PANICO — EVENTI (DESKTOP + MOBILE)
 // ==========================
 
+// Effetto visivo leggero
+function triggerPanicFlash() {
+  btnPanic.classList.add("btn-panic-boost");
+  setTimeout(() => btnPanic.classList.remove("btn-panic-boost"), 180);
+}
+
+// DESKTOP: pressione lunga = super panico
 btnPanic.addEventListener("mousedown", () => {
   superPanicActive = false;
   panicPressTimer = setTimeout(() => {
     superPanicActive = true;
+
     const excuse = generateSuperPanicExcuse();
     excuseTextEl.textContent = excuse;
     excuseTextEl.classList.add("visible");
     incrementStats(currentCategory);
+
+    triggerPanicFlash();
+    excuseTextEl.setAttribute("aria-live", "assertive");
+
     showTemporaryStatus("Super Panico: scusa ultra‑rapida generata.");
   }, 450);
 });
 
 btnPanic.addEventListener("mouseup", () => {
   clearTimeout(panicPressTimer);
+
   if (!superPanicActive) {
     const excuse = generateExcuseForCategory(currentCategory, "long");
     excuseTextEl.textContent = "Versione modalità panico attivata:\n\n" + excuse;
     excuseTextEl.classList.add("visible");
     incrementStats(currentCategory);
+
+    triggerPanicFlash();
+    excuseTextEl.setAttribute("aria-live", "polite");
+
     showTemporaryStatus("Modalità panico: scusa extra carica attivata.");
   }
 });
+
+// ==========================
+//  SUPER PANICO — MOBILE SUPPORT
+// ==========================
+
+btnPanic.addEventListener("touchstart", () => {
+  superPanicActive = false;
+  panicPressTimer = setTimeout(() => {
+    superPanicActive = true;
+
+    const excuse = generateSuperPanicExcuse();
+    excuseTextEl.textContent = excuse;
+    excuseTextEl.classList.add("visible");
+    incrementStats(currentCategory);
+
+    triggerPanicFlash();
+    excuseTextEl.setAttribute("aria-live", "assertive");
+
+    showTemporaryStatus("Super Panico: scusa ultra‑rapida generata.");
+  }, 450);
+});
+
+btnPanic.addEventListener("touchend", () => {
+  clearTimeout(panicPressTimer);
+
+  if (!superPanicActive) {
+    const excuse = generateExcuseForCategory(currentCategory, "long");
+    excuseTextEl.textContent = "Versione modalità panico attivata:\n\n" + excuse;
+    excuseTextEl.classList.add("visible");
+    incrementStats(currentCategory);
+
+    triggerPanicFlash();
+    excuseTextEl.setAttribute("aria-live", "polite");
+
+    showTemporaryStatus("Modalità panico: scusa extra carica attivata.");
+  }
+});
+
 // ==========================
 //  STATISTICHE + STATO (localStorage)
 // ==========================
