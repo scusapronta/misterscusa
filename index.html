@@ -2,98 +2,379 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ScusaPronta</title>
-  <meta name="description" content="Generatore di scuse istantanee, ironiche e personalizzabili. Perfetto per lavoro, amici, amore e altro." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ✅ SEO NUOVA -->
+  <title>ScusaPronta – Generatore di Scuse Credibili in un Clic</title>
+
+  <meta name="description" content="ScusaPronta è il generatore di scuse più veloce d’Italia. Scegli la categoria, premi un pulsante e ottieni scuse credibili, divertenti e pronte da copiare. Perfetto per lavoro, amici, amore e situazioni imbarazzanti.">
+
+  <link rel="canonical" href="https://scusapronta.github.io/misterscusa/">
+
+  <meta name="robots" content="index, follow">
+
+  <!-- ✅ OpenGraph -->
+  <meta property="og:title" content="ScusaPronta – Generatore di Scuse Credibili in un Clic">
+  <meta property="og:description" content="Il generatore di scuse più veloce d’Italia. Scuse credibili, divertenti e pronte da copiare.">
+  <meta property="og:url" content="https://scusapronta.github.io/misterscusa/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://scusapronta.github.io/misterscusa/og-image.png">
+
+  <!-- ✅ Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ScusaPronta – Generatore di Scuse Credibili in un Clic">
+  <meta name="twitter:description" content="Scuse credibili, divertenti e pronte da copiare.">
+  <meta name="twitter:image" content="https://scusapronta.github.io/misterscusa/og-image.png">
+
+  <!-- ✅ Performance -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+  <!-- ✅ Favicon -->
+  <link rel="icon" href="favicon.png" type="image/png">
+
+  <!-- ✅ Mobile color -->
+  <meta name="theme-color" content="#ffd447" />
+
+  <!-- ✅ Schema WebApp -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ScusaPronta",
+    "url": "https://scusapronta.github.io/misterscusa/",
+    "applicationCategory": "Utility",
+    "description": "Generatore di scuse credibili e divertenti in un clic.",
+    "operatingSystem": "All",
+    "creator": {
+      "@type": "Person",
+      "name": "Antonio"
+    }
+  }
+  </script>
+
+  <!-- ✅ CSS -->
+  <link rel="preload" href="style.css" as="style" />
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <header>
-    <h1>ScusaPronta</h1>
-    <p>Il generatore definitivo di scuse creative</p>
-  </header>
+  <div class="page">
+    <div class="container">
 
-  <main>
-    <section class="category-tabs">
-      <button class="category-tab active" data-category="lavoro">Lavoro</button>
-      <button class="category-tab" data-category="amici">Amici</button>
-      <button class="category-tab" data-category="amore">Amore</button>
-      <button class="category-tab" data-category="famiglia">Famiglia</button>
-      <button class="category-tab" data-category="altro">Altro</button>
-    </section>
+      <!-- ✅ HEADER -->
+      <header>
+        <div class="logo-row">
+          <div class="logo-left">
+            <div class="logo-badge" aria-hidden="true">
+              <div class="logo-badge-inner"></div>
+              <div class="logo-badge-letter">SP</div>
+            </div>
+            <div>
+              <div class="site-title">
+                <span class="site-title-main">SCUSA·PRONTA</span>
+                <span class="site-title-tag">scuse on‑demand</span>
+                <span class="badge-beta">
+                  <span>⚡</span> generatore di scuse
+                </span>
+              </div>
+              <p class="subtitle">La vita è un casino. Le scuse no.</p>
+            </div>
+          </div>
 
-    <section class="excuse-panel">
-      <h2 id="excuseCategoryName">Lavoro</h2>
-      <div class="excuse-text" id="excuseText" aria-live="polite"></div>
+          <!-- ✅ ARIA: DARK MODE -->
+          <button class="theme-toggle-btn" id="themeToggleBtn" type="button" aria-label="Cambia tema chiaro/scuro" aria-pressed="false">
+            <span id="themeToggleEmoji">🌙</span>
+            <span id="themeToggleText">Dark mode</span>
+          </button>
+        </div>
+      </header>
 
-      <div class="excuse-buttons">
-        <button id="btnGenerate">🎲 Scusa casuale</button>
-        <button id="btnShortExcuse">⚡ Scusa breve</button>
-        <button id="btnLongExcuse">📜 Scusa lunga</button>
-        <button id="btnCopy">📋 Copia scusa</button>
-        <button id="btnCopyWithCategory">🖋️ Copia con categoria + firma</button>
-        <button class="btn-ghost btn-ghost-danger" id="btnPanic"
-          title="Clic = panico. Tieni premuto = super panico."
-          aria-label="Pulsante panico: clic per panico, tieni premuto per super panico">
-          🚨 Panico
+      <!-- ✅ HERO -->
+      <section class="hero">
+        <div>
+          <h1 class="hero-main-title">
+            <span class="hero-highlight">Scuse epiche</span> in un clic.
+          </h1>
+          <p class="hero-claim">
+            Lavoro, amici, amore, famiglia o situazioni imbarazzanti: scegli la categoria e ScusaPronta inventa la scusa al posto tuo.
+          </p>
+          <p class="hero-tagline">
+            Il generatore di scuse che non ti giudica. Ti salva e basta.
+          </p>
+
+          <div class="hero-pills">
+            <span class="pill"><strong>5</strong> categorie socialmente discutibili</span>
+            <span class="pill"><strong>Breve</strong> o <strong>lunga</strong>, tu scegli</span>
+            <span class="pill"><strong>Condividi</strong> su WhatsApp, Telegram & co.</span>
+          </div>
+
+          <div class="hero-cta-row">
+            <button class="btn-primary" id="btnGenerateHero" type="button">
+              <span>🎲 Genera una scusa ora</span>
+            </button>
+            <button class="btn-secondary" id="btnHeroCycle" type="button">
+              <span>🔀 Cambia categoria</span>
+            </button>
+          </div>
+        </div>
+
+        <aside class="hero-side-card" aria-hidden="true">
+          <div class="hero-side-inner">
+            <div class="hero-side-title">Uso tipico</div>
+            <div class="hero-side-main">
+              È lunedì, sei in ritardo e il cervello è ancora in modalità aereo.
+            </div>
+            <ul class="hero-side-bullets">
+              <li><span>✅</span><span>Selezioni la categoria giusta, premi il pulsante e copi.</span></li>
+              <li><span>✅</span><span>Il giorno dopo fai finta che sia tutto spontaneo.</span></li>
+              <li><span>✅</span><span>La coscienza? Torna più tardi, ora c’è da sopravvivere.</span></li>
+            </ul>
+            <div class="hero-side-footnote">
+              Pro tip: usala con autoironia, non per fare danni veri.
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- ✅ SCUSA DEL GIORNO -->
+      <section class="daily-excuse-card" id="dailyExcuseCard" aria-label="Scusa del giorno">
+        <div class="daily-excuse-header">
+          <div class="daily-excuse-title">
+            <span>🎁</span>
+            <span>Scusa del giorno</span>
+          </div>
+          <div class="daily-excuse-meta" id="dailyExcuseMeta">
+            Aggiornata ogni 24 ore (più o meno).
+          </div>
+        </div>
+        <div class="daily-excuse-text" id="dailyExcuseText"></div>
+        <div class="daily-excuse-actions">
+          <button class="btn-mini" id="dailyUseBtn" type="button">
+            <span>👉</span><span>Usa questa come base</span>
+          </button>
+          <button class="btn-mini" id="dailyNewBtn" type="button">
+            <span>🎲</span><span>Nuova scusa del giorno</span>
+          </button>
+        </div>
+      </section>
+        <section class="card-main" aria-label="Generatore di scuse">
+          <div class="card-main-header">
+            <div class="card-main-title">
+              <span>🎛️ Pannello ScusaPronta</span>
+              <span class="chip-live">
+                <span class="chip-live-dot"></span>
+                live, generatore attivo
+              </span>
+            </div>
+
+            <div class="card-stats">
+              <div class="stat-pill" id="statTotal">
+                <span>📊</span>
+                <span>Scuse generate: 0</span>
+              </div>
+              <div class="stat-pill" id="statMostUsed">
+                <span>🏆</span>
+                <span>Categoria top: –</span>
+              </div>
+              <div class="stat-pill">
+                <span>🎖️</span>
+                <span class="badge-label" id="badgeLabel">Livello scuse: Novizio educato</span>
+              </div>
+
+              <!-- ✅ ARIA: FAST MODE -->
+              <button class="stat-pill stat-pill-toggle" id="fastModeToggle" type="button" aria-pressed="false">
+                <span class="fast-mode-indicator" id="fastModeDot"></span>
+                <span id="fastModeLabel">Modalità veloce: OFF</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- ✅ Categorie -->
+          <section aria-label="Categorie disponibili">
+            <h2 class="sr-only">Categorie disponibili</h2>
+            <div class="category-tabs" id="categoryTabs">
+              <button class="category-tab active" data-category="lavoro"><span class="emoji">💼</span><span>Lavoro</span></button>
+              <button class="category-tab" data-category="amici"><span class="emoji">🍻</span><span>Amici</span></button>
+              <button class="category-tab" data-category="amore"><span class="emoji">❤️</span><span>Amore</span></button>
+              <button class="category-tab" data-category="famiglia"><span class="emoji">🏡</span><span>Famiglia</span></button>
+              <button class="category-tab" data-category="altro"><span class="emoji">🎭</span><span>Altro</span></button>
+            </div>
+
+            <p class="category-help">
+              Scegli a chi devi dare buca, poi clicca. Il resto lo fa la matematica delle scuse.
+            </p>
+          </section>
+
+          <!-- ✅ Scusa generata -->
+          <section class="excuse-box-wrapper" aria-label="Scusa generata">
+            <h3 class="sr-only">Scusa generata</h3>
+
+            <div class="excuse-box">
+              <div class="excuse-category-label" id="excuseCategoryLabel">
+                <span>Categoria:</span><span id="excuseCategoryName">Lavoro</span>
+              </div>
+
+              <!-- ✅ ARIA-LIVE SOLO QUI -->
+              <div class="excuse-text" id="excuseText" aria-live="polite"></div>
+
+              <div class="excuse-tagline">
+                <span>💡</span>
+                <span>Funziona meglio se sorridi come se fosse tutto normalissimo.</span>
+              </div>
+            </div>
+
+            <div class="excuse-actions">
+              <button class="btn-primary" id="btnGenerate"><span>🎲 Scusa casuale</span></button>
+              <button class="btn-ghost" id="btnShortExcuse"><span>⚡</span><span>Scusa breve</span></button>
+              <button class="btn-ghost" id="btnLongExcuse"><span>📜</span><span>Scusa lunga</span></button>
+              <button class="btn-ghost" id="btnCopy"><span>📋</span><span>Copia scusa</span></button>
+              <button class="btn-ghost" id="btnCopyWithCategory"><span>📝</span><span>Copia con categoria + firma</span></button>
+              <button class="btn-ghost btn-ghost-danger" id="btnPanic"><span>🚨</span><span>Modalità panico</span></button>
+            </div>
+
+            <!-- ✅ Condivisione -->
+            <section class="share-row">
+              <h2 class="sr-only">Condividi la tua scusa</h2>
+              <div class="share-label">
+                <span>🔗</span>
+                <span>Condividi la tua scusa al volo:</span>
+              </div>
+
+              <div class="share-buttons">
+                <button class="share-btn whatsapp" data-share="whatsapp">WhatsApp</button>
+                <button class="share-btn telegram" data-share="telegram">Telegram</button>
+                <button class="share-btn facebook" data-share="facebook">Facebook</button>
+                <button class="share-btn twitter" data-share="twitter">X/Twitter</button>
+                <button class="share-btn email" data-share="email">Email</button>
+                <button class="share-btn link" data-share="link">Copia link</button>
+              </div>
+            </section>
+
+            <div class="status-row">
+              <div class="status-pill" id="statusRandomInfo">
+                <span class="status-dot"></span>
+                <span>Random attivo: nessuna scusa si ripete in modo prevedibile.</span>
+              </div>
+              <div class="status-random">
+                <span class="dot"></span>
+                <span>Base di frasi combinabili per centinaia di scuse uniche.</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- ✅ Banner annunci -->
+          <section class="ad-section">
+            <h2 class="sr-only">Spazio per annunci</h2>
+            <div><strong>Spazio annunci pronto.</strong><br>Qui puoi integrare il codice dei tuoi banner.</div>
+            <div class="ad-placeholder">Slot banner 180×60 (esempio)</div>
+          </section>
+
+          <!-- ✅ Banner PWA -->
+          <section class="pwa-banner" id="pwaBanner">
+            <div class="pwa-banner-left">
+              <div class="pwa-banner-title"><span>📱</span><span>Aggiungi ScusaPronta alla Home</span></div>
+              <div>Così lo apri come un’app e la scusa è sempre a un tap di distanza. Funziona anche offline.</div>
+            </div>
+            <div class="pwa-banner-actions">
+              <button class="pwa-banner-btn" id="pwaHowBtn"><span>❓</span><span>Come si fa</span></button>
+              <button class="pwa-banner-close" id="pwaCloseBtn">✕</button>
+            </div>
+          </section>
+
+        </section>
+      </main>
+
+      <!-- ✅ FOOTER -->
+      <footer>
+        <div class="footer-inner">
+          <div class="footer-row">
+            <p class="footer-disclaimer">
+              <strong>Disclaimer serio in un sito poco serio:</strong> le scuse generate sono pensate per ridere e sdrammatizzare.
+              Non usarle per ferire, truffare, manipolare o evitare responsabilità importanti. Il karma legge tutto, anche le note piccole.
+            </p>
+            <div class="footer-links">
+              <span class="footer-pill">Made with 🧠+😅 in Italia</span>
+            </div>
+          </div>
+          <div class="footer-mini">
+            <span>ScusaPronta non si assume alcuna responsabilità per capi arrabbiati, partner sospettosi o amici vendicativi. Tu generi, tu gestisci.</span>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+  <!-- ✅ Sticky bar mobile -->
+  <div class="mobile-sticky-bar" id="mobileStickyBar">
+    <div class="mobile-sticky-inner">
+      <div class="mobile-sticky-label">
+        <strong>Scusa veloce</strong>
+        <span>Genera, cambia o copia senza muovere il pollice.</span>
+      </div>
+      <div class="mobile-sticky-buttons">
+        <button class="mobile-sticky-btn mobile-sticky-btn-primary" id="mobileBtnGenerate">
+          <span class="icon">🎲</span><span>Scusa</span>
+        </button>
+        <button class="mobile-sticky-btn" id="mobileBtnCycle">
+          <span class="icon">🔀</span><span>Categ.</span>
+        </button>
+        <button class="mobile-sticky-btn" id="mobileBtnCopy">
+          <span class="icon">📋</span><span>Copia</span>
         </button>
       </div>
+    </div>
+  </div>
 
-      <div class="share-buttons">
-        <button class="share-btn" data-share="whatsapp">WhatsApp</button>
-        <button class="share-btn" data-share="telegram">Telegram</button>
-        <button class="share-btn" data-share="facebook">Facebook</button>
-        <button class="share-btn" data-share="twitter">X/Twitter</button>
-        <button class="share-btn" data-share="email">Email</button>
-        <button class="share-btn" data-share="link">🔗 Copia link</button>
-      </div>
+  <!-- ✅ Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
-      <div class="status-bar" id="statusRandomInfo">
-        <span>* Random attivo: nessuna scusa si ripete in modo prevedibile.</span>
-      </div>
-    </section>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyCyYOT6CLusuaGDUs4ML-U1isyXWditrw",
+      authDomain: "scuopronta.firebaseapp.com",
+      projectId: "scuopronta",
+      storageBucket: "scuopronta.appspot.com",
+      messagingSenderId: "617863746356",
+      appId: "1:617863746356:web:211b7a331c2c226e81e0bf"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
 
-    <section class="daily-excuse">
-      <h3>Scusa del giorno</h3>
-      <div class="daily-excuse-text" id="dailyExcuseText"></div>
-      <div class="daily-meta" id="dailyExcuseMeta"></div>
-      <div class="daily-buttons">
-        <button id="dailyUseBtn">Usa questa come base</button>
-        <button id="dailyNewBtn">Nuova scusa del giorno</button>
-      </div>
-    </section>
+  <!-- ✅ Script principale -->
+  <script src="script.js" defer></script>
 
-    <section class="stats-panel">
-      <div id="statTotal"><span>📊</span> <span>Scuse generate: 0</span></div>
-      <div id="statMostUsed"><span>🏆</span> <span>Categoria top: –</span></div>
-      <div id="statBadge"><span>🎖️</span> <span id="badgeLabel">Livello scuse: Novizio educato</span></div>
-    </section>
+  <!-- ✅ SEZIONE SEO -->
+  <section class="seo-section">
+    <h2>Cos’è ScusaPronta (oltre a salvarti la giornata)</h2>
 
-    <section class="theme-toggle">
-      <button id="themeToggleBtn">
-        <span id="themeToggleEmoji">🌙</span>
-        <span id="themeToggleText">Dark mode</span>
-      </button>
-    </section>
+    <p>
+      ScusaPronta è il generatore di scuse che non sapevi di volere, ma che userai più 
+      spesso di quanto vorresti ammettere. Funziona così: premi un pulsante, ottieni una 
+      scusa credibile, elegante o leggermente disperata. Fine. Nessun giudizio.
+    </p>
 
-    <section class="fast-mode-toggle">
-      <button id="fastModeToggle">
-        <span id="fastModeDot"></span>
-        <span id="fastModeLabel">Modalità veloce: OFF</span>
-      </button>
-    </section>
+    <p>
+      Le scuse vengono create combinando centinaia di frammenti scritti con cura, ironia 
+      e un pizzico di “non ce la posso fare oggi”. Ogni categoria ha un suo stile: 
+      professionale per il lavoro, diplomatico per la famiglia, affettuosamente stanco 
+      per l’amore, e totalmente onesto per gli amici (che tanto ti sgamano comunque).
+    </p>
 
-    <section class="pwa-banner" id="pwaBanner">
-      <p>📱 Vuoi aggiungere ScusaPronta alla schermata Home?</p>
-      <button id="pwaHowBtn">Come si fa</button>
-      <button id="pwaCloseBtn">✕</button>
-    </section>
+    <h3>Perché esiste un generatore di scuse?</h3>
+    <p>
+      Perché la vita è complicata, il tempo è poco e i messaggi vanno mandati. A volte 
+      serve una frase rapida che suoni bene, sembri vera e non faccia partire un dibattito 
+      di tre ore. ScusaPronta fa esattamente questo: ti evita il panico da tastiera.
+    </p>
 
-    <footer>
-      <p>Spazio annunci pronto. Qui puoi integrare il codice dei tuoi banner.</p>
-    </footer>
-  </main>
+    <h3>Domande frequenti (che nessuno ha fatto, ma ci stanno)</h3>
+    <p><strong>Le scuse sono sempre diverse?</strong> Sì. Se si ripetono, è colpa del karma.</p>
+    <p><strong>Funziona da mobile?</strong> Certo. È nato per essere usato mentre sei già in ritardo.</p>
+    <p><strong>Serve installarlo?</strong> No, ma puoi aggiungerlo alla Home e far finta che sia un’app seria.</p>
+  </section>
 
-  <script src="script.js"></script>
 </body>
 </html>
