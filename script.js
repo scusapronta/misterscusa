@@ -1447,3 +1447,57 @@ themeToggleBtn.setAttribute("aria-pressed", currentTheme === "dark");
   btnPanic.addEventListener("pointerup", endPress);
   btnPanic.addEventListener("pointerleave", () => clearTimeout(pressTimer));
 })();
+
+// ==========================
+//  MODULO PWA (con trigger automatico)
+// ==========================
+(function () {
+  const banner = document.getElementById("pwaBanner");
+  const closeBtn = document.getElementById("pwaCloseBtn");
+  const howBtn = document.getElementById("pwaHowBtn");
+
+  if (!banner) return;
+
+  function isMobileLike() {
+    return /iphone|ipad|ipod|android/i.test(navigator.userAgent);
+  }
+
+  function dismissed() {
+    return localStorage.getItem("pwaDismissed") === "1";
+  }
+
+  function maybeShow() {
+    if (!isMobileLike()) {
+      banner.style.display = "none";
+      return;
+    }
+    if (dismissed()) {
+      banner.style.display = "none";
+      return;
+    }
+    if (stats.total >= 5) {
+      banner.style.display = "flex";
+    }
+  }
+
+  // Chiudi banner
+  closeBtn?.addEventListener("click", () => {
+    banner.style.display = "none";
+    localStorage.setItem("pwaDismissed", "1");
+  });
+
+  // Istruzioni
+  howBtn?.addEventListener("click", () => {
+    alert(
+      "Per aggiungere ScusaPronta alla schermata Home:\n\n" +
+      "• Android: Menu (⋮) → Aggiungi a schermata Home\n" +
+      "• iPhone: Condividi (⬆️) → Aggiungi a Home"
+    );
+  });
+
+  // Trigger automatico dopo ogni scusa
+  document.addEventListener("excuseGenerated", maybeShow);
+
+  // Primo controllo
+  window.addEventListener("load", maybeShow);
+})();
