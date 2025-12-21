@@ -8,14 +8,15 @@ html, body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
   background: #ffffff;
   color: #222;
-  line-height: 1.35; /* più compatto */
+  line-height: 1.32; /* più compatto */
   -webkit-font-smoothing: antialiased;
   font-weight: 500;
+  transition: background 0.25s ease, color 0.25s ease;
 }
 
 body.dark {
-  background: #0d0d0d;
-  color: #f0f0f0;
+  background: #0b0b0b;
+  color: #f2f2f2;
 }
 
 /* --------------------------------------------------
@@ -28,9 +29,33 @@ body.dark {
 }
 
 .container {
-  max-width: 760px; /* più stretto = più premium */
+  max-width: 740px; /* più stretto = più premium */
   width: 100%;
-  padding: 12px; /* più compatto */
+  padding: 12px;
+}
+
+/* --------------------------------------------------
+   ANIMAZIONI GLOBALI
+-------------------------------------------------- */
+
+* {
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+button:hover,
+.category-tab:hover,
+.share-btn:hover,
+.mobile-sticky-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+button:active,
+.category-tab:active,
+.share-btn:active,
+.mobile-sticky-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
 }
 
 /* --------------------------------------------------
@@ -41,7 +66,7 @@ body.dark {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px; /* più compatto */
+  margin-bottom: 16px;
 }
 
 .logo-left {
@@ -59,6 +84,7 @@ body.dark {
   justify-content: center;
   align-items: center;
   position: relative;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
 }
 
 .logo-badge-inner {
@@ -208,9 +234,10 @@ body.dark .pill {
   cursor: pointer;
   border: none;
   border-radius: 6px;
-  padding: 8px 12px; /* più compatto */
+  padding: 8px 12px;
   font-size: 14px;
   font-weight: 600;
+  transition: all 0.2s ease;
 }
 
 .btn-primary {
@@ -259,51 +286,30 @@ body.dark .btn-mini {
 }
 
 /* --------------------------------------------------
-   HERO SIDE CARD
+   CARD STYLE (Premium)
 -------------------------------------------------- */
 
-.hero-side-card {
-  flex: 1;
-  min-width: 240px;
+.card-premium {
   background: #fafafa;
-  padding: 12px;
+  padding: 14px;
   border-radius: 10px;
-
   border: 1px solid rgba(0,0,0,0.04);
   box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 }
 
-body.dark .hero-side-card {
-  background: #181818;
+body.dark .card-premium {
+  background: #161616;
   border-color: rgba(255,255,255,0.05);
 }
 
-.hero-side-title {
-  font-weight: 700;
-  margin-bottom: 4px;
-}
+/* --------------------------------------------------
+   HERO SIDE CARD
+-------------------------------------------------- */
 
-.hero-side-main {
-  margin-bottom: 6px;
-  font-size: 13px;
-}
-
-.hero-side-bullets {
-  padding-left: 16px;
-  margin: 6px 0;
-}
-
-.hero-side-bullets li {
-  margin-bottom: 4px;
-}
-
-.hero-side-footnote {
-  font-size: 12px;
-  color: #666;
-}
-
-body.dark .hero-side-footnote {
-  color: #aaa;
+.hero-side-card {
+  composes: card-premium;
+  flex: 1;
+  min-width: 240px;
 }
 
 /* --------------------------------------------------
@@ -311,18 +317,8 @@ body.dark .hero-side-footnote {
 -------------------------------------------------- */
 
 .card-main {
-  background: #fafafa;
-  padding: 16px;
-  border-radius: 12px;
+  composes: card-premium;
   margin-bottom: 18px;
-
-  border: 1px solid rgba(0,0,0,0.04);
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
-
-body.dark .card-main {
-  background: #181818;
-  border-color: rgba(255,255,255,0.05);
 }
 
 .card-main-header {
@@ -356,7 +352,6 @@ body.dark .card-main {
   display: flex;
   align-items: center;
   gap: 5px;
-
   border: 1px solid rgba(0,0,0,0.05);
 }
 
@@ -364,13 +359,6 @@ body.dark .stat-pill {
   background: #222;
   color: #ddd;
   border-color: rgba(255,255,255,0.05);
-}
-
-.fast-mode-indicator {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #999;
 }
 
 /* --------------------------------------------------
@@ -415,19 +403,8 @@ body.dark .category-tab.active {
 -------------------------------------------------- */
 
 .excuse-box {
-  background: #fff;
-  padding: 12px;
-  border-radius: 10px;
+  composes: card-premium;
   margin-bottom: 12px;
-
-  border: 1px solid rgba(0,0,0,0.04);
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
-
-body.dark .excuse-box {
-  background: #222;
-  color: #eee;
-  border-color: rgba(255,255,255,0.05);
 }
 
 .excuse-category-label {
@@ -504,7 +481,6 @@ body.dark .share-btn {
   display: flex;
   align-items: center;
   gap: 6px;
-
   border: 1px solid rgba(0,0,0,0.05);
 }
 
@@ -526,19 +502,8 @@ body.dark .status-pill {
 -------------------------------------------------- */
 
 .ad-section {
-  background: #fff;
-  padding: 12px;
-  border-radius: 10px;
+  composes: card-premium;
   margin-top: 18px;
-
-  border: 1px solid rgba(0,0,0,0.04);
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
-
-body.dark .ad-section {
-  background: #222;
-  color: #eee;
-  border-color: rgba(255,255,255,0.05);
 }
 
 .ad-placeholder {
