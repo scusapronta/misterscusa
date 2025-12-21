@@ -674,6 +674,8 @@ body.dark .excuse-category-label{color:#f3dc7b;}
   transform:translateY(8px);
   transition:opacity .18s ease-out,transform .18s ease-out;
   white-space:pre-line;
+
+  /* ✅ Aggiunta elegante per altezza stabile */ min-height: 120px; display: block;
 }
 
 body.dark .excuse-text{color:#f7f7ff;}
