@@ -1213,6 +1213,7 @@ function maybeShowPwaBanner() {
   }
 }
 
+
 if (pwaCloseBtn) {
   pwaCloseBtn.addEventListener("click", () => dismissPwaBanner());
 }
