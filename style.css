@@ -1399,3 +1399,13 @@ section.seo-section::after {
 section.seo-section {
   margin-top: 20px !important; /* prima era 40px */
 }
+
+.btn-panic-boost {
+  animation: panicFlash 0.15s ease-out;
+}
+
+@keyframes panicFlash {
+  0% { box-shadow: 0 0 0px rgba(255, 0, 0, 0.0); }
+  50% { box-shadow: 0 0 12px rgba(255, 0, 0, 0.6); }
+  100% { box-shadow: 0 0 0px rgba(255, 0, 0, 0.0); }
+}
