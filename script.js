@@ -1160,6 +1160,7 @@ if (dailyUseBtn) {
 
     excuseCategoryNameEl.textContent = categoryNames[currentCategory] || currentCategory;
     excuseTextEl.textContent = dailyState.text;
+    lastExcuseByCategory[currentCategory] = dailyState.text;
     excuseTextEl.classList.add("visible");
 
     incrementStats(currentCategory);
@@ -1198,7 +1199,8 @@ function dismissPwaBanner() {
 }
 
 function isMobileLike() {
-  return window.innerWidth <= 768;
+  return /iphone|ipad|ipod|android/i.test(navigator.userAgent);
+}
 }
 
 function maybeShowPwaBanner() {
