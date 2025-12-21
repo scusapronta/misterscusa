@@ -1201,7 +1201,6 @@ function dismissPwaBanner() {
 function isMobileLike() {
   return /iphone|ipad|ipod|android/i.test(navigator.userAgent);
 }
-}
 
 function maybeShowPwaBanner() {
   if (!pwaBanner) return;
