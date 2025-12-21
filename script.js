@@ -1160,6 +1160,7 @@ if (dailyUseBtn) {
 
     excuseCategoryNameEl.textContent = categoryNames[currentCategory] || currentCategory;
     excuseTextEl.textContent = dailyState.text;
+    lastExcuseByCategory[currentCategory] = dailyState.text;
     excuseTextEl.classList.add("visible");
 
     incrementStats(currentCategory);
