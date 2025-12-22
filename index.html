@@ -440,32 +440,25 @@
   updatePanicHint();
 </script>
 <script>
-  const btnPanic = document.getElementById("btnPanic");
+<script>
+  const panicHint = document.getElementById("panicHint");
 
-  let pressTimer;
+  function updatePanicHint() {
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-  btnPanic.addEventListener("mousedown", () => {
-    pressTimer = setTimeout(() => {
-      btnPanic.classList.add("btn-panic-shake");
-      setTimeout(() => {
-        btnPanic.classList.remove("btn-panic-shake");
-      }, 400);
-      // Qui puoi inserire la funzione Super Panico
-      console.log("Super Panico attivato");
-    }, 1000); // 1 secondo di pressione
-  });
+    if (isMobile) {
+      panicHint.textContent = "Tocca per Panico. Tieni premuto per Super Panico (solo per cuori forti).";
+    } else {
+      panicHint.textContent = "Clic per Panico. 1 secondo per Super Panico (non dire che non ti avevo avvisato).";
+    }
+  }
 
-  btnPanic.addEventListener("mouseup", () => {
-    clearTimeout(pressTimer);
-  });
-
-  btnPanic.addEventListener("mouseleave", () => {
-    clearTimeout(pressTimer);
-  });
+  updatePanicHint();
 </script>
 
 </body>
 </html>
+
 
 
 
