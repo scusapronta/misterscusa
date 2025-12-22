@@ -1487,22 +1487,24 @@ body.dark .fast-mode-indicator {
     box-shadow: 0 0 5px rgba(0, 194, 168, 0.5);
 }
 /* ============================================================
-   SOLUZIONE DEFINITIVA SEO BIANCO BRILLANTE
+   FIX FINALE SEO - BIANCO MORBIDO (Soft White)
    ============================================================ */
 
 body.dark .seo-section,
-body.dark .seo-section p,
-body.dark .seo-section h2,
-body.dark .seo-section h3,
-body.dark .seo-section strong,
-body.dark .seo-section span,
-body.dark .seo-section a {
-    color: #FFFFFF !important; /* Bianco puro */
-    opacity: 1 !important;      /* Rimuove ogni trasparenza */
-    -webkit-text-fill-color: #FFFFFF !important; /* Forza il colore su alcuni browser mobile */
+body.dark .seo-section *,
+body.dark section.seo-section,
+body.dark section.seo-section p,
+body.dark section.seo-section h2,
+body.dark section.seo-section h3,
+body.dark section.seo-section strong {
+    color: #d1d1d1 !important; /* Grigio chiaro meno aggressivo del bianco puro */
+    opacity: 1 !important;
+    -webkit-text-fill-color: #d1d1d1 !important;
 }
 
-/* Applichiamolo anche alla sezione finale se il tag è diverso */
-body.dark section.seo-section {
-    color: #FFFFFF !important;
+/* Sistema anche il disclaimer finale con lo stesso tono */
+body.dark .disclaimer, 
+body.dark .disclaimer * {
+    color: #d1d1d1 !important;
+    opacity: 0.9 !important;
 }
