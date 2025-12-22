@@ -1622,35 +1622,3 @@ body.dark .hero-side-footnote {
     flex-direction: row;
   }
 }
-/* ============================================================
-   🖥️ Banner laterali DESKTOP - FIX VISIBILITÀ
-   ============================================================ */
-
-.banner-left,
-.banner-right {
-  position: fixed;
-  top: 150px;
-  width: 160px;
-  height: 600px; /* Forza l'altezza per renderli visibili */
-  z-index: 999;
-  /* Rimuovi questa riga qui sotto quando inserirai i banner reali */
-  background: rgba(255, 0, 0, 0.2); 
-  border: 2px dashed red; /* Bordo rosso di test per vederli subito */
-}
-
-/* Posizionamento dinamico */
-.banner-left {
-  left: calc(50% - 480px - 175px); 
-}
-
-.banner-right {
-  right: calc(50% - 480px - 175px);
-}
-
-/* REGOLA D'ORO: Nascondi SOLO se lo schermo è troppo piccolo */
-@media (max-width: 1250px) {
-  .banner-left,
-  .banner-right {
-    display: none !important;
-  }
-}
