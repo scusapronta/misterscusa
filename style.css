@@ -1485,3 +1485,9 @@ body.dark-mode .excuse-text {
   backdrop-filter: none !important;
   border: none !important;
 }
+/* Sostituisci '.classe-del-tuo-box' con l'ID o la classe reale del box n. 2 */
+.classe-del-tuo-box {
+    background-color: transparent !important; /* Questo lo rende uguale al box n. 1 */
+    border: 1px solid #333; /* Opzionale: aggiunge un bordo sottile per separarlo come il n. 1 */
+    color: #ffffff; /* Assicurati che il testo rimanga bianco */
+}
