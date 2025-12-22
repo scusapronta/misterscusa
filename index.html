@@ -424,20 +424,21 @@
     <p><strong>Funziona da mobile?</strong> Certo. È nato per essere usato mentre sei già in ritardo.</p>
     <p><strong>Serve installarlo?</strong> No, ma puoi aggiungerlo alla Home e far finta che sia un’app seria.</p>
   </section>
+<script>
+  const panicHint = document.getElementById("panicHint");
+
+  function updatePanicHint() {
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      panicHint.textContent = "Tocca per Panico. Tieni premuto per Super Panico.";
+    } else {
+      panicHint.textContent = "Clicca per Panico. Tieni premuto 1 secondo per Super Panico.";
+    }
+  }
+
+  updatePanicHint();
+</script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
