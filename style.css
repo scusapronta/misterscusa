@@ -1441,53 +1441,25 @@ section.seo-section {
   100% { box-shadow: 0 0 0px rgba(255, 0, 0, 0.0); }
 }
 
-/* ============================
-   🌙 DARK MODE — UNIFORMAZIONE BOX SCUSA
-   ============================ */
+/* ============================================================
+   CORREZIONE BOX 2 - UNIFORMAZIONE CON BOX 1
+   ============================================================ */
 
-body.dark-mode .excuse-text {
-  background-color: #121212 !important; /* stesso tono del primo box */
-  color: #ffffff !important;
-  border-radius: 12px;
+/* Quando il body ha la classe .dark (usata nel tuo script) */
+body.dark .excuse-text {
+  background: transparent !important; /* Rimuove il grigio */
+  background-color: transparent !important;
+  backdrop-filter: none !important;    /* Rimuove l'effetto sfocato */
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;         /* Rimuove ombre interne/esterne */
+  color: #f7f7f7 !important;           /* Colore testo chiaro */
+  border: 1px dashed rgba(248, 214, 95, 0.6) !important; /* Opzionale: bordo tratteggiato come il box 1 */
   padding: 16px 20px;
-  box-shadow: none !important;
-  backdrop-filter: none !important;
-  border: none;
 }
-body.dark-mode .excuse-text {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-  border-radius: 12px;
-  padding: 16px 20px;
-  box-shadow: none !important;
-  backdrop-filter: none !important;
-  border: none !important;
-}
-body.dark-mode .random-active-label {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-  padding: 6px 10px;
-  border-radius: 6px;
-  font-style: normal;
-  opacity: 1 !important;
-  font-weight: 500;
-}
-/* ============================
-   🌙 DARK MODE — UNIFORMAZIONE BOX 2
-   ============================ */
 
+/* Rimuoviamo eventuali sovrascritture che creano il grigio */
 body.dark-mode .excuse-text {
-  background-color: #000000 !important; /* stesso nero del box 1 */
-  color: #ffffff !important;
-  padding: 16px 20px;
-  border-radius: 12px;
-  box-shadow: none !important;
+  background: transparent !important;
   backdrop-filter: none !important;
-  border: none !important;
-}
-/* Sostituisci '.classe-del-tuo-box' con l'ID o la classe reale del box n. 2 */
-.classe-del-tuo-box {
-    background-color: transparent !important; /* Questo lo rende uguale al box n. 1 */
-    border: 1px solid #333; /* Opzionale: aggiunge un bordo sottile per separarlo come il n. 1 */
-    color: #ffffff; /* Assicurati che il testo rimanga bianco */
+  box-shadow: none !important;
 }
