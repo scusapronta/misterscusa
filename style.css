@@ -1626,3 +1626,25 @@ body.dark .hero-side-footnote {
   line-height: 1.1;
   opacity: 0.85;
 }
+/* ============================================================
+   SPOSTAMENTO TESTO PANICO E OTTIMIZZAZIONE SPAZI
+   ============================================================ */
+
+/* Selezioniamo il testo che descrive il panico. 
+   Dovrebbe avere una classe specifica o essere il paragrafo dopo i pulsanti */
+.panic-description, 
+.action-buttons + p, 
+div[style*="text-align: left"] { /* Seleziona il testo basandosi sulla posizione attuale */
+    text-align: right !important; /* Lo sposta a destra sotto il pulsante Panico */
+    margin-top: 5px !important;   /* Lo avvicina ai pulsanti sopra */
+    margin-bottom: 5px !important; /* Riduce lo spazio verso il rigo "Condividi" */
+    padding-right: 15px;          /* Opzionale: per non farlo toccare il bordo */
+    font-size: 0.85rem;           /* Rende il font leggermente più discreto */
+}
+
+/* Riduciamo il margine superiore della sezione "Condividi" per accorciare il buco */
+.share-section, 
+.share-row {
+    margin-top: 0 !important;
+    padding-top: 5px !important;
+}
