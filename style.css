@@ -1454,3 +1454,21 @@ body.dark-mode .excuse-text {
   backdrop-filter: none !important;
   border: none;
 }
+body.dark-mode .excuse-text {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  border: none !important;
+}
+body.dark-mode .random-active-label {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-style: normal;
+  opacity: 1 !important;
+  font-weight: 500;
+}
