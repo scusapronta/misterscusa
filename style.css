@@ -1543,15 +1543,53 @@ body.dark .hero-side-footnote {
     color: #721c24 !important; /* Un tono diverso per la nota a piè di pagina */
     opacity: 0.8 !important;
 }
-/* ============================
-   🌙 DARK MODE — UNIFORMAZIONE BOX USO TIPICO
-   ============================ */
+/* ============================================================
+   UNIFORMAZIONE BOX "USO TIPICO" AL TASTO "GENERA SCUSA"
+   ============================================================ */
 
-body.dark-mode .uso-tipico-box {
-  background-color: #1a1a1a !important; /* stesso tono del bottone in dark mode */
-  color: #ffffff !important;
-  border-radius: 12px;
-  padding: 16px 20px;
-  border: none !important;
-  box-shadow: none !important;
+body.dark .hero-side-card {
+    /* Usiamo lo stesso gradiente del pulsante primary */
+    background: radial-gradient(circle at top left, #fff6bf 0, #ffd447 40%, #f0b800 100%) !important;
+    
+    /* Testo nero per massimo contrasto sul giallo */
+    color: #1a1a1a !important;
+    
+    /* Ombra profonda per dare risalto */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5) !important;
+    
+    /* Rimuoviamo bordi che potrebbero disturbare */
+    border: none !important;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Rimuoviamo eventuali riflessi interni scuri */
+body.dark .hero-side-card::before {
+    display: none !important;
+}
+
+/* Allineiamo i colori dei testi interni per leggibilità sul giallo */
+body.dark .hero-side-title {
+    color: rgba(0, 0, 0, 0.6) !important; /* Grigio/nero semi-trasparente */
+    font-weight: 700 !important;
+}
+
+body.dark .hero-side-main {
+    color: #000000 !important;
+    font-weight: 800 !important;
+}
+
+body.dark .hero-side-bullets li {
+    color: #1a1a1a !important;
+    font-weight: 500 !important;
+}
+
+/* Il checkmark delle liste deve essere nero o scuro */
+body.dark .hero-side-bullets li::before {
+    color: #000000 !important;
+}
+
+body.dark .hero-side-footnote {
+    color: rgba(0, 0, 0, 0.5) !important;
+    font-weight: 600 !important;
 }
