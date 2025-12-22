@@ -1508,3 +1508,38 @@ body.dark .disclaimer * {
     color: #888888 !important; /* Un tono leggermente più scuro per il disclaimer */
     opacity: 0.8 !important;
 }
+/* ============================================================
+   INVERSIONE COLORI HERO SIDE CARD (DARK MODE)
+   ============================================================ */
+
+body.dark .hero-side-card {
+    /* Sfondo chiaro (crema/giallo molto tenue per richiamare il tuo stile) */
+    background: #fdf8e1 !important; 
+    color: #1a1a1a !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+    border: 1px solid #ffe9a0 !important;
+}
+
+/* Rimuove l'effetto gradiente scuro che c'era prima */
+body.dark .hero-side-card::before {
+    display: none !important;
+}
+
+/* Colore dei testi interni */
+body.dark .hero-side-title {
+    color: #856404 !important; /* Un oro/marrone scuro per il titolo piccolo */
+    opacity: 1 !important;
+}
+
+body.dark .hero-side-main {
+    color: #1a1a1a !important; /* Nero per il testo principale */
+}
+
+body.dark .hero-side-bullets li {
+    color: #333333 !important; /* Grigio molto scuro per i punti elenco */
+}
+
+body.dark .hero-side-footnote {
+    color: #721c24 !important; /* Un tono diverso per la nota a piè di pagina */
+    opacity: 0.8 !important;
+}
