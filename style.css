@@ -1464,3 +1464,25 @@ body.dark-mode .excuse-text {
   box-shadow: none !important;
   border: 1px dashed rgba(240,184,0,.7) !important;
 }
+/* Forza il testo bianco per le pillole degli stati in Dark Mode */
+body.dark .stat-pill {
+    color: #ffffff !important;
+}
+
+/* Se vuoi che anche l'etichetta interna sia più luminosa */
+body.dark .stat-pill .badge-label {
+    color: #ffffff !important;
+}
+/* Rendi il testo bianco e migliora lo sfondo nel box Random */
+body.dark .random-active-label, 
+body.dark .status-pill {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.1) !important; /* Uno sfondo leggerissimo per leggibilità */
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Se c'è un punto colorato vicino alla scritta, assicuriamoci che resti visibile */
+body.dark .status-dot,
+body.dark .fast-mode-indicator {
+    box-shadow: 0 0 5px rgba(0, 194, 168, 0.5);
+}
