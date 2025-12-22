@@ -1543,3 +1543,15 @@ body.dark .hero-side-footnote {
     color: #721c24 !important; /* Un tono diverso per la nota a piè di pagina */
     opacity: 0.8 !important;
 }
+/* ============================
+   🌙 DARK MODE — UNIFORMAZIONE BOX USO TIPICO
+   ============================ */
+
+body.dark-mode .uso-tipico-box {
+  background-color: #1a1a1a !important; /* stesso tono del bottone in dark mode */
+  color: #ffffff !important;
+  border-radius: 12px;
+  padding: 16px 20px;
+  border: none !important;
+  box-shadow: none !important;
+}
