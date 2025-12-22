@@ -439,8 +439,33 @@
 
   updatePanicHint();
 </script>
+<script>
+  const btnPanic = document.getElementById("btnPanic");
+
+  let pressTimer;
+
+  btnPanic.addEventListener("mousedown", () => {
+    pressTimer = setTimeout(() => {
+      btnPanic.classList.add("btn-panic-shake");
+      setTimeout(() => {
+        btnPanic.classList.remove("btn-panic-shake");
+      }, 400);
+      // Qui puoi inserire la funzione Super Panico
+      console.log("Super Panico attivato");
+    }, 1000); // 1 secondo di pressione
+  });
+
+  btnPanic.addEventListener("mouseup", () => {
+    clearTimeout(pressTimer);
+  });
+
+  btnPanic.addEventListener("mouseleave", () => {
+    clearTimeout(pressTimer);
+  });
+</script>
 
 </body>
 </html>
+
 
 
