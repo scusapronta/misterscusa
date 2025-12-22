@@ -1487,7 +1487,7 @@ body.dark .fast-mode-indicator {
     box-shadow: 0 0 5px rgba(0, 194, 168, 0.5);
 }
 /* ============================================================
-   FIX FINALE SEO - BIANCO MORBIDO (Soft White)
+   FIX FINALE SEO - GRIGIO DISCRETO (Low Contrast White)
    ============================================================ */
 
 body.dark .seo-section,
@@ -1497,14 +1497,14 @@ body.dark section.seo-section p,
 body.dark section.seo-section h2,
 body.dark section.seo-section h3,
 body.dark section.seo-section strong {
-    color: #d1d1d1 !important; /* Grigio chiaro meno aggressivo del bianco puro */
+    color: #a0a0a0 !important; /* Grigio medio-chiaro, molto riposante */
     opacity: 1 !important;
-    -webkit-text-fill-color: #d1d1d1 !important;
+    -webkit-text-fill-color: #a0a0a0 !important;
 }
 
-/* Sistema anche il disclaimer finale con lo stesso tono */
+/* Sistema anche il disclaimer finale rendendolo ancora più sottile */
 body.dark .disclaimer, 
 body.dark .disclaimer * {
-    color: #d1d1d1 !important;
-    opacity: 0.9 !important;
+    color: #888888 !important; /* Un tono leggermente più scuro per il disclaimer */
+    opacity: 0.8 !important;
 }
