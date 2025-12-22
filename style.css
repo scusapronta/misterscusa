@@ -665,17 +665,28 @@ body.dark .excuse-box{
 
 body.dark .excuse-category-label{color:#f3dc7b;}
 
-.excuse-text{
-  font-size:15px;
-  line-height:1.4;
-  color:#222222;
-  font-weight:500;
-  opacity:0;
-  transform:translateY(8px);
-  transition:opacity .18s ease-out,transform .18s ease-out;
-  white-space:pre-line;
+.excuse-text {
+  font-size: 15px;
+  line-height: 1.4;
+  color: #222222;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .18s ease-out, transform .18s ease-out, min-height .25s ease;
+  white-space: pre-line;
 
-  /* ✅ Aggiunta elegante per altezza stabile */ min-height: 120px; display: block;
+  /* ✅ Eleganza + stabilità */
+  background: rgba(0, 0, 0, 0.03); /* leggerissimo, quasi invisibile */
+  padding: 14px 18px;
+  border-radius: 10px;
+  min-height: 120px;
+  display: block;
+}
+
+/* ✅ Quando la scusa appare */
+.excuse-text.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 body.dark .excuse-text{color:#f7f7ff;}
