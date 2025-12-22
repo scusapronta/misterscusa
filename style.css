@@ -1622,28 +1622,33 @@ body.dark .hero-side-footnote {
     flex-direction: row;
   }
 }
-/* ============================
-   🖥️ Banner laterali DESKTOP
-   ============================ */
+/* ============================================================
+   🖥️ Banner laterali DESKTOP (Pro Version)
+   ============================================================ */
 
 .banner-left,
 .banner-right {
   position: fixed;
   top: 150px;
   width: 160px;
+  height: 600px; /* Altezza standard Skyscraper */
   z-index: 999;
 }
 
+/* Posizionamento dinamico per non coprire il sito */
 .banner-left {
-  left: 10px;
+  /* Resta a sinistra del container da 960px */
+  left: calc(50% - 480px - 175px); 
 }
 
 .banner-right {
-  right: 10px;
+  /* Resta a destra del container da 960px */
+  right: calc(50% - 480px - 175px);
 }
 
-/* Nascondi su mobile */
-@media (max-width: 900px) {
+/* Nascondi su schermi piccoli (Tablet e Mobile) */
+/* Alziamo a 1300px per evitare che tocchino il testo */
+@media (max-width: 1300px) {
   .banner-left,
   .banner-right {
     display: none;
