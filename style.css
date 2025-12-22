@@ -1622,3 +1622,30 @@ body.dark .hero-side-footnote {
     flex-direction: row;
   }
 }
+/* ============================
+   🖥️ Banner laterali DESKTOP
+   ============================ */
+
+.banner-left,
+.banner-right {
+  position: fixed;
+  top: 150px;
+  width: 160px;
+  z-index: 999;
+}
+
+.banner-left {
+  left: 10px;
+}
+
+.banner-right {
+  right: 10px;
+}
+
+/* Nascondi su mobile */
+@media (max-width: 900px) {
+  .banner-left,
+  .banner-right {
+    display: none;
+  }
+}
