@@ -1486,3 +1486,23 @@ body.dark .status-dot,
 body.dark .fast-mode-indicator {
     box-shadow: 0 0 5px rgba(0, 194, 168, 0.5);
 }
+/* ============================================================
+   FIX SEO SECTION - DARK MODE (Testo Bianco)
+   ============================================================ */
+
+body.dark .seo-section, 
+body.dark .seo-section *, 
+body.dark section.seo-section,
+body.dark section.seo-section p,
+body.dark section.seo-section h2,
+body.dark section.seo-section h3,
+body.dark section.seo-section strong {
+    color: #ffffff !important;
+}
+
+/* Rendi anche il disclaimer leggibile in Dark Mode */
+body.dark .disclaimer, 
+body.dark .disclaimer * {
+    color: #ffffff !important;
+    opacity: 0.9 !important;
+}
