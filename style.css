@@ -672,20 +672,18 @@ body.dark .excuse-category-label{color:#f3dc7b;}
   font-weight: 500;
   opacity: 0;
   transform: translateY(8px);
-  transition: opacity .18s ease-out, transform .18s ease-out, min-height .25s ease;
+  transition: opacity .18s ease-out, transform .18s ease-out, min-height .25s ease, background .25s ease, box-shadow .25s ease;
   white-space: pre-line;
 
-  /* ✅ Cornice ultra elegante */
+  /* ✅ Cornice elegante (light mode) */
   padding: 16px 20px;
   min-height: 120px;
   display: block;
   border-radius: 14px;
 
-  /* Effetto vetro morbido */
   background: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(6px);
 
-  /* Ombra interna leggerissima (profondità premium) */
   box-shadow:
     inset 0 0 12px rgba(0, 0, 0, 0.04),
     0 2px 6px rgba(0, 0, 0, 0.06);
@@ -695,6 +693,18 @@ body.dark .excuse-category-label{color:#f3dc7b;}
 .excuse-text.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ✅ DARK MODE — elegante, vellutata, premium */
+body.dark-mode .excuse-text {
+  color: #f1f1f1;
+
+  background: rgba(30, 30, 30, 0.55); /* vetro scuro morbido */
+  backdrop-filter: blur(8px);
+
+  box-shadow:
+    inset 0 0 14px rgba(255, 255, 255, 0.03),
+    0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 body.dark .excuse-text{color:#f7f7ff;}
