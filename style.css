@@ -1472,3 +1472,16 @@ body.dark-mode .random-active-label {
   opacity: 1 !important;
   font-weight: 500;
 }
+/* ============================
+   🌙 DARK MODE — UNIFORMAZIONE BOX 2
+   ============================ */
+
+body.dark-mode .excuse-text {
+  background-color: #000000 !important; /* stesso nero del box 1 */
+  color: #ffffff !important;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  border: none !important;
+}
