@@ -1593,3 +1593,32 @@ body.dark .hero-side-footnote {
     color: rgba(0, 0, 0, 0.5) !important;
     font-weight: 600 !important;
 }
+/* ============================
+   📱 Banner mobile affiancati
+   ============================ */
+
+.banner-mobile {
+  display: none;
+  margin: 20px auto;
+  max-width: 700px;
+  gap: 10px;
+}
+
+.banner-mobile .banner-item {
+  flex: 1;
+  text-align: center;
+}
+
+.banner-mobile img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Mostra i banner affiancati solo su mobile */
+@media (max-width: 900px) {
+  .banner-mobile {
+    display: flex;
+    flex-direction: row;
+  }
+}
