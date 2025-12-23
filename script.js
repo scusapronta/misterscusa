@@ -1501,3 +1501,133 @@ themeToggleBtn.setAttribute("aria-pressed", currentTheme === "dark");
   // Primo controllo
   window.addEventListener("load", maybeShow);
 })();
+// Tutto il tuo codice esistente sopra...
+
+const frasiComponibili = {
+  amici: {
+    start: [
+      "Ti giuro che stavo per scriverti,",
+      "Avevo promesso di essere presente, ma",
+      "Ero pronto a fare il bravo amico, però",
+      "Mi stavo organizzando per vederti, quando",
+      "Giuro che non ti stavo ignorando, è che"
+    ],
+    middle: [
+      "la mia testa ha deciso di fare un reboot",
+      "sono stato risucchiato da una spirale di notifiche",
+      "la mia energia sociale ha fatto sciopero",
+      "il caos ha preso il sopravvento",
+      "il tempo è evaporato senza preavviso"
+    ],
+    end: [
+      "recupero tutto, promesso.",
+      "ti devo almeno un caffè.",
+      "la prossima volta vengo io a prenderti.",
+      "non sparisco, giuro.",
+      "ti aggiorno appena torno umano."
+    ]
+  },
+
+  famiglia: {
+    start: [
+      "Stavo per essere un membro della famiglia modello, ma",
+      "Avevo tutto sotto controllo, finché",
+      "Giuro che non lo faccio apposta, però",
+      "Mi ero ripromesso di essere presente, ma",
+      "Stavo arrivando, quando"
+    ],
+    middle: [
+      "la mia giornata ha deciso di ribellarsi",
+      "il mio cervello ha premuto pausa",
+      "sono stato travolto da imprevisti non autorizzati",
+      "la realtà ha fatto un plot twist",
+      "mi sono perso tra mille cose"
+    ],
+    end: [
+      "arrivo appena rimetto insieme i pezzi.",
+      "prometto che recupero.",
+      "non vi sto evitando, lo giuro.",
+      "la prossima volta sarò più organizzato.",
+      "vi aggiorno appena respiro."
+    ]
+  },
+
+  amore: {
+    start: [
+      "Stavo per essere romanticə, ma",
+      "Avevo un piano carino, però",
+      "Giuro che non ti sto trascurando, è che",
+      "Mi stavo preparando a sorprenderti, quando",
+      "Ero pronto a fare la persona adorabile, ma"
+    ],
+    middle: [
+      "la mia testa ha deciso di andare in modalità aereo",
+      "la giornata ha fatto crash",
+      "mi sono perso in un loop di imprevisti",
+      "il mio cervello ha fatto logout",
+      "il caos ha vinto anche oggi"
+    ],
+    end: [
+      "ti compenso con un abbraccio gigante.",
+      "ti porto qualcosa di buono dopo.",
+      "la prossima volta faccio meglio, promesso.",
+      "non smettere di sopportarmi.",
+      "ti penso anche se sembro offline."
+    ]
+  },
+
+  lavoro: {
+    start: [
+      "Stavo per essere produttivo, ma",
+      "Avevo tutto pianificato, però",
+      "Giuro che stavo lavorando, è che",
+      "Mi ero messo in modalità professionale, quando",
+      "Ero concentrato, finché"
+    ],
+    middle: [
+      "la mia motivazione ha preso ferie",
+      "il mio cervello ha deciso di riavviarsi",
+      "sono stato sequestrato da una riunione infinita",
+      "il tempo ha accelerato senza di me",
+      "la mia organizzazione ha dichiarato bancarotta"
+    ],
+    end: [
+      "recupero tutto entro oggi.",
+      "mi rimetto in carreggiata subito.",
+      "prometto che consegno.",
+      "sto tornando operativo.",
+      "la prossima volta arrivo preparato."
+    ]
+  },
+
+  altro: {
+    start: [
+      "Stavo per essere una persona funzionale, ma",
+      "Avevo buone intenzioni, però",
+      "Giuro che ci stavo provando, è che",
+      "Mi ero quasi organizzato, quando",
+      "La mia giornata sembrava normale, finché"
+    ],
+    middle: [
+      "la mia attenzione è evaporata",
+      "il caos ha bussato e io ho aperto",
+      "la realtà ha deciso di complicarsi",
+      "il mio cervello ha fatto sciopero",
+      "sono stato risucchiato da un vortice di nonsense"
+    ],
+    end: [
+      "sto cercando di recuperare dignità.",
+      "torno operativo appena possibile.",
+      "la prossima volta faccio finta meglio.",
+      "oggi non vinco, ma almeno partecipo.",
+      "mi rimetto in piedi tra poco."
+    ]
+  }
+};
+function generaScusaComponibile(categoria) {
+  const cat = frasiComponibili[categoria];
+  const s = cat.start[Math.floor(Math.random() * cat.start.length)];
+  const m = cat.middle[Math.floor(Math.random() * cat.middle.length)];
+  const e = cat.end[Math.floor(Math.random() * cat.end.length)];
+  return `${s} ${m}, ${e}`;
+}
