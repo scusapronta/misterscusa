@@ -1659,3 +1659,18 @@ div[style*="text-align: left"] { /* Seleziona il testo basandosi sulla posizione
 .btn-panic-shake {
   animation: panic-shake 0.4s ease;
 }
+/* Altezza fissa del box scuse anche su mobile */
+@media (max-width: 768px) {
+  .excuse-box {
+    min-height: 160px; /* puoi aumentare o diminuire */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* centra il testo verticalmente */
+  }
+
+  .excuse-text {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+  }
+}
