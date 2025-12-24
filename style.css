@@ -1773,20 +1773,20 @@ div[style*="text-align: left"] { /* Seleziona il testo basandosi sulla posizione
     overflow-x: auto;
   }
 }
-/* Contenitore banner rettangolari affiancati */
+/* Contenitore banner orizzontali affiancati */
 .adsterra-central-double {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 12px;
-  margin: 10px 0;
+  margin: 12px 0;
   flex-wrap: wrap;
 }
 
-/* Box banner rettangolare orizzontale */
+/* Box banner orizzontale più alto */
 .ad-box-horizontal {
   width: 300px;
-  height: 60px;
+  height: 250px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1795,7 +1795,7 @@ div[style*="text-align: left"] { /* Seleziona il testo basandosi sulla posizione
 /* Forza l'iframe a rispettare le dimensioni */
 .ad-box-horizontal iframe {
   max-width: 300px !important;
-  max-height: 60px !important;
+  max-height: 250px !important;
   overflow: hidden;
 }
 
