@@ -1689,8 +1689,8 @@ div[style*="text-align: left"] { /* Seleziona il testo basandosi sulla posizione
 }
 
 .ad-box {
-  width: 180px;
-  height: 150px;
+  width: 280px;
+  height: 180px;
   transform: scale(0.6);
   transform-origin: top center;
   display: flex;
