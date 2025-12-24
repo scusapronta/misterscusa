@@ -1705,3 +1705,9 @@ div[style*="text-align: left"] { /* Seleziona il testo basandosi sulla posizione
     align-items: center;
   }
 }
+.ad-section,
+.ad-placeholder {
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+}
