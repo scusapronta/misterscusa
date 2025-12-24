@@ -1688,10 +1688,11 @@ div[style*="text-align: left"] { /* Seleziona il testo basandosi sulla posizione
   flex-wrap: wrap;
 }
 
-/* Box singolo banner */
 .ad-box {
-  width: 250px;
-  height: 200px;
+  width: 180px;
+  height: 150px;
+  transform: scale(0.6);
+  transform-origin: top center;
   display: flex;
   justify-content: center;
   align-items: center;
