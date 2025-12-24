@@ -1711,3 +1711,26 @@ div[style*="text-align: left"] { /* Seleziona il testo basandosi sulla posizione
   justify-content: center;
   gap: 16px;
 }
+/* Contenitore dei due banner piccoli centrali */
+.adsterra-central-double {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 25px 0;
+  flex-wrap: nowrap;
+}
+
+/* Box dei banner piccoli */
+.ad-box-small {
+  width: 160px; /* oppure 200px o 250px */
+  display: flex;
+  justify-content: center;
+}
+
+/* Mobile: scroll orizzontale se serve */
+@media (max-width: 450px) {
+  .adsterra-central-double {
+    overflow-x: auto;
+  }
+}
