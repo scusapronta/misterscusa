@@ -1807,21 +1807,20 @@ div[style*="text-align: left"] { /* Seleziona il testo basandosi sulla posizione
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     justify-content: flex-start;
-    gap: 4px; /* <— distanza ridotta */
+    gap: 4px;
     padding-bottom: 4px;
   }
 
   .ad-box-horizontal {
     flex: 0 0 auto;
-    width: 300px;
+    width: 260px;   /* <— ridotto per stare più vicini */
     height: 110px;
-    margin: 0; /* <— assicura zero margini extra */
   }
 
   .ad-box-horizontal iframe {
-    width: 300px !important;
+    width: 260px !important;   /* <— forzato */
     height: 110px !important;
-    max-width: 300px !important;
+    max-width: 260px !important;
     max-height: 110px !important;
     overflow: hidden;
     border: none;
