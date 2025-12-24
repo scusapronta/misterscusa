@@ -1674,3 +1674,7 @@ div[style*="text-align: left"] { /* Seleziona il testo basandosi sulla posizione
     align-items: center;
   }
 }
+.adsterra-banner-footer {
+  max-width: 100%;
+  overflow: hidden;
+}
