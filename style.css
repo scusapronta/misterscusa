@@ -1698,16 +1698,14 @@ div[style*="text-align: left"] { /* Seleziona il testo basandosi sulla posizione
   align-items: center;
 }
 
-/* Mobile: i due banner vanno uno sotto l'altro */
-@media (max-width: 700px) {
-  .adsterra-double-container {
-    flex-direction: column;
-    align-items: center;
-  }
-}
 .ad-section,
 .ad-placeholder {
   border: none !important;
   outline: none !important;
   background: transparent !important;
+}
+.adsterra-double-container {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
 }
