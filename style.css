@@ -1681,11 +1681,13 @@ div[style*="text-align: left"] { /* Seleziona il testo basandosi sulla posizione
 /* Contenitore dei due banner affiancati */
 .adsterra-double-container {
   display: flex;
+  flex-direction: row !important;
   justify-content: center;
   align-items: flex-start;
-  gap: 20px;
+  gap: 16px;
+  flex-wrap: nowrap !important;
   margin: 30px 0;
-  flex-wrap: wrap;
+  overflow-x: auto;
 }
 
 .ad-box {
