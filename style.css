@@ -1678,3 +1678,29 @@ div[style*="text-align: left"] { /* Seleziona il testo basandosi sulla posizione
   max-width: 100%;
   overflow: hidden;
 }
+/* Contenitore dei due banner affiancati */
+.adsterra-double-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+/* Box singolo banner */
+.ad-box {
+  width: 300px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Mobile: i due banner vanno uno sotto l'altro */
+@media (max-width: 700px) {
+  .adsterra-double-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
