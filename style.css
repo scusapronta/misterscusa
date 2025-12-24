@@ -1734,3 +1734,17 @@ div[style*="text-align: left"] { /* Seleziona il testo basandosi sulla posizione
     overflow-x: auto;
   }
 }
+/* Banner centrale singolo sotto la scusa del giorno */
+.adsterra-central-single {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 25px 0;
+}
+
+.ad-box-small {
+  width: 160px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+}
