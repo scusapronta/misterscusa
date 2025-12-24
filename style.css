@@ -1773,3 +1773,27 @@ div[style*="text-align: left"] { /* Seleziona il testo basandosi sulla posizione
     overflow-x: auto;
   }
 }
+/* Contenitore dei due banner piccoli */
+.adsterra-central-double {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* spazio minimo tra i due */
+  margin: 10px 0; /* meno spazio sopra/sotto */
+}
+
+/* Banner mini 125x125 */
+.ad-box-tiny {
+  width: 125px;
+  height: 125px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Mobile: scroll orizzontale se serve */
+@media (max-width: 480px) {
+  .adsterra-central-double {
+    overflow-x: auto;
+  }
+}
