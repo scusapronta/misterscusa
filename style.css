@@ -1783,10 +1783,10 @@ div[style*="text-align: left"] { /* Seleziona il testo basandosi sulla posizione
   flex-wrap: wrap;
 }
 
-/* Box banner orizzontale compatto */
+/* Box banner orizzontale leggermente più alto */
 .ad-box-horizontal {
   width: 300px;
-  height: 90px;
+  height: 110px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1795,7 +1795,7 @@ div[style*="text-align: left"] { /* Seleziona il testo basandosi sulla posizione
 /* Forza l'iframe a rispettare le dimensioni */
 .ad-box-horizontal iframe {
   max-width: 300px !important;
-  max-height: 90px !important;
+  max-height: 110px !important;
   overflow: hidden;
 }
 
