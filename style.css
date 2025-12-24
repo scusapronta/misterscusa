@@ -1748,3 +1748,28 @@ div[style*="text-align: left"] { /* Seleziona il testo basandosi sulla posizione
   display: flex;
   justify-content: center;
 }
+/* Contenitore banner quadrati affiancati */
+.adsterra-central-double {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12px; /* spazio minimo tra i due */
+  margin: 12px 0; /* meno spazio sopra e sotto */
+}
+
+/* Box banner quadrato */
+.ad-box-square {
+  width: 250px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Mobile: scroll orizzontale se serve */
+@media (max-width: 520px) {
+  .adsterra-central-double {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+}
