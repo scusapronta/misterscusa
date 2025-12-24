@@ -1773,22 +1773,29 @@ div[style*="text-align: left"] { /* Seleziona il testo basandosi sulla posizione
     overflow-x: auto;
   }
 }
-/* Contenitore dei due banner piccoli */
+/* Contenitore banner rettangolari affiancati */
 .adsterra-central-double {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px; /* spazio minimo tra i due */
-  margin: 10px 0; /* meno spazio sopra/sotto */
+  gap: 10px;
+  margin: 10px 0;
 }
 
-/* Banner mini 125x125 */
-.ad-box-tiny {
-  width: 125px;
-  height: 125px;
+/* Box banner rettangolare */
+.ad-box-wide {
+  width: 200px;
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* Forza l'iframe a rispettare le dimensioni */
+.ad-box-wide iframe {
+  max-width: 200px !important;
+  max-height: 100px !important;
+  overflow: hidden;
 }
 
 /* Mobile: scroll orizzontale se serve */
@@ -1796,9 +1803,4 @@ div[style*="text-align: left"] { /* Seleziona il testo basandosi sulla posizione
   .adsterra-central-double {
     overflow-x: auto;
   }
-}
-.ad-box-tiny iframe {
-  max-height: 125px !important;
-  max-width: 125px !important;
-  overflow: hidden;
 }
