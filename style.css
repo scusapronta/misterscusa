@@ -1797,3 +1797,8 @@ div[style*="text-align: left"] { /* Seleziona il testo basandosi sulla posizione
     overflow-x: auto;
   }
 }
+.ad-box-tiny iframe {
+  max-height: 125px !important;
+  max-width: 125px !important;
+  overflow: hidden;
+}
