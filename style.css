@@ -1807,7 +1807,7 @@ div[style*="text-align: left"] { /* Seleziona il testo basandosi sulla posizione
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     justify-content: flex-start;
-    gap: 2px; /* <— ancora più vicini */
+    gap: 0.5px; /* <— ancora più vicini */
     padding-bottom: 4px;
   }
 
